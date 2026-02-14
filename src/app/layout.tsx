@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ChatWidget } from "@/components/ui/ChatWidget";
+import { PageLoadReveal } from "@/components/ui/PageLoadReveal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Gigmote",
-  description: "Premium outsourcing services.",
+  description: "Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability.",
 };
 
 export default function RootLayout({
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <PageLoadReveal />
         {children}
         <ChatWidget />
       </body>

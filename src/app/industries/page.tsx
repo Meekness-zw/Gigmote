@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { ContactForm } from "@/components/ui/ContactForm";
+import { BackgroundMotion } from "@/components/ui/BackgroundMotion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -26,14 +27,15 @@ const item = {
 
 export default function IndustriesPage() {
     return (
-        <main className="min-h-screen bg-hugo-cream selection:bg-hugo-gold/30">
+        <main className="relative min-h-screen bg-hugo-cream selection:bg-hugo-gold/30 overflow-hidden">
+            <BackgroundMotion variant="light" />
             <Navbar />
 
             <Hero
                 variant="industry"
                 title="Focus Industries"
                 subtitle="Expertise"
-                description="Deep domain knowledge in the world's most dynamic sectors."
+                description="Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability — with deep domain knowledge in the world's most dynamic sectors."
             />
 
             <section className="py-24 -mt-20 relative z-20">

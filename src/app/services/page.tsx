@@ -5,44 +5,69 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { ContactForm } from "@/components/ui/ContactForm";
+import { BackgroundMotion } from "@/components/ui/BackgroundMotion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { staggerContainer, scaleIn } from "@/utils/animations";
+import { AnimatedText } from "@/components/ui/AnimatedText";
+import { MaskSection } from "@/components/ui/MaskSection";
+import { FadeInOnScroll } from "@/components/ui/FadeInOnScroll";
+import { SectionLabel } from "@/components/ui/SectionLabel";
+import { IllustrationTeam, IllustrationGlobal, IllustrationCoding } from "@/components/illustrations";
+import { ResponsiveCarousel } from "@/components/ui/ResponsiveCarousel";
+
+const serviceIllustrations = {
+  "bpo-matchmaking-advisory": IllustrationTeam,
+  "global-staffing": IllustrationGlobal,
+  "ai-business-solutions": IllustrationCoding,
+};
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-hugo-cream selection:bg-hugo-gold/30">
+    <main className="relative min-h-screen bg-hugo-cream selection:bg-hugo-gold/30 overflow-hidden">
+      <BackgroundMotion variant="light" />
       <Navbar />
 
       <Hero
         variant="service"
         title="Services that blend global talent and AI."
         subtitle="What We Do"
-        description="Three pillars — BPO advisory, global staffing, and AI business solutions — designed to help you scale smarter, not just cheaper."
+        description="Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability — BPO advisory, global staffing, and AI solutions designed to scale you smarter."
       />
 
-      <section className="py-24 bg-white">
+      <MaskSection variant="clipUp" className="py-24 md:py-28 bg-white">
         <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {siteContent.services.map((service) => {
-              const Icon = service.icon;
-              return (
+          <FadeInOnScroll className="mb-12">
+            <SectionLabel>What We Do</SectionLabel>
+            <h2 className="text-3xl md:text-4xl font-bold text-hugo-black mb-2">Three pillars for scale</h2>
+            <p className="text-hugo-black/60 max-w-2xl">BPO advisory, global staffing, and AI solutions — all under one roof.</p>
+          </FadeInOnScroll>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <ResponsiveCarousel desktopCols={3} gap="gap-10">
+            {siteContent.services.map((service) => (
                 <motion.div
                   key={service.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4 }}
-                  className="bg-hugo-cream/60 rounded-3xl p-8 border border-hugo-black/5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
+                  variants={scaleIn}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="bg-hugo-cream/60 rounded-3xl p-8 border-[0.2rem] border-hugo-black/10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
                 >
-                  <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm">
-                    <Icon className="text-hugo-black" size={26} />
+                  <div className="flex justify-center mb-6 text-hugo-black/60">
+                    {(() => {
+                      const Illo = serviceIllustrations[service.slug as keyof typeof serviceIllustrations];
+                      return Illo ? <Illo size="md" className="max-w-full" /> : null;
+                    })()}
                   </div>
                   <p className="text-xs font-semibold tracking-[0.2em] uppercase text-hugo-black/50 mb-2">
                     {service.slogan}
                   </p>
                   <h2 className="text-2xl font-bold text-hugo-black mb-3">
-                    {service.title}
+                    <AnimatedText text={service.title} variant="words" />
                   </h2>
                   <p className="text-sm text-hugo-black/70 leading-relaxed mb-6">
                     {service.description}
@@ -89,24 +114,27 @@ export default function ServicesPage() {
                     </Link>
                   </div>
                 </motion.div>
-              );
-            })}
-          </div>
+            ))}
+            </ResponsiveCarousel>
+          </motion.div>
         </div>
-      </section>
+      </MaskSection>
 
-      {/* Quick talent request form callout */}
-      <section className="py-20 bg-hugo-black text-white">
+      {/* Quick talent request — clone-style dark section */}
+      <MaskSection variant="slideUp" className="py-20 md:py-24 bg-hugo-black text-white">
         <div className="container mx-auto px-6 max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Need talent or AI support fast?
-          </h2>
-          <p className="text-white/70 mb-10">
-            Submit a quick request and we&apos;ll map the right mix of global
-            talent and automation for your team.
-          </p>
+          <FadeInOnScroll>
+            <SectionLabel variant="dark">Get Started</SectionLabel>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <AnimatedText text="Need talent or AI support fast?" variant="words" />
+            </h2>
+            <p className="text-white/70 mb-10">
+              Submit a quick request and we&apos;ll map the right mix of global
+              talent and automation for your team.
+            </p>
+          </FadeInOnScroll>
         </div>
-      </section>
+      </MaskSection>
 
       <ContactForm />
 

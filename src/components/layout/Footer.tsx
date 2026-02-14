@@ -13,7 +13,7 @@ export const Footer = () => {
                             gigmote<span className="text-hugo-gold">.</span>
                         </Link>
                         <p className="text-white/60 leading-relaxed">
-                            We build world-class outsourcing teams that help you scale faster, smarter, and better.
+                            Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability.
                         </p>
                         <div className="flex gap-4">
                             {/* Social placeholders */}
@@ -38,23 +38,23 @@ export const Footer = () => {
                     <div>
                         <h4 className="text-lg font-semibold mb-6">Company</h4>
                         <ul className="space-y-4 text-white/60">
-                            <li><Link href="/company" className="hover:text-white transition-colors">About Us</Link></li>
+                            <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
                             <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
                             <li><Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
                             <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
                         </ul>
                     </div>
 
-                    {/* Newsletter / CTA */}
+                    {/* Newsletter / CTA — clone-style */}
                     <div className="space-y-6">
-                        <h4 className="text-lg font-semibold">Stay in the loop</h4>
-                        <p className="text-white/60 text-sm">Join our newsletter for the latest insights on scaling global teams.</p>
-                        <div className="flex gap-2">
+                        <h4 className="text-lg font-bold">Stay in the loop</h4>
+                        <p className="text-white/60 text-base">Join our newsletter for the latest insights on scaling global teams.</p>
+                        <div className="flex gap-3">
                             <input
                                 placeholder="Enter your email"
-                                className="bg-white/10 border border-white/10 rounded-pill px-4 py-2 text-sm text-white focus:outline-none focus:border-hugo-gold w-full"
+                                className="bg-white/10 border-2 border-white/10 rounded-full px-5 py-3 text-base text-white placeholder:text-white/50 focus:outline-none focus:border-hugo-gold w-full"
                             />
-                            <Button size="sm" variant="secondary">Go</Button>
+                            <Button size="sm" variant="secondary" className="shrink-0 font-bold">Go</Button>
                         </div>
                     </div>
                 </div>

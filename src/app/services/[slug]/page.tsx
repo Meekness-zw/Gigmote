@@ -4,8 +4,12 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { ContactForm } from "@/components/ui/ContactForm";
+import { BackgroundMotion } from "@/components/ui/BackgroundMotion";
 import { StatTicker } from "@/components/ui/StatTicker";
 import { Accordion } from "@/components/ui/Accordion";
+import { MaskSection } from "@/components/ui/MaskSection";
+import { FadeInOnScroll } from "@/components/ui/FadeInOnScroll";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { CheckCircle2 } from "lucide-react";
 
 export async function generateStaticParams() {
@@ -14,15 +18,19 @@ export async function generateStaticParams() {
     }));
 }
 
-export default function ServicePage({ params }: { params: { slug: string } }) {
-    const service = siteContent.services.find((s) => s.slug === params.slug);
+export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const service = siteContent.services.find((s) => s.slug === slug);
 
     if (!service) {
         notFound();
     }
 
+    const ServiceIcon = service.icon;
+
     return (
-        <main className="min-h-screen bg-hugo-cream selection:bg-hugo-gold/30">
+        <main className="relative min-h-screen bg-hugo-cream selection:bg-hugo-gold/30 overflow-hidden">
+            <BackgroundMotion variant="light" />
             <Navbar />
 
             <Hero
@@ -32,13 +40,14 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
                 description={service.description}
             />
 
-            {/* Features & "Best For" Section */}
-            <section className="py-24">
+            {/* Features & "Best For" — clone-style */}
+            <MaskSection variant="clipUp" className="py-24 md:py-28">
                 <div className="container mx-auto px-6 max-w-7xl">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                         <div>
+                            <SectionLabel>{service.slogan || "Built for scale"}</SectionLabel>
                             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-hugo-black">
-                                {service.slogan || "Built for scale."}
+                                Fully managed operating model
                             </h2>
                             <p className="text-lg text-hugo-black/70 mb-8 leading-relaxed">
                                 We don&apos;t just provide specialized talent; we provide a fully managed operating model.
@@ -59,7 +68,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
                             {/* Icon visual */}
                             <div className="bg-white p-12 rounded-[2.5rem] shadow-xl border border-hugo-black/5 flex items-center justify-center relative overflow-hidden group">
                                 <div className="absolute inset-0 bg-gradient-to-br from-hugo-cream to-white opacity-50"></div>
-                                <service.icon size={120} className="text-hugo-gold relative z-10 group-hover:scale-110 transition-transform duration-500" strokeWidth={1} />
+                                <ServiceIcon size={120} className="text-hugo-gold relative z-10 group-hover:scale-110 transition-transform duration-500" strokeWidth={1} />
 
                                 {/* Decorative circles */}
                                 <div className="absolute -right-10 -top-10 w-40 h-40 bg-hugo-teal/10 rounded-full blur-2xl"></div>
@@ -93,7 +102,40 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
                         </div>
                     </div>
                 </div>
-            </section>
+            </MaskSection>
+
+            {/* How We Choose Partners - Only for BPO Matchmaking */}
+            {service.slug === "bpo-matchmaking-advisory" && (
+                <section className="py-24 bg-hugo-cream">
+                    <div className="container mx-auto px-6 max-w-5xl">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-hugo-black">How We Choose Partners</h2>
+                            <p className="text-lg text-hugo-black/70">
+                                We work with a selective network of BPO providers that meet strict standards.
+                            </p>
+                        </div>
+
+                        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-hugo-black/5">
+                            <h3 className="text-xl font-bold mb-6 text-hugo-black">Requirements:</h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {[
+                                    "Full-time employment models",
+                                    "Strong communication standards",
+                                    "24/7 operational oversight",
+                                    "Performance-driven accountability",
+                                    "Cybersecurity compliance",
+                                    "Ethical wage standards",
+                                ].map((req, idx) => (
+                                    <div key={idx} className="flex items-start gap-3">
+                                        <CheckCircle2 className="text-hugo-teal shrink-0 mt-1" size={20} />
+                                        <span className="text-hugo-black/80">{req}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            )}
 
             {/* FAQs */}
             <section className="py-24 bg-white">

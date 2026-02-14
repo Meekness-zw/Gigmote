@@ -3,17 +3,19 @@ import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { Accordion } from "@/components/ui/Accordion";
 import { ContactForm } from "@/components/ui/ContactForm";
+import { BackgroundMotion } from "@/components/ui/BackgroundMotion";
 import { siteContent } from "@/data/content";
 
 export default function ResourcesPage() {
     return (
-        <main className="min-h-screen bg-hugo-cream selection:bg-hugo-gold/30">
+        <main className="relative min-h-screen bg-hugo-cream selection:bg-hugo-gold/30 overflow-hidden">
+            <BackgroundMotion variant="light" />
             <Navbar />
 
             <Hero
                 variant="company"
                 title="Insights, Playbooks & FAQ"
-                description="Content to help you think more strategically about global staffing, outsourcing, and AI automation."
+                description="Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability. Content to help you think strategically about global staffing and AI automation."
             />
 
             <section className="py-24 bg-white">

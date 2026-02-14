@@ -5,8 +5,12 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { ContactForm } from "@/components/ui/ContactForm";
+import { BackgroundMotion } from "@/components/ui/BackgroundMotion";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { MaskSection } from "@/components/ui/MaskSection";
+import { FadeInOnScroll } from "@/components/ui/FadeInOnScroll";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Target, Users, Zap, Globe, Award, TrendingUp } from "lucide-react";
 
 export default function CompanyPage() {
@@ -61,7 +65,8 @@ export default function CompanyPage() {
     ];
 
     return (
-        <main className="min-h-screen bg-hugo-cream selection:bg-hugo-gold/30">
+        <main className="relative min-h-screen bg-hugo-cream selection:bg-hugo-gold/30 overflow-hidden">
+            <BackgroundMotion variant="light" />
             <Navbar />
 
             <Hero
@@ -70,8 +75,8 @@ export default function CompanyPage() {
                 description={siteContent.company.heroDescription}
             />
 
-            {/* Stats Bar */}
-            <section className="py-16 bg-hugo-black text-white">
+            {/* Stats Bar — clone-style dark section */}
+            <MaskSection variant="slideUp" className="py-16 md:py-20 bg-hugo-black text-white">
                 <div className="container mx-auto px-6 max-w-7xl">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                         {siteContent.company.stats.map((stat, idx) => (
@@ -93,10 +98,10 @@ export default function CompanyPage() {
                         ))}
                     </div>
                 </div>
-            </section>
+            </MaskSection>
 
             {/* Mission */}
-            <section className="py-24 bg-white">
+            <MaskSection variant="slideUp" className="py-24 md:py-28 bg-white">
                 <div className="container mx-auto px-6 max-w-4xl">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -104,9 +109,7 @@ export default function CompanyPage() {
                         viewport={{ once: true }}
                         className="text-center space-y-8"
                     >
-                        <span className="inline-block px-4 py-2 rounded-full bg-hugo-gold/20 text-hugo-black text-sm font-bold mb-4 border border-hugo-gold/30">
-                            Our Story
-                        </span>
+                        <SectionLabel>Our Story</SectionLabel>
                         <h2 className="text-4xl md:text-5xl font-bold text-hugo-black leading-tight">
                             Gigmote was built by operators who have scaled outsourcing teams, CX orgs, and AI programs.
                         </h2>
@@ -117,17 +120,18 @@ export default function CompanyPage() {
                         </p>
                     </motion.div>
                 </div>
-            </section>
+            </MaskSection>
 
             {/* Values */}
-            <section className="py-24 bg-hugo-cream">
+            <MaskSection variant="clipUp" className="py-24 md:py-28 bg-hugo-cream">
                 <div className="container mx-auto px-6 max-w-7xl">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-6">The Gigmote Difference</h2>
+                    <FadeInOnScroll className="text-center mb-16">
+                        <SectionLabel>The Gigmote Difference</SectionLabel>
+                        <h2 className="text-4xl md:text-5xl font-bold mb-6">Principles that guide every team we build</h2>
                         <p className="text-xl text-hugo-black/60 max-w-2xl mx-auto">
                             These principles guide every decision we make and every team we build.
                         </p>
-                    </div>
+                    </FadeInOnScroll>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {values.map((value, idx) => {
@@ -152,10 +156,10 @@ export default function CompanyPage() {
                         })}
                     </div>
                 </div>
-            </section>
+            </MaskSection>
 
-            {/* Visual Grid */}
-            <section className="py-24 bg-white">
+            {/* Visual Grid — clone-style */}
+            <MaskSection variant="slideUp" className="py-24 md:py-28 bg-white">
                 <div className="container mx-auto px-6 max-w-7xl">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 h-[500px]">
                         <motion.div
@@ -204,16 +208,17 @@ export default function CompanyPage() {
                         </motion.div>
                     </div>
                 </div>
-            </section>
+            </MaskSection>
 
-            {/* Timeline */}
-            <section className="py-24 bg-hugo-black text-white relative overflow-hidden">
+            {/* Timeline — clone-style dark */}
+            <MaskSection variant="slideUp" className="py-24 md:py-28 bg-hugo-black text-white relative overflow-hidden">
                 <div className="absolute inset-0 bg-[url('/images/pattern-bg.png')] opacity-5"></div>
                 <div className="container mx-auto px-6 max-w-5xl relative z-10">
-                    <div className="text-center mb-16">
+                    <FadeInOnScroll className="text-center mb-16">
+                        <SectionLabel variant="dark">Our Beliefs</SectionLabel>
                         <h2 className="text-4xl md:text-5xl font-bold mb-6">Why traditional outsourcing fails — and what we do differently</h2>
                         <p className="text-xl text-white/60">A simple look at the beliefs behind Gigmote.</p>
-                    </div>
+                    </FadeInOnScroll>
 
                     <div className="space-y-12">
                         {milestones.map((milestone, idx) => (
@@ -239,7 +244,7 @@ export default function CompanyPage() {
                         ))}
                     </div>
                 </div>
-            </section>
+            </MaskSection>
 
             <ContactForm />
 

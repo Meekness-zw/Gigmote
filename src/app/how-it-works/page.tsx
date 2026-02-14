@@ -5,18 +5,20 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { ContactForm } from "@/components/ui/ContactForm";
+import { BackgroundMotion } from "@/components/ui/BackgroundMotion";
 import { motion } from "framer-motion";
 
 export default function HowItWorksPage() {
     return (
-        <main className="min-h-screen bg-hugo-cream selection:bg-hugo-gold/30">
+        <main className="relative min-h-screen bg-hugo-cream selection:bg-hugo-gold/30 overflow-hidden">
+            <BackgroundMotion variant="light" />
             <Navbar />
 
             <Hero
                 variant="centered"
                 title="The Gigmote Blueprint"
                 subtitle="How It Works"
-                description="We don’t just find help. We build systems that help your business run without you."
+                description={`${siteContent.coreValue} Building systems that help your business run without you.`}
             />
 
             <section className="py-24 relative overflow-hidden">

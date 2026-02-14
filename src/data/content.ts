@@ -13,19 +13,22 @@ import {
 } from "lucide-react";
 
 export const siteContent = {
+    /** Core value proposition — applies across the entire project */
+    coreValue:
+        "Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability.",
     services: [
         {
             slug: "bpo-matchmaking-advisory",
             icon: ShieldCheck,
             title: "BPO Matchmaking & Advisory",
             slogan: "Outsource Without Guesswork",
-            description: "Design, select, and manage outsourcing partners that actually deliver. Strategy, vendors, and performance — handled.",
+            description: "We help companies design, select, and manage outsourcing partners that deliver consistent performance.",
             features: [
-                "Vendor selection and shortlisting",
-                "Operating model and playbook design",
-                "Performance metrics & executive reporting",
-                "Risk, compliance, and continuity planning",
-                "Optimization of existing outsourcing programs"
+                "Vendor selection",
+                "Operating model design",
+                "Performance metrics & oversight",
+                "Risk and compliance planning",
+                "Optimization of existing outsourcing"
             ],
             bestFor: ["CX Teams", "Operations", "Finance & Back Office", "Scaling Companies"],
             pricing: "Custom Pricing",
@@ -39,20 +42,20 @@ export const siteContent = {
             icon: Users,
             title: "Global Staffing",
             slogan: "Reliable Global Talent. Fully Integrated.",
-            description: "We place vetted, full-time professionals directly into your team. No freelancers. No temp placements. Just long-term, accountable team members.",
+            description: "We place vetted, full-time professionals into your team. No freelancers. No temporary placements. Just long-term, accountable team members.",
             features: [
-                "Full-time vetted global talent",
-                "Roles across CX, operations, finance, tech, and marketing",
-                "Optional management & oversight layer",
-                "Structured onboarding and playbooks",
-                "Metrics-driven performance management"
+                "Vetted talent only",
+                "Full-time accountability",
+                "Optional oversight & management",
+                "Seamless onboarding support"
             ],
             bestFor: [
                 "Customer Support, Admin & Operations",
-                "Data & Engineering Teams",
-                "Sales & Marketing",
-                "Financial Services & FinTech",
-                "Healthcare Revenue Cycle"
+                "Data Scientists and Engineers",
+                "Full Stack Developers & AI/ML Engineers",
+                "Sales Enablement & Digital Marketing Specialists",
+                "Financial services & Fintech & Accounting",
+                "Healthcare Revenue Cycle Management"
             ],
             pricing: "From $9/hour",
             stats: [
@@ -65,13 +68,13 @@ export const siteContent = {
             icon: Cpu,
             title: "AI Business Solutions",
             slogan: "Automate Busywork. Keep Humans in Control.",
-            description: "Practical AI deployments that reduce repetitive work, improve efficiency, and keep humans in the loop for quality control.",
+            description: "We implement practical AI tools that reduce repetitive workload and improve efficiency across customer support, sales, and internal operations.",
             features: [
-                "AI chatbots and virtual assistants",
-                "Workflow and process automation",
-                "CRM and RevOps AI assistants",
-                "Data processing & enrichment automation",
-                "AI lead qualification and routing"
+                "AI Chatbots",
+                "Workflow Automation",
+                "CRM AI Assistants",
+                "Data Processing Automation",
+                "AI Lead Qualification"
             ],
             bestFor: ["Customer Support", "Sales & RevOps", "Operations", "Founders & Leadership Teams"],
             pricing: "From $3,000 per deployment",
@@ -86,48 +89,48 @@ export const siteContent = {
             slug: "healthcare",
             icon: Stethoscope,
             title: "Healthcare",
-            description: "Patient communication, admin workflows, and revenue cycle support with strict accuracy and compliance.",
+            description: "We support patient communication, admin workflows, and full revenue cycle operations like insurance verification, charge entries, claims submissions etc while maintaining strict compliance and accuracy standards.",
             heroTitle: "Healthcare operations that protect revenue and patient trust."
         },
         {
             slug: "saas",
             icon: MonitorSmartphone,
             title: "SaaS",
-            description: "Scale support, onboarding, and revenue operations while protecting CSAT and retention.",
+            description: "We help SaaS companies scale customer support, revenue operations, onboarding, and retention while maintaining high CSAT.",
             heroTitle: "Customer and revenue operations that keep your SaaS growing."
         },
         {
             slug: "it-web3",
             icon: Cpu,
             title: "IT & Web3",
-            description: "Development, service management, incident response, and infrastructure support for modern tech companies.",
+            description: "We support development, service management, incident response, and infrastructure scaling.",
             heroTitle: "Technical teams that can ship, support, and scale."
         },
         {
             slug: "digital-marketing",
             icon: Activity,
             title: "Digital Marketing",
-            description: "Campaign execution, reporting, content coordination, and paid media operations with ROI visibility.",
+            description: "We help brands scale campaign execution, reporting, content coordination, and paid media operations while maintaining ROI visibility.",
             heroTitle: "Marketing operations that turn spend into predictable growth."
         },
         {
             slug: "sales-enablement",
             icon: LineChart,
             title: "Sales Enablement",
-            description: "CRM management, pipeline tracking, outbound coordination, and proposal support.",
+            description: "We support CRM management, pipeline tracking, outbound coordination, and proposal development to improve close rates and revenue predictability.",
             heroTitle: "Revenue operations that keep your pipeline moving."
         },
         {
             slug: "fintech",
             icon: Banknote,
             title: "FinTech",
-            description: "Secure, compliant support for the financial sector.",
+            description: "We understand compliance, security, and regulatory complexity. Our teams focus on precision, data protection, and customer trust.",
             heroTitle: "Operational partners who understand compliance, security, and regulation."
         }
     ],
     company: {
         heroTitle: "Built by operators, not recruiters.",
-        heroDescription: "We’ve scaled outsourcing teams, CX organizations, and AI programs inside real companies — and we built Gigmote to fix what traditional outsourcing gets wrong.",
+        heroDescription: "Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability — and we built Gigmote to fix what traditional outsourcing gets wrong.",
         stats: [
             { label: "Average Cost Savings", value: "40–60%" },
             { label: "Global Talent Hubs", value: "Multiple" },
@@ -183,18 +186,18 @@ export const siteContent = {
     howItWorks: [
         {
             step: 1,
-            title: "Discovery & Blueprint",
-            description: "We analyze your current workflows, identify bottlenecks, and build a custom operating model."
+            title: "Operational Audit",
+            description: "We identify repetitive work, workflow gaps, and automation opportunities."
         },
         {
             step: 2,
-            title: "Talent Matchmaking",
-            description: "We source candidates from our pre-vetted pool who match your specific industry and tech stack."
+            title: "Precision Match",
+            description: "We provide 2–3 highly vetted talent options or AI solutions tailored to your exact workflow."
         },
         {
             step: 3,
             title: "Managed Integration",
-            description: "We support onboarding, KPI setup, and workflow integration so your new talent and AI solutions plug directly into your operations."
+            description: "We support onboarding, KPI setup, and workflow integration."
         },
         {
             step: 4,
@@ -233,12 +236,12 @@ export const siteContent = {
         },
         {
             id: "digital-marketing-performance-efficiency",
-            industry: "Healthcare",
+            industry: "Healthcare Technology Company | $10M ARR",
             title: "Digital Marketing Performance & Cost Efficiency",
             challenge:
-                "A healthcare technology company with $10M ARR was overspending on U.S.-based marketing contractors while suffering from slow content turnaround and inconsistent campaigns. Blended marketing spend exceeded $32,000/month and CPL was rising.",
+                "A healthcare technology firm was overspending on U.S.-based marketing contractors while struggling with inconsistent campaign execution and slow content turnaround. Their blended marketing spend exceeded $32,000 per month, yet lead quality remained inconsistent and cost-per-lead (CPL) was rising.",
             solution:
-                "Gigmote assembled a dedicated digital marketing pod (performance marketer, content specialist, marketing ops coordinator), centralized ad management, rebuilt funnel tracking, implemented structured content calendars, and moved reporting from spreadsheets to automated dashboards.",
+                "Gigmote deployed a dedicated digital marketing team including a performance marketer, content specialist, and marketing operations coordinator. We centralized ad management, rebuilt funnel tracking, implemented structured content calendars, and optimized Google and LinkedIn campaigns. Reporting moved from manual spreadsheets to automated weekly dashboards.",
             results: [
                 "42% decrease in cost-per-lead and 55% improvement in paid campaign ROI",
                 "3x increase in content production output",
@@ -247,12 +250,12 @@ export const siteContent = {
         },
         {
             id: "revenue-cycle-management-optimization",
-            industry: "Healthcare RCM",
+            industry: "Multi-Location Medical Practice | 14 Providers",
             title: "Revenue Cycle Management (RCM) Optimization",
             challenge:
-                "A multi-location medical practice with 14 providers faced rising insurance denials (18%), delayed reimbursements, and inconsistent follow-up. Days in A/R averaged 52, straining cash flow. Adding in-house billing staff would have cost ~$120,000 annually.",
+                "A multi-location medical practice was facing rising insurance claim denials, delayed reimbursements, and inconsistent follow-ups. Denial rates had climbed to 18%, and days in accounts receivable averaged 52 days, straining cash flow. Hiring additional in-house billing staff would have added $120,000 annually in payroll costs.",
             solution:
-                "Gigmote assembled a specialized RCM team focused on prior authorizations, claim scrubbing, denial management, and follow-up. We implemented SOPs, denial analytics, and daily claim status tracking for visibility and accountability.",
+                "Gigmote assembled a specialized Revenue Cycle Management team focused on prior authorizations, claim scrubbing, denial management, and systematic follow-up protocols. We introduced structured SOPs, denial analytics reporting, and daily claim status tracking to improve visibility and accountability.",
             results: [
                 "Denial rates reduced from 18% to 7% and days in A/R cut to 31",
                 "Net collections increased by 14% and monthly cash flow improved by ~$220,000",
@@ -261,12 +264,12 @@ export const siteContent = {
         },
         {
             id: "integrated-back-office-sales-support-real-estate",
-            industry: "Real Estate & Back Office",
+            industry: "U.S. Real Estate Investment Group | 75+ Properties",
             title: "Integrated Back-Office & Sales Support for Scaling Real Estate Firm",
             challenge:
-                "A U.S. real estate investment group managing 75+ properties struggled with property accounting, tenant communication, and investor reporting. Admin bottlenecks were slowing acquisitions and local hiring was too expensive.",
+                "A growing real estate investment firm was struggling to manage property accounting, tenant communications, and investor reporting. Administrative bottlenecks slowed acquisitions, and local hiring costs were limiting expansion plans.",
             solution:
-                "Gigmote deployed a hybrid structure — two accounting specialists, one leasing support coordinator, and a CRM administrator — to standardize reporting, automate rent tracking and follow-ups, and tighten coordination between brokers and internal teams.",
+                "Gigmote deployed a hybrid support structure: two accounting specialists, one leasing support coordinator, and a CRM administrator. We standardized reporting for investors, automated rent tracking and follow-ups, and improved acquisition pipeline coordination between brokers and internal teams.",
             results: [
                 "52% decrease in operational overhead (~$210,000 in annual savings)",
                 "60% faster administrative turnaround times",

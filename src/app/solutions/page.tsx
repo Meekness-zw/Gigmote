@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { ContactForm } from "@/components/ui/ContactForm";
+import { BackgroundMotion } from "@/components/ui/BackgroundMotion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
@@ -26,14 +27,15 @@ const item = {
 
 export default function SolutionsPage() {
     return (
-        <main className="min-h-screen bg-hugo-cream selection:bg-hugo-gold/30">
+        <main className="relative min-h-screen bg-hugo-cream selection:bg-hugo-gold/30 overflow-hidden">
+            <BackgroundMotion variant="light" />
             <Navbar />
 
             <Hero
                 variant="service"
                 title="Our Solutions"
                 subtitle="Services"
-                description="Comprehensive outsourcing solutions tailored to your unique business needs."
+                description={`${siteContent.coreValue} Comprehensive outsourcing solutions tailored to your unique business needs.`}
             />
 
             <section className="py-24 bg-white">

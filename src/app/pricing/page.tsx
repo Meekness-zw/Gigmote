@@ -1,23 +1,35 @@
+"use client";
+
 import { ROICalculator } from "@/components/tools/ROICalculator";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { ContactForm } from "@/components/ui/ContactForm";
+import { BackgroundMotion } from "@/components/ui/BackgroundMotion";
+import { MaskSection } from "@/components/ui/MaskSection";
+import { FadeInOnScroll } from "@/components/ui/FadeInOnScroll";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Check } from "lucide-react";
 
 export default function PricingPage() {
   return (
-    <main className="min-h-screen bg-hugo-cream selection:bg-hugo-gold/30">
+    <main className="relative min-h-screen bg-hugo-cream selection:bg-hugo-gold/30 overflow-hidden">
+      <BackgroundMotion variant="light" />
       <Navbar />
 
       <Hero
         variant="pricing"
         title="Transparent & Simple Pricing"
-        description="We focus on long-term value, retention, and performance — not race-to-the-bottom outsourcing."
+        description="Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability."
       />
 
-      <section className="py-24 -mt-20 relative z-20">
+      <MaskSection variant="clipUp" className="py-24 md:py-28 -mt-20 relative z-20">
         <div className="container mx-auto px-6 max-w-7xl">
+          <FadeInOnScroll className="mb-12">
+            <SectionLabel>Pricing</SectionLabel>
+            <h2 className="text-3xl md:text-4xl font-bold text-hugo-black mb-2">Plans that scale with you</h2>
+            <p className="text-hugo-black/60 max-w-2xl">Clear pricing for global staffing, AI solutions, and BPO advisory.</p>
+          </FadeInOnScroll>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Global Staffing */}
             <div className="bg-white rounded-3xl p-8 shadow-xl border border-hugo-black/5 flex flex-col">
@@ -134,20 +146,21 @@ export default function PricingPage() {
             </div>
           </div>
 
-          {/* ROI Calculator Section */}
+          {/* ROI Calculator — clone-style */}
           <div className="mt-24 max-w-4xl mx-auto">
-            <div className="text-center mb-12">
+            <FadeInOnScroll className="text-center mb-12">
+              <SectionLabel>ROI</SectionLabel>
               <h2 className="text-3xl font-bold text-hugo-black mb-4">
                 Interactive ROI Calculator
               </h2>
               <p className="text-lg text-hugo-black/60">
                 Model your current U.S. team costs against Gigmote&apos;s global staffing + AI model — and see savings in real time.
               </p>
-            </div>
+            </FadeInOnScroll>
             <ROICalculator />
           </div>
         </div>
-      </section>
+      </MaskSection>
 
       <ContactForm />
 

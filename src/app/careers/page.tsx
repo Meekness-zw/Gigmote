@@ -3,6 +3,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
+import { BackgroundMotion } from "@/components/ui/BackgroundMotion";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 
@@ -59,41 +60,56 @@ export default function CareersPage() {
   };
 
   return (
-    <main className="min-h-screen bg-hugo-cream selection:bg-hugo-gold/30">
+    <main className="relative min-h-screen bg-hugo-cream selection:bg-hugo-gold/30 overflow-hidden">
+      <BackgroundMotion variant="light" />
       <Navbar />
 
       <Hero
         variant="company"
-        title="Join the future of work."
-        description="Gigmote connects global talent with leading companies across FinTech, Healthcare, SaaS, and emerging technology."
+        title="Join The Future Of Work"
+        description="Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability. Join us — we're building global teams powering companies worldwide."
       />
 
       <section className="py-24 bg-white">
         <div className="container mx-auto px-6 max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="space-y-6">
             <h2 className="text-3xl md:text-4xl font-bold text-hugo-black">
-              Why work with Gigmote
+              Why Work With Gigmote
             </h2>
             <p className="text-hugo-black/70 text-lg">
               We&apos;re building global teams powering companies worldwide. Join a
               performance-driven, modern work environment with real growth
               opportunities.
             </p>
-            <ul className="space-y-4 text-sm text-hugo-black/80">
-              <li>🌍 Work with global clients</li>
-              <li>📈 Performance-driven growth environment</li>
-              <li>🏡 Remote-first culture with brick &amp; mortar options based on client needs</li>
-              <li>🤖 Exposure to AI and modern tools</li>
+            <ul className="space-y-4 text-base text-hugo-black/80">
+              <li className="flex items-start gap-3">
+                <span className="text-xl">🌍</span>
+                <span>Work With Global Clients</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-xl">📈</span>
+                <span>Performance-driven growth environment</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-xl">🏡</span>
+                <span>Remote-First Culture and brick &amp; mortar options depending on client expectations</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-xl">🤖</span>
+                <span>Exposure to AI and modern tools</span>
+              </li>
             </ul>
           </div>
 
           <div className="bg-hugo-cream/60 rounded-3xl p-8 shadow-xl border border-hugo-black/5">
-            <h3 className="text-xl font-bold mb-4 text-hugo-black">
+            <h3 className="text-xl font-bold mb-6 text-hugo-black">
               Join Gigmote
             </h3>
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Basic Info */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Basic Info Section */}
+              <div>
+                <h4 className="text-sm font-semibold text-hugo-black/60 uppercase tracking-wide mb-4">Basic Info</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-hugo-black mb-1">
                     Name
@@ -141,10 +157,12 @@ export default function CareersPage() {
                     onChange={handleChange}
                   />
                 </div>
+                </div>
               </div>
 
-              {/* Skills & Experience */}
+              {/* Skills & Experience Section */}
               <div>
+                <h4 className="text-sm font-semibold text-hugo-black/60 uppercase tracking-wide mb-4">Skills & Experience</h4>
                 <label className="block text-sm font-medium text-hugo-black mb-1">
                   Core Skills (comma separated)
                 </label>
@@ -180,8 +198,9 @@ export default function CareersPage() {
                 </div>
               </div>
 
-              {/* Upload-like fields */}
+              {/* Uploads Section */}
               <div>
+                <h4 className="text-sm font-semibold text-hugo-black/60 uppercase tracking-wide mb-4">Uploads</h4>
                 <label className="block text-sm font-medium text-hugo-black mb-1">
                   Resume (link)
                 </label>
@@ -205,8 +224,9 @@ export default function CareersPage() {
                 />
               </div>
 
-              {/* Insight questions */}
+              {/* Insight Questions Section */}
               <div>
+                <h4 className="text-sm font-semibold text-hugo-black/60 uppercase tracking-wide mb-4">Insight Questions</h4>
                 <label className="block text-sm font-medium text-hugo-black mb-1">
                   Describe a complex project you solved
                 </label>

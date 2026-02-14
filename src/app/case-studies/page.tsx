@@ -5,19 +5,21 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/Hero";
 import { ContactForm } from "@/components/ui/ContactForm";
+import { BackgroundMotion } from "@/components/ui/BackgroundMotion";
 import { motion } from "framer-motion";
 import { TrendingUp, Clock, DollarSign } from "lucide-react";
 
 export default function CaseStudiesPage() {
     return (
-        <main className="min-h-screen bg-hugo-cream selection:bg-hugo-gold/30">
+        <main className="relative min-h-screen bg-hugo-cream selection:bg-hugo-gold/30 overflow-hidden">
+            <BackgroundMotion variant="light" />
             <Navbar />
 
             <Hero
                 variant="centered"
                 title="Real Business Impact"
                 subtitle="Case Studies"
-                description="See how we've helped companies across FinTech, SaaS, and Healthcare scale smarter."
+                description="Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability. See how we've helped companies across FinTech, SaaS, and Healthcare scale smarter."
             />
 
             <section className="py-24 bg-white">
@@ -67,18 +69,69 @@ export default function CaseStudiesPage() {
                                         </div>
 
                                         {/* Secondary Results */}
-                                        <div className="bg-hugo-cream p-8 rounded-3xl border border-hugo-black/5">
-                                            <Clock className="text-hugo-teal mb-4" size={32} />
-                                            <p className="font-medium text-hugo-black">{study.results[1]}</p>
-                                        </div>
-                                        <div className="bg-hugo-cream p-8 rounded-3xl border border-hugo-black/5">
-                                            <DollarSign className="text-hugo-sage mb-4" size={32} />
-                                            <p className="font-medium text-hugo-black">{study.results[2]}</p>
-                                        </div>
+                                        {study.results.length > 1 && (
+                                            <>
+                                                <div className="bg-hugo-cream p-8 rounded-3xl border border-hugo-black/5">
+                                                    <Clock className="text-hugo-teal mb-4" size={32} />
+                                                    <p className="font-medium text-hugo-black">{study.results[1]}</p>
+                                                </div>
+                                                {study.results.length > 2 && (
+                                                    <div className="bg-hugo-cream p-8 rounded-3xl border border-hugo-black/5">
+                                                        <DollarSign className="text-hugo-sage mb-4" size={32} />
+                                                        <p className="font-medium text-hugo-black">{study.results[2]}</p>
+                                                    </div>
+                                                )}
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                             </motion.div>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Key Messaging Section */}
+            <section className="py-24 bg-hugo-black text-white relative overflow-hidden">
+                <BackgroundMotion variant="dark" />
+                <div className="container mx-auto px-6 max-w-6xl relative z-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="p-8 bg-white/5 rounded-3xl border border-white/10"
+                        >
+                            <h3 className="text-2xl font-bold mb-4">Scale your customer support globally</h3>
+                            <p className="text-white/70">without sacrificing compliance or quality.</p>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="p-8 bg-white/5 rounded-3xl border border-white/10"
+                        >
+                            <h3 className="text-2xl font-bold mb-4">Reduce operational costs by up to 60%</h3>
+                            <p className="text-white/70">using human + AI workflows.</p>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="p-8 bg-white/5 rounded-3xl border border-white/10"
+                        >
+                            <h3 className="text-2xl font-bold mb-4">Get vetted, full-time talent</h3>
+                            <p className="text-white/70">integrated directly into your enterprise team.</p>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="p-8 bg-white/5 rounded-3xl border border-white/10"
+                        >
+                            <h3 className="text-2xl font-bold mb-4">Run smarter, not harder</h3>
+                            <p className="text-white/70">with proven operational systems and AI augmentation.</p>
+                        </motion.div>
                     </div>
                 </div>
             </section>
