@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Gigmote",
   description: "Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability.",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({

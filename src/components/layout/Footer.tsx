@@ -49,12 +49,12 @@ export const Footer = () => {
                     <div className="space-y-6">
                         <h4 className="text-lg font-bold">Stay in the loop</h4>
                         <p className="text-white/60 text-base">Join our newsletter for the latest insights on scaling global teams.</p>
-                        <div className="flex gap-3">
+                        <div className="flex items-center gap-3">
                             <input
                                 placeholder="Enter your email"
-                                className="bg-white/10 border-2 border-white/10 rounded-full px-5 py-3 text-base text-white placeholder:text-white/50 focus:outline-none focus:border-hugo-gold w-full"
+                                className="h-12 bg-white/10 border-2 border-white/10 rounded-full px-5 text-base text-white placeholder:text-white/50 focus:outline-none focus:border-hugo-gold w-full"
                             />
-                            <Button size="sm" variant="secondary" className="shrink-0 font-bold">Go</Button>
+                            <Button size="sm" variant="secondary" className="h-12 shrink-0 font-bold px-5">Go</Button>
                         </div>
                     </div>
                 </div>
