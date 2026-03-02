@@ -3,17 +3,25 @@
 import { siteContent } from "@/data/content";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Hero } from "@/components/sections/Hero";
 import { ContactForm } from "@/components/ui/ContactForm";
 import { BackgroundMotion } from "@/components/ui/BackgroundMotion";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { MaskSection } from "@/components/ui/MaskSection";
 import { FadeInOnScroll } from "@/components/ui/FadeInOnScroll";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { Target, Users, Zap, Globe, Award, TrendingUp } from "lucide-react";
+import { Target, Users, Zap, Globe, Award, TrendingUp, ArrowRight } from "lucide-react";
+import { useRef } from "react";
+import { AnimatedText } from "@/components/ui/AnimatedText";
 
 export default function CompanyPage() {
+    const heroRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: heroRef,
+        offset: ["start start", "end start"]
+    });
+    const yTransform = useTransform(scrollYProgress, [0, 1], [0, 150]);
+
     const values = [
         {
             icon: Target,
@@ -37,31 +45,25 @@ export default function CompanyPage() {
         }
     ];
 
-    const milestones = [
+    const timeline = [
         {
-            year: "Why outsourcing fails",
-            event: "Cost over quality",
-            description:
-                "Most traditional providers compete on price instead of performance — leading to poor quality, high turnover, and little accountability.",
+            phase: "The Problem",
+            title: "Why outsourcing fails",
+            description: "Most traditional providers compete on price instead of performance. This leads to a race to the bottom: poor quality, high turnover, and zero accountability to your bottom line. It's body-shopping, not business building.",
+            image: "/images/Gigmote Asset 4.jpg"
         },
         {
-            year: "Why Gigmote exists",
-            event: "Operator-led model",
-            description:
-                "We built Gigmote after watching outsourcing fail real businesses. Our model prioritizes outcomes, systems, and people — not seat-filling.",
+            phase: "The Solution",
+            title: "An Operator-Led Model",
+            description: "We built Gigmote after experiencing the pain of scaling remote teams firsthand. Our model prioritizes outcomes, robust operational systems, and elite people. We care about unit economics, not just hourly rates.",
+            image: "/images/AI Curiosity lab in the rainforset jungle of africa in a call centre setting- bright setting, icons flying , glass office setting add people (3) (1).jpg"
         },
         {
-            year: "The Gigmote Standard",
-            event: "Quality first",
-            description:
-                "Above-market local wages, top-talent acceptance, zero body-shopping, and long-term placement focus form the core of how we operate.",
-        },
-        {
-            year: "The Human + AI Future",
-            event: "Run smarter, not harder",
-            description:
-                "We combine global talent with practical AI so your business can run with less friction, more visibility, and more resilience.",
-        },
+            phase: "The Future",
+            title: "Human Talent + Applied AI",
+            description: "We don't just place people; we equip them with the AI tools needed to multiply their output. By combining the top 1% of global talent with practical automation, we help you run a fundamentally smarter operation.",
+            image: "/images/create an image  wit digitally empowered people in .jpg"
+        }
     ];
 
     return (
@@ -69,16 +71,39 @@ export default function CompanyPage() {
             <BackgroundMotion variant="light" />
             <Navbar />
 
-            <Hero
-                variant="company"
-                title={siteContent.company.heroTitle}
-                description={siteContent.company.heroDescription}
-            />
+            {/* Immersive Dark Hero */}
+            <section ref={heroRef} className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex min-h-[60vh] bg-hugo-black text-white">
+                <motion.div
+                    style={{ y: yTransform }}
+                    className="absolute inset-0 z-0"
+                >
+                    <Image
+                        src="/images/create an image with the Hero title _AfriCode_ Connecting African Developers to Global Businesses ---.jpg"
+                        alt="Gigmote company vision"
+                        fill
+                        className="object-cover opacity-40 mix-blend-overlay"
+                        priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-hugo-black via-hugo-black/80 to-hugo-black/40"></div>
+                </motion.div>
 
-            {/* Stats Bar — clone-style dark section */}
-            <MaskSection variant="slideUp" className="py-16 md:py-20 bg-hugo-black text-white">
+                <div className="container mx-auto px-6 max-w-5xl relative z-10 text-center flex flex-col items-center justify-center">
+                    <FadeInOnScroll>
+                        <SectionLabel variant="dark">Our Company</SectionLabel>
+                        <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.05]">
+                            <AnimatedText text="Built by operators for operators." variant="words" />
+                        </h1>
+                        <p className="text-xl md:text-2xl text-white/60 font-light max-w-3xl mx-auto leading-relaxed">
+                            We saw traditional outsourcing fail businesses through poor quality and high turnover. Gigmote exists to fix that.
+                        </p>
+                    </FadeInOnScroll>
+                </div>
+            </section>
+
+            {/* Impact Metrics Bar */}
+            <MaskSection variant="slideUp" className="py-16 bg-hugo-gold relative z-20 border-y border-hugo-black/10">
                 <div className="container mx-auto px-6 max-w-7xl">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 divide-y md:divide-y-0 md:divide-x divide-hugo-black/10">
                         {siteContent.company.stats.map((stat, idx) => (
                             <motion.div
                                 key={idx}
@@ -86,12 +111,12 @@ export default function CompanyPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.1 }}
-                                className="text-center"
+                                className="text-center pt-8 md:pt-0"
                             >
-                                <div className="text-5xl md:text-6xl font-bold text-hugo-gold mb-2">
+                                <div className="text-5xl md:text-6xl font-black text-hugo-black mb-2 tracking-tighter">
                                     {stat.value}
                                 </div>
-                                <div className="text-white/60 uppercase tracking-wider text-sm">
+                                <div className="text-hugo-black/70 font-bold uppercase tracking-widest text-xs">
                                     {stat.label}
                                 </div>
                             </motion.div>
@@ -100,40 +125,88 @@ export default function CompanyPage() {
                 </div>
             </MaskSection>
 
-            {/* Mission */}
-            <MaskSection variant="slideUp" className="py-24 md:py-28 bg-white">
-                <div className="container mx-auto px-6 max-w-4xl">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-center space-y-8"
-                    >
-                        <SectionLabel>Our Story</SectionLabel>
-                        <h2 className="text-4xl md:text-5xl font-bold text-hugo-black leading-tight">
-                            Gigmote was built by operators who have scaled outsourcing teams, CX orgs, and AI programs.
+            {/* Expansive Mission Block */}
+            <MaskSection variant="clipUp" className="py-32 bg-white relative overflow-hidden">
+                <BackgroundMotion variant="light" />
+                <div className="container mx-auto px-6 max-w-5xl relative z-10 text-center">
+                    <FadeInOnScroll>
+                        <div className="inline-block p-1 bg-gray-50 rounded-full shadow-sm border border-gray-100 mb-8">
+                            <div className="px-6 py-2 bg-white text-hugo-black text-xs font-bold uppercase tracking-widest rounded-full shadow-sm">
+                                The Mission
+                            </div>
+                        </div>
+                        <h2 className="text-4xl md:text-6xl font-bold text-hugo-black leading-[1.1] tracking-tight mb-10">
+                            To redefine global work by pairing <span className="text-hugo-gold italic">elite human talent</span> with practical automation.
                         </h2>
-                        <p className="text-xl text-hugo-black/70 leading-relaxed max-w-3xl mx-auto">
-                            We saw traditional outsourcing fail businesses through poor quality, high turnover, and a lack
-                            of accountability. Gigmote exists to fix that — with an operator-led, quality-first model that
-                            blends human expertise with AI.
-                        </p>
-                    </motion.div>
+                        <div className="h-px w-24 bg-hugo-black/20 mx-auto"></div>
+                    </FadeInOnScroll>
                 </div>
             </MaskSection>
 
-            {/* Values */}
-            <MaskSection variant="clipUp" className="py-24 md:py-28 bg-hugo-cream">
+            {/* High-Contrast Timeline Sequence */}
+            <section className="bg-hugo-black text-white py-32 relative">
+                <div className="absolute inset-0 opacity-[0.03] bg-[url('/images/Gigmote%20Asset%201.jpg')] bg-cover mix-blend-overlay"></div>
+                <div className="container mx-auto px-6 max-w-7xl relative z-10">
+
+                    <FadeInOnScroll className="mb-24 md:text-center max-w-3xl mx-auto">
+                        <SectionLabel variant="dark">Evolution</SectionLabel>
+                        <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">How we got here.</h2>
+                        <p className="text-xl text-white/60 font-light">From identifying the core flaws in legacy outsourcing to building a new standard.</p>
+                    </FadeInOnScroll>
+
+                    <div className="space-y-32">
+                        {timeline.map((item, index) => {
+                            const isEven = index % 2 === 0;
+                            return (
+                                <MaskSection
+                                    key={index}
+                                    variant="slideUp"
+                                    className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-20 items-center`}
+                                >
+                                    {/* Text Content */}
+                                    <div className="lg:w-1/2 space-y-6">
+                                        <div className="inline-block px-4 py-1.5 rounded-full border border-hugo-gold/30 bg-hugo-gold/10 text-hugo-gold text-xs font-bold tracking-widest uppercase">
+                                            {item.phase}
+                                        </div>
+                                        <h3 className="text-3xl md:text-5xl font-bold tracking-tight">
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-lg md:text-xl text-white/60 font-light leading-relaxed">
+                                            {item.description}
+                                        </p>
+                                    </div>
+
+                                    {/* Image */}
+                                    <div className="lg:w-1/2 w-full">
+                                        <div className="relative aspect-[4/3] rounded-3xl overflow-hidden group shadow-2xl border border-white/5">
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                fill
+                                                className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                                            />
+                                            <div className="absolute inset-0 bg-hugo-black/40 group-hover:bg-hugo-black/20 transition-colors duration-500"></div>
+                                        </div>
+                                    </div>
+                                </MaskSection>
+                            );
+                        })}
+                    </div>
+                </div>
+            </section>
+
+            {/* Core Values Grid */}
+            <MaskSection variant="slideUp" className="py-32 bg-hugo-cream">
                 <div className="container mx-auto px-6 max-w-7xl">
-                    <FadeInOnScroll className="text-center mb-16">
-                        <SectionLabel>The Gigmote Difference</SectionLabel>
-                        <h2 className="text-4xl md:text-5xl font-bold mb-6">Principles that guide every team we build</h2>
-                        <p className="text-xl text-hugo-black/60 max-w-2xl mx-auto">
-                            These principles guide every decision we make and every team we build.
+                    <FadeInOnScroll className="text-center mb-20">
+                        <SectionLabel>Our DNA</SectionLabel>
+                        <h2 className="text-4xl md:text-6xl font-bold mb-6 text-hugo-black tracking-tight">Operating Principles</h2>
+                        <p className="text-xl text-hugo-black/60 max-w-2xl mx-auto font-light">
+                            The non-negotiables that dictate who we hire, how we build, and how we deliver for our clients.
                         </p>
                     </FadeInOnScroll>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {values.map((value, idx) => {
                             const Icon = value.icon;
                             return (
@@ -143,105 +216,16 @@ export default function CompanyPage() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: idx * 0.1 }}
-                                    whileHover={{ y: -5 }}
-                                    className="bg-white p-8 rounded-3xl shadow-lg border border-hugo-black/5"
+                                    className="bg-white p-10 rounded-[2rem] shadow-sm border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group"
                                 >
-                                    <div className="w-14 h-14 bg-hugo-gold/20 rounded-2xl flex items-center justify-center mb-6 text-hugo-black">
+                                    <div className="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-8 text-hugo-black border border-gray-200 group-hover:bg-hugo-black group-hover:text-white transition-colors duration-300">
                                         <Icon size={28} />
                                     </div>
-                                    <h3 className="text-xl font-bold mb-3">{value.title}</h3>
-                                    <p className="text-hugo-black/60 leading-relaxed">{value.description}</p>
+                                    <h3 className="text-2xl font-bold mb-4 text-hugo-black">{value.title}</h3>
+                                    <p className="text-hugo-black/60 leading-relaxed font-light">{value.description}</p>
                                 </motion.div>
                             );
                         })}
-                    </div>
-                </div>
-            </MaskSection>
-
-            {/* Visual Grid — clone-style */}
-            <MaskSection variant="slideUp" className="py-24 md:py-28 bg-white">
-                <div className="container mx-auto px-6 max-w-7xl">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 h-[500px]">
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            className="col-span-2 md:col-span-2 row-span-2 relative rounded-3xl overflow-hidden group"
-                        >
-                            <Image src="/images/hero-1.png" alt="Office Culture" fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-hugo-black/60 to-transparent flex items-end p-8">
-                                <span className="text-white font-bold text-xl">Global Team</span>
-                            </div>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
-                            className="col-span-1 row-span-1 relative rounded-3xl overflow-hidden bg-hugo-teal flex items-center justify-center"
-                        >
-                            <div className="text-center p-4">
-                                <Award size={48} className="text-white mx-auto mb-2" />
-                                <span className="text-sm font-medium text-white/80">Top Rated</span>
-                            </div>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.15 }}
-                            className="col-span-1 row-span-2 relative rounded-3xl overflow-hidden group"
-                        >
-                            <Image src="/images/hero-2.png" alt="Team Meeting" fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
-                            className="col-span-1 row-span-1 relative rounded-3xl overflow-hidden bg-hugo-gold flex items-center justify-center"
-                        >
-                            <div className="text-center p-4">
-                                <TrendingUp size={48} className="text-hugo-black mx-auto mb-2" />
-                                <span className="text-sm font-medium text-hugo-black/60">Fast Growth</span>
-                            </div>
-                        </motion.div>
-                    </div>
-                </div>
-            </MaskSection>
-
-            {/* Timeline — clone-style dark */}
-            <MaskSection variant="slideUp" className="py-24 md:py-28 bg-hugo-black text-white relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/images/pattern-bg.png')] opacity-5"></div>
-                <div className="container mx-auto px-6 max-w-5xl relative z-10">
-                    <FadeInOnScroll className="text-center mb-16">
-                        <SectionLabel variant="dark">Our Beliefs</SectionLabel>
-                        <h2 className="text-4xl md:text-5xl font-bold mb-6">Why traditional outsourcing fails — and what we do differently</h2>
-                        <p className="text-xl text-white/60">A simple look at the beliefs behind Gigmote.</p>
-                    </FadeInOnScroll>
-
-                    <div className="space-y-12">
-                        {milestones.map((milestone, idx) => (
-                            <motion.div
-                                key={idx}
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: idx * 0.1 }}
-                                className="flex gap-8 items-start"
-                            >
-                                <div className="flex-shrink-0 w-24 text-right">
-                                    <span className="text-3xl font-bold text-hugo-gold">{milestone.year}</span>
-                                </div>
-                                <div className="flex-shrink-0 w-px h-full bg-hugo-gold/30 relative">
-                                    <div className="w-4 h-4 rounded-full bg-hugo-gold absolute -left-[7px] top-2"></div>
-                                </div>
-                                <div className="flex-1 pb-8">
-                                    <h3 className="text-2xl font-bold mb-2">{milestone.event}</h3>
-                                    <p className="text-white/60">{milestone.description}</p>
-                                </div>
-                            </motion.div>
-                        ))}
                     </div>
                 </div>
             </MaskSection>

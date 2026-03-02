@@ -11,6 +11,7 @@ import { MaskSection } from "@/components/ui/MaskSection";
 import { FadeInOnScroll } from "@/components/ui/FadeInOnScroll";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { CheckCircle2 } from "lucide-react";
+import Image from "next/image";
 
 export async function generateStaticParams() {
     return siteContent.services.map((service) => ({
@@ -39,6 +40,25 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 subtitle={service.slogan || "Our Services"}
                 description={service.description}
             />
+
+            <section className="py-12 bg-white">
+                <div className="max-w-5xl mx-auto px-6">
+                    <div className="relative w-full h-64 md:h-72 rounded-3xl overflow-hidden shadow-xl border border-hugo-black/5">
+                        <Image
+                            src={
+                                service.slug === "bpo-matchmaking-advisory"
+                                    ? "/images/Build a Thriving BPO Business in Africa_From initial setup to scaling operations, we provide end-to-end support to help you build and grow a successful BPO operation serving global clients.create an i.jpg"
+                                    : service.slug === "global-staffing"
+                                    ? "/images/Powered by People. Enhanced by Technology._Connecting international companies with high-quality African outsourcing partners, while empowering entrepreneurs to build sustainable BPO operations.-create(18).jpg"
+                                    : "/images/global bpo advisory.jpg"
+                            }
+                            alt={`${service.title} visual`}
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
+                </div>
+            </section>
 
             {/* Features & "Best For" — clone-style */}
             <MaskSection variant="clipUp" className="py-24 md:py-28">

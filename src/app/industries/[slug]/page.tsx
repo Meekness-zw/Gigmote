@@ -7,6 +7,7 @@ import { ContactForm } from "@/components/ui/ContactForm";
 import { BackgroundMotion } from "@/components/ui/BackgroundMotion";
 import { StatTicker } from "@/components/ui/StatTicker";
 import { Shield, Globe, Award } from "lucide-react";
+import Image from "next/image";
 
 export async function generateStaticParams() {
     return siteContent.industries.map((industry) => ({
@@ -32,6 +33,19 @@ export default function IndustryPage({ params }: { params: { slug: string } }) {
                 subtitle="Industries"
                 description={industry.description}
             />
+
+            <section className="py-12 bg-white">
+                <div className="max-w-5xl mx-auto px-6">
+                    <div className="relative w-full h-64 md:h-72 rounded-3xl overflow-hidden shadow-xl border border-hugo-black/5">
+                        <Image
+                            src="/images/A connected global map glowing with nodes representing remote team members, digital lines connecting cities around the world, concept of global collaboration and outsourcing, futuristic but minimal de.jpg"
+                            alt="Global industry reach"
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
+                </div>
+            </section>
 
             {/* Industry Specific Value Prop */}
             <section className="py-24 -mt-20 relative z-20">

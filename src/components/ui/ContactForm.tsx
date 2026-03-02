@@ -49,7 +49,7 @@ export const ContactForm = () => {
                             Ready to build <br /> your dream team?
                         </h2>
                         <p className="text-lg text-hugo-black/70 max-w-lg">
-                            Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability — whether you need 5 agents or 500.
+                            From small pods to large operations, we build teams that scale reliably. Tell us your goals — we'll match you with the right talent and delivery model.
                         </p>
 
                         <div className="pt-8 space-y-4">
@@ -125,7 +125,7 @@ export const ContactForm = () => {
                             </div>
 
                             <Button type="submit" size="lg" variant="primary" className="w-full font-bold">
-                                Get Started Free
+                                Get Started
                             </Button>
                         </form>
                     </div>

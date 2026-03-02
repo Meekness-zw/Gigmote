@@ -16,8 +16,8 @@ export interface FloatingHeroVisualProps {
   className?: string;
 }
 
-const defaultImage1 = "/images/hero-1.png";
-const defaultImage2 = "/images/hero-2.png";
+const defaultImage1 = "/images/Gigmote Asset 3.jpg";
+const defaultImage2 = "/images/Gigmote Asset 4.jpg";
 
 export function FloatingHeroVisual({
   image1 = defaultImage1,

@@ -25,7 +25,6 @@ import { StrokeReveal } from "@/components/ui/StrokeReveal";
 import { FloatingSmileys } from "@/components/ui/FloatingSmileys";
 import { CTAPeopleCircles } from "@/components/ui/CTAPeopleCircles";
 import { ImageShowcaseSection } from "@/components/sections/ImageShowcaseSection";
-import { MiniImageCarousel } from "@/components/ui/MiniImageCarousel";
 import { ImageGalleryStrip } from "@/components/ui/ImageGalleryStrip";
 import { IllustrationCoding, IllustrationTeam, IllustrationGlobal } from "@/components/illustrations";
 import { ComparisonTable } from "@/components/ui/ComparisonTable";
@@ -45,42 +44,124 @@ export default function Home() {
           <p className="text-sm font-semibold uppercase tracking-widest text-hugo-black/40 mb-6">
             <UnderlineReveal underlineClass="bg-hugo-gold">{siteContent.hero.trustBar}</UnderlineReveal>
           </p>
-          <Marquee duration={25} className="flex justify-center">
-            {['FinTech', 'Healthcare', 'SaaS', 'IT & Web3', 'Marketing', 'Sales Enablement'].map((logo) => (
-              <span key={logo} className="text-xl font-bold text-hugo-black/40 shrink-0 px-8 md:px-12 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
-                {logo}
-              </span>
-            ))}
+          <Marquee duration={60} className="flex items-center">
+            {[
+              { name: "Warner Music Group", type: "image", src: "/images/clients/warner_music_group.png" },
+              { name: "Atlanta Tech Village", type: "image", src: "/images/clients/atlanta_tech_village_alt.png" },
+              { name: "M Lab South Africa", type: "image", src: "/images/clients/mlab_sa.png" },
+              { name: "Tech Gofer", type: "text" },
+              { name: "Rev Cycle IQ", type: "text" },
+              { name: "Kids in Common NYC", type: "text" },
+              { name: "Athstat", type: "text" },
+              { name: "Bite Data", type: "text" },
+              { name: "DOT", type: "text" },
+              { name: "Build/", type: "text" },
+              { name: "Collectively", type: "text" },
+              { name: "Cloud Concepts", type: "text" },
+              { name: "College Connect", type: "text" },
+              { name: "Baller Scholar", type: "image", src: "/images/clients/baller_scholar.jpg" },
+              { name: "Train4work", type: "text" },
+              { name: "Afro Digital", type: "text" },
+              { name: "BCC Groupe", type: "text" },
+              { name: "Datadvise", type: "text" },
+              { name: "Mzila Worx", type: "text" },
+              { name: "HumanX Life", type: "text" },
+              { name: "Omni Contact", type: "text" },
+              { name: "Zulu Digital", type: "image", src: "/images/clients/zulu_digital.jpg" },
+              { name: "Sociale Fintech", type: "text" },
+              { name: "Energy Sustainability", type: "text" },
+              { name: "Electric Vehicle Association", type: "image", src: "/images/clients/electric_vehicle_association.jpg" }
+            ].map((client) => {
+              const initials = client.name
+                .split(" ")
+                .filter(Boolean)
+                .slice(0, 2)
+                .map((word) => word[0]?.toUpperCase() ?? "")
+                .join("");
+
+              return (
+                <div
+                  key={client.name}
+                  className="flex items-center shrink-0 px-6 md:px-10 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                >
+                  {client.type === "image" ? (
+                    <div className="relative h-8 md:h-10 w-32 flex items-center justify-center">
+                      <img
+                        src={client.src}
+                        alt={client.name}
+                        className="h-full w-auto object-contain brightness-0 contrast-100"
+                      />
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-hugo-black/5 border border-hugo-black/10 flex items-center justify-center text-xs md:text-sm font-bold text-hugo-black/60">
+                        {initials}
+                      </div>
+                      <span className="text-xl md:text-2xl font-bold text-hugo-black/40 tracking-tighter whitespace-nowrap">
+                        {client.name}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </Marquee>
+
         </div>
       </section>
 
-      {/* Featured / Mini carousel — clone-style image + caption */}
+      {/* Featured cards — three key stories instead of carousel */}
       <section className="py-12 md:py-16 bg-hugo-cream">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <MiniImageCarousel
-            interval={5000}
-            slides={[
-              {
-                imageSrc: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80",
-                imageAlt: "Team collaboration and planning",
-                title: "Built for performance",
-                description: "We focus on outcomes, not just headcount. Real teams, real metrics.",
-              },
-              {
-                imageSrc: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
-                imageAlt: "Global team working together",
-                title: "Scale without the guesswork",
-                description: "Vetted talent and proven playbooks so you launch faster.",
-              },
-              {
-                imageSrc: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80",
-                imageAlt: "Strategy and operations",
-                title: "From strategy to delivery",
-                description: "BPO matchmaking, staffing, and AI solutions under one roof.",
-              },
-            ]}
-          />
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            <div className="rounded-3xl overflow-hidden bg-hugo-cream border border-hugo-black/10 p-6 md:p-8 flex flex-col h-full">
+              <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-4 bg-hugo-black/5">
+                <img
+                  src="/images/Powered by People. Enhanced by Technology._Connecting international companies with high-quality African outsourcing partners, while empowering entrepreneurs to build sustainable BPO operations.-create.jpg"
+                  alt="Team collaboration and planning"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h4 className="text-xl md:text-2xl font-bold text-hugo-black mb-2">
+                Built for performance
+              </h4>
+              <p className="text-hugo-black/60 text-sm md:text-base">
+                We focus on outcomes, not just headcount. Real teams, real metrics.
+              </p>
+            </div>
+
+            <div className="rounded-3xl overflow-hidden bg-hugo-cream border border-hugo-black/10 p-6 md:p-8 flex flex-col h-full">
+              <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-4 bg-hugo-black/5">
+                <img
+                  src="/images/Gigmote Asset 1.jpg"
+                  alt="Global team working together"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h4 className="text-xl md:text-2xl font-bold text-hugo-black mb-2">
+                Scale without the guesswork
+              </h4>
+              <p className="text-hugo-black/60 text-sm md:text-base">
+                Vetted talent and proven playbooks so you launch faster.
+              </p>
+            </div>
+
+            <div className="rounded-3xl overflow-hidden bg-hugo-cream border border-hugo-black/10 p-6 md:p-8 flex flex-col h-full">
+              <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-4 bg-hugo-black/5">
+                <img
+                  src="/images/global bpo advisory.jpg"
+                  alt="Strategy and operations"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h4 className="text-xl md:text-2xl font-bold text-hugo-black mb-2">
+                From strategy to delivery
+              </h4>
+              <p className="text-hugo-black/60 text-sm md:text-base">
+                BPO matchmaking, staffing, and AI solutions under one roof.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -192,12 +273,12 @@ export default function Home() {
       {/* Two-column image showcase — more imagery, clone-style layout */}
       <ImageShowcaseSection
         imageSide="right"
-        title="Real teams. Real results."
+        title="African talent. Global-ready."
         subtitle="Why clients choose us"
-        body="We’ve built and managed global teams across customer support, operations, and AI. Every engagement is designed around your KPIs—with full visibility, compliance, and long-term retention in mind."
-        imageSrc="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=80"
+        body="We connect UK and North American companies with high-performing African professionals — vetted, full-time, and built for long-term accountability. Not a marketplace. Not body-shopping. Real teams, real metrics, real results."
+        imageSrc="/images/AI Curiosity lab in the rainforset jungle of africa in a call centre setting- bright setting, icons flying , glass office setting add people (1) (1).jpg"
         imageAlt="Team working together on delivery and operations"
-        imageSrc2="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80"
+        imageSrc2="/images/AI Curiosity lab in the rainforset jungle of africa in a call centre setting- bright setting, icons flying , glass office setting add people (2).jpg"
         imageAlt2="Professional team member"
       />
 
@@ -288,9 +369,9 @@ export default function Home() {
           </FadeInOnScroll>
           <ImageGalleryStrip
             images={[
-              { src: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80", alt: "Business meeting and strategy", caption: "Collaboration" },
-              { src: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=600&q=80", alt: "Customer support professional", caption: "Support" },
-              { src: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80", alt: "Modern workspace and operations", caption: "Delivery" },
+              { src: "/images/create a marketing asset called _Africode_ make it furutistic---and the concept of the business is connecting developers to global businesses- use a white background and navy blue and black for text a.jpg", alt: "African developers connected to global businesses", caption: "Collaboration" },
+              { src: "/images/create an image with the Hero title _AfriCode_ Connecting African Developers to Global Businesses --- (3).jpg", alt: "AfriCode hero concept", caption: "Support" },
+              { src: "/images/Gigmote Asset 5.jpg", alt: "Modern workspace and operations", caption: "Delivery" },
             ]}
           />
         </div>
@@ -298,7 +379,7 @@ export default function Home() {
 
       {/* Why Choose Gigmote — responsive table / cards */}
       <MaskSection variant="slideUp" className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
+        <div className="container mx-auto px-6 max-w-5xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -322,12 +403,12 @@ export default function Home() {
           >
             <ComparisonTable
               rows={[
-                { feature: "Model", trad: "Built by recruiters", pros: ["Built by operators"] },
-                { feature: "Delivery", trad: "Human-only, manual workflows", pros: ["Human + AI delivery model"] },
-                { feature: "Oversight", trad: "Minimal oversight and reporting", pros: ["Managed integration and KPI visibility"] },
-                { feature: "Quality", trad: "Cost-first, quality-second", pros: ["Quality, compliance, and performance first"] },
-                { feature: "Talent", trad: "Short-term, transactional", pros: ["Global talent with long-term retention focus"] },
-                { feature: "Pricing", trad: "Opaque and unpredictable", pros: ["Transparent pricing aligned to outcomes"] },
+                { feature: "Model", trad: "Built by recruiters", pros: ["Built by operators with real CX, FinTech & SaaS experience"] },
+                { feature: "Talent", trad: "Freelance marketplaces & body-shopping", pros: ["Curated, long-term African talent with full accountability"] },
+                { feature: "BPO Strategy", trad: "No design — just vendor selection", pros: ["Full BPO consulting: model design, SLAs, QA & playbooks"] },
+                { feature: "AI", trad: "Hype-driven automation", pros: ["AI that augments teams — chatbots, agents & workflow automation"] },
+                { feature: "Oversight", trad: "Minimal reporting & visibility", pros: ["Metrics-driven onboarding, KPI dashboards & ongoing optimization"] },
+                { feature: "Pricing", trad: "Opaque and unpredictable", pros: ["Transparent pricing: pilot → staffing → consulting → AI"] },
               ]}
             />
           </motion.div>
@@ -335,23 +416,23 @@ export default function Home() {
       </MaskSection>
 
       {/* How it works — StepsAccordion */}
-      <section className="py-24 bg-hugo-cream">
-        <div className="container mx-auto px-6 max-w-3xl">
-          <FadeInOnScroll amount={0.2} className="text-center mb-14">
-            <h2 className="text-3xl md:text-5xl font-bold text-hugo-black mb-4">
+      <section className="py-16 bg-hugo-cream">
+        <div className="max-w-5xl mx-auto px-6">
+          <FadeInOnScroll amount={0.2} className="text-center mb-10">
+            <h2 className="text-3xl md:text-5xl font-bold text-hugo-black mb-3">
               <AnimatedText text="How we work with you" variant="words" />
             </h2>
-            <p className="text-lg text-hugo-black/60">
+            <p className="text-base md:text-lg text-hugo-black/60 max-w-2xl mx-auto">
               From discovery to delivery, we keep the process clear and outcome-focused.
             </p>
           </FadeInOnScroll>
-          <FadeInOnScroll amount={0.2} delay={0.1}>
+          <FadeInOnScroll amount={0.2} delay={0.1} className="mt-6">
             <StepsAccordion
               steps={[
-                { title: "Discovery & scope", content: "We align on your goals, team structure, and KPIs. You get a clear scope and timeline—no surprises." },
-                { title: "Talent or partner match", content: "We source vetted global talent or recommend BPO partners that fit your culture and performance requirements." },
-                { title: "Onboarding & integration", content: "Structured playbooks and workflows get your new team or partner up to speed and integrated with your tools." },
-                { title: "Ongoing oversight & optimization", content: "We track performance, run reviews, and iterate so you get continuous improvement and long-term value." },
+                { title: "Choose your wedge", content: "We start focused — CX staffing, Ops hiring, or BPO consulting — so you see results fast without overcommitting." },
+                { title: "30–60 day pilot", content: "We match you with vetted African talent or the right BPO partner and run a structured pilot with clear KPIs and full transparency." },
+                { title: "Layer in AI", content: "Once trust is built, we introduce AI agents and automation to reduce repetitive load and boost your team's productivity." },
+                { title: "Expand & optimize", content: "We grow the engagement from staffing → consulting → AI — scaling with you as your needs evolve." },
               ]}
             />
           </FadeInOnScroll>
@@ -425,10 +506,12 @@ export default function Home() {
 
       {/* Final CTA — smileys + people circles like clone */}
       <section className="py-32 bg-hugo-black text-white text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/pattern-bg.png')] opacity-10"></div>
+        <div
+          className="absolute inset-0 opacity-10"
+          style={{ backgroundImage: "url('/images/global bpo advisory.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+        ></div>
         <BackgroundMotion variant="dark" />
         <div className="container mx-auto px-6 relative z-10 max-w-3xl">
-          <CTAPeopleCircles showSmileys className="mb-10" />
           <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight">
             <AnimatedText text="Ready to scale" variant="words" /> <br />{" "}
             <span className="text-hugo-gold">

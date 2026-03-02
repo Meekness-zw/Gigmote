@@ -3,164 +3,233 @@
 import { ROICalculator } from "@/components/tools/ROICalculator";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { Hero } from "@/components/sections/Hero";
 import { ContactForm } from "@/components/ui/ContactForm";
 import { BackgroundMotion } from "@/components/ui/BackgroundMotion";
 import { MaskSection } from "@/components/ui/MaskSection";
 import { FadeInOnScroll } from "@/components/ui/FadeInOnScroll";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { Check } from "lucide-react";
+import { Check, Star } from "lucide-react";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { AnimatedText } from "@/components/ui/AnimatedText";
 
 export default function PricingPage() {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  const yTransform = useTransform(scrollYProgress, [0, 1], [0, 150]);
+
   return (
     <main className="relative min-h-screen bg-hugo-cream selection:bg-hugo-gold/30 overflow-hidden">
       <BackgroundMotion variant="light" />
       <Navbar />
 
-      <Hero
-        variant="pricing"
-        title="Transparent & Simple Pricing"
-        description="Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability."
-      />
+      {/* Visual Header */}
+      <section ref={heroRef} className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex min-h-[60vh] bg-hugo-black text-white">
+        <motion.div
+          style={{ y: yTransform }}
+          className="absolute inset-0 z-0"
+        >
+          <Image
+            src="/images/Gigmote Asset 1.jpg"
+            alt="Pricing and planning visuals"
+            fill
+            className="object-cover opacity-30 mix-blend-overlay grayscale"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-hugo-black via-hugo-black/80 to-hugo-black/40"></div>
+        </motion.div>
 
-      <MaskSection variant="clipUp" className="py-24 md:py-28 -mt-20 relative z-20">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <FadeInOnScroll className="mb-12">
-            <SectionLabel>Pricing</SectionLabel>
-            <h2 className="text-3xl md:text-4xl font-bold text-hugo-black mb-2">Plans that scale with you</h2>
-            <p className="text-hugo-black/60 max-w-2xl">Clear pricing for global staffing, AI solutions, and BPO advisory.</p>
+        <div className="container mx-auto px-6 max-w-5xl relative z-10 text-center flex flex-col items-center justify-center">
+          <FadeInOnScroll>
+            <SectionLabel variant="dark">Pricing Tiers</SectionLabel>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-[1.05]">
+              <AnimatedText text="Simple plans. Massive scale." variant="words" />
+            </h1>
+            <p className="text-xl md:text-2xl text-white/60 font-light max-w-3xl mx-auto leading-relaxed">
+              Clear pricing designed for ambitious teams. No hidden fees. No basic vibes. Just top-tier global staffing and AI solutions.
+            </p>
           </FadeInOnScroll>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Global Staffing */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-hugo-black/5 flex flex-col">
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-hugo-black/50 mb-2">
-                Global Staffing
-              </p>
-              <h3 className="text-2xl font-bold text-hugo-black mb-3">
-                Reliable Global Talent. Fully Integrated.
-              </h3>
-              <p className="text-sm text-hugo-black/70 leading-relaxed mb-6">
-                We connect you with vetted, full-time professionals who plug directly into your team — no freelancers, no
-                temp placements.
-              </p>
-              <div className="mb-4">
-                <span className="text-sm font-medium text-hugo-black/60">
+        </div>
+      </section>
+
+      {/* Pricing Cards Upgrade */}
+      <MaskSection variant="slideUp" className="py-24 bg-hugo-cream relative z-20">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+
+            {/* Global Staffing (Standard) */}
+            <motion.div
+              whileHover={{ y: -8 }}
+              className="bg-white/90 backdrop-blur-xl rounded-[2.5rem] p-10 shadow-2xl border border-hugo-black/5 flex flex-col relative overflow-hidden group"
+            >
+              <div className="absolute top-0 left-0 w-full h-2 bg-gray-200 group-hover:bg-hugo-black transition-colors duration-500"></div>
+
+              <div className="mb-8">
+                <p className="text-xs font-bold tracking-[0.2em] uppercase text-hugo-black/40 mb-3">
+                  Core Capability
+                </p>
+                <h3 className="text-3xl font-bold text-hugo-black mb-4 tracking-tight">
+                  Global Staffing
+                </h3>
+                <p className="text-sm text-hugo-black/70 leading-relaxed">
+                  Reliable global talent directly integrated into your existing workflows. No freelancers.
+                </p>
+              </div>
+
+              <div className="mb-8 p-6 bg-gray-50 rounded-2xl border border-gray-100 items-center justify-center text-center">
+                <span className="text-sm font-semibold text-hugo-black/50 uppercase tracking-widest block mb-2">
                   Starting at
                 </span>
-                <div className="text-3xl font-bold text-hugo-black">
-                  $9<span className="text-base font-semibold text-hugo-black/70">/hour</span>
+                <div className="flex items-end justify-center gap-1">
+                  <span className="text-4xl font-bold text-hugo-black">$9</span>
+                  <span className="text-lg font-medium text-hugo-black/60 pb-1">/hour</span>
                 </div>
               </div>
-              <ul className="space-y-2 mb-6 flex-1">
+
+              <ul className="space-y-4 mb-10 flex-1">
                 {[
                   "Full-time vetted talent",
-                  "Optional oversight & management",
-                  "Performance monitoring and reporting",
-                  "Seamless onboarding support",
+                  "Dedicated success manager",
+                  "Performance monitoring",
+                  "Hardware and IT compliance",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-hugo-black/75">
-                    <Check size={16} className="mt-0.5 text-hugo-teal" />
+                  <li key={item} className="flex items-start gap-3 text-sm text-hugo-black/80 font-medium">
+                    <Check size={18} className="mt-0.5 text-hugo-black/40 shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-              <p className="text-xs text-hugo-black/60">
-                Best for CX, operations, finance & back office, tech teams, and more.
-              </p>
-            </div>
+            </motion.div>
 
-            {/* AI Business Solutions */}
-            <div className="bg-hugo-black text-white rounded-3xl p-8 shadow-2xl border border-hugo-black flex flex-col relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-hugo-gold/10 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3" />
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-white/60 mb-2 relative z-10">
-                AI Business Solutions
-              </p>
-              <h3 className="text-2xl font-bold mb-3 relative z-10">
-                Automate Busywork. Keep Humans in Control.
-              </h3>
-              <p className="text-sm text-white/70 leading-relaxed mb-6 relative z-10">
-                Practical AI deployments across support, sales, and operations — with humans in the loop for quality and
-                compliance.
-              </p>
-              <div className="mb-4 relative z-10">
-                <span className="text-sm font-medium text-white/70">
+            {/* AI Business Solutions (Premium/Recommended) */}
+            <motion.div
+              whileHover={{ y: -8 }}
+              className="bg-hugo-black text-white rounded-[2.5rem] p-10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.4)] border border-hugo-gold/20 flex flex-col relative overflow-hidden transform lg:-translate-y-8 z-10"
+            >
+              {/* Premium Glow and Texture */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-hugo-gold/15 rounded-full blur-[80px] translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] -translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
+              <div className="absolute inset-0 bg-[url('/images/Gigmote%20Asset%201.jpg')] opacity-10 bg-cover mix-blend-overlay"></div>
+
+              <div className="absolute top-4 left-0 w-full flex justify-center">
+                <div className="px-4 py-1.5 bg-hugo-gold text-hugo-black text-[10px] font-black uppercase tracking-widest rounded-full flex items-center gap-1 shadow-lg">
+                  <Star size={12} fill="currentColor" /> Most Popular
+                </div>
+              </div>
+
+              <div className="mb-8 relative z-10 pt-4">
+                <p className="text-xs font-bold tracking-[0.2em] uppercase text-hugo-gold/80 mb-3 drop-shadow-sm">
+                  Automation Tier
+                </p>
+                <h3 className="text-3xl font-bold text-white mb-4 tracking-tight drop-shadow-md">
+                  AI Business Solutions
+                </h3>
+                <p className="text-sm text-white/80 leading-relaxed font-light">
+                  Done-for-you AI agents and automations that plug into your existing tools — always with humans in the loop.
+                </p>
+              </div>
+
+              <div className="mb-8 p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 items-center justify-center text-center relative z-10">
+                <span className="text-sm font-semibold text-white/50 uppercase tracking-widest block mb-2">
                   Starting at
                 </span>
-                <div className="text-3xl font-bold text-hugo-gold">
-                  $3,000<span className="text-base font-semibold text-white/70"> per deployment</span>
+                <div className="flex items-end justify-center gap-1">
+                  <span className="text-4xl font-bold text-hugo-gold">$3,000</span>
+                  <span className="text-lg font-medium text-white/60 pb-1">/deploy</span>
                 </div>
               </div>
-              <ul className="space-y-2 mb-6 flex-1 relative z-10">
+
+              <ul className="space-y-4 mb-10 flex-1 relative z-10">
                 {[
-                  "AI workflow design",
-                  "Integration into your existing tools",
-                  "Ongoing optimization and monitoring",
-                  "Support for chatbots, assistants, automation, and more",
+                  "Strategy workshop to define high-impact use cases",
+                  "Custom AI workflow and agent design",
+                  "Secure integrations with your support and ops stack",
+                  "Ongoing tuning, reporting, and human-in-the-loop QA"
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-white/80">
-                    <Check size={16} className="mt-0.5 text-hugo-gold" />
+                  <li key={item} className="flex items-start gap-3 text-sm text-white/90 font-medium">
+                    <Check size={18} className="mt-0.5 text-hugo-gold shrink-0 drop-shadow-md" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-              <p className="text-xs text-white/60 relative z=10">
-                Ideal for teams looking to reduce manual work and unlock higher productivity.
-              </p>
-            </div>
+            </motion.div>
 
-            {/* BPO Advisory */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-hugo-black/5 flex flex-col">
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-hugo-black/50 mb-2">
-                BPO Matchmaking & Advisory
-              </p>
-              <h3 className="text-2xl font-bold text-hugo-black mb-3">
-                Outsource Without Guesswork.
-              </h3>
-              <p className="text-sm text-hugo-black/70 leading-relaxed mb-6">
-                We help you design, select, and manage outsourcing partners that deliver consistent, measurable performance.
-              </p>
-              <div className="mb-4">
-                <span className="text-sm font-medium text-hugo-black/60">
-                  Pricing
+            {/* BPO Advisory (Enterprise) */}
+            <motion.div
+              whileHover={{ y: -8 }}
+              className="bg-white/90 backdrop-blur-xl rounded-[2.5rem] p-10 shadow-2xl border border-hugo-black/5 flex flex-col relative overflow-hidden group"
+            >
+              <div className="absolute top-0 left-0 w-full h-2 bg-gray-200 group-hover:bg-hugo-black transition-colors duration-500"></div>
+
+              <div className="mb-8">
+                <p className="text-xs font-bold tracking-[0.2em] uppercase text-hugo-black/40 mb-3">
+                  Enterprise
+                </p>
+                <h3 className="text-3xl font-bold text-hugo-black mb-4 tracking-tight">
+                  BPO Advisory
+                </h3>
+                <p className="text-sm text-hugo-black/70 leading-relaxed">
+                  Design, select, and manage outsourcing partners for massive scale and proven compliance.
+                </p>
+              </div>
+
+              <div className="mb-8 p-6 bg-gray-50 rounded-2xl border border-gray-100 items-center justify-center text-center">
+                <span className="text-sm font-semibold text-hugo-black/50 uppercase tracking-widest block mb-2">
+                  Scope-Based
                 </span>
-                <div className="text-3xl font-bold text-hugo-black">
-                  Custom
+                <div className="flex items-center justify-center">
+                  <span className="text-4xl font-bold text-hugo-black">Custom</span>
                 </div>
               </div>
-              <ul className="space-y-2 mb-6 flex-1">
+
+              <ul className="space-y-4 mb-10 flex-1">
                 {[
-                  "Outsourcing strategy and operating model",
-                  "Vendor selection and scoring",
-                  "Performance design and governance",
-                  "Risk and compliance planning",
+                  "Operating model design",
+                  "Vendor selection & scoring",
+                  "Performance governance",
+                  "Risk & compliance audits",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-hugo-black/75">
-                    <Check size={16} className="mt-0.5 text-hugo-teal" />
+                  <li key={item} className="flex items-start gap-3 text-sm text-hugo-black/80 font-medium">
+                    <Check size={18} className="mt-0.5 text-hugo-black/40 shrink-0" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-              <p className="text-xs text-hugo-black/60">
-                Best suited for organizations building or overhauling their outsourcing strategy.
-              </p>
-            </div>
-          </div>
+            </motion.div>
 
-          {/* ROI Calculator — clone-style */}
-          <div className="mt-24 max-w-4xl mx-auto">
-            <FadeInOnScroll className="text-center mb-12">
-              <SectionLabel>ROI</SectionLabel>
-              <h2 className="text-3xl font-bold text-hugo-black mb-4">
-                Interactive ROI Calculator
-              </h2>
-              <p className="text-lg text-hugo-black/60">
-                Model your current U.S. team costs against Gigmote&apos;s global staffing + AI model — and see savings in real time.
-              </p>
-            </FadeInOnScroll>
-            <ROICalculator />
           </div>
         </div>
       </MaskSection>
+
+      {/* Immersive ROI Calculator Section */}
+      <section className="py-24 bg-white relative border-y border-hugo-black/5">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="bg-hugo-cream rounded-[3rem] p-8 md:p-16 border border-hugo-black/5 shadow-xl relative overflow-hidden">
+            {/* Decorative Elements */}
+            <div className="absolute top-0 right-0 w-1/2 h-full bg-[url('/images/Gigmote%20Asset%204.jpg')] opacity-[0.03] bg-cover bg-center pointer-events-none"></div>
+
+            <FadeInOnScroll className="text-center mb-16 relative z-10">
+              <div className="inline-block px-4 py-1.5 bg-white rounded-full text-xs font-bold tracking-widest uppercase mb-4 border border-gray-200 shadow-sm">
+                Direct Impact
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-hugo-black mb-6 tracking-tight">
+                Calculate your precise savings
+              </h2>
+              <p className="text-xl text-hugo-black/60 max-w-2xl mx-auto font-light">
+                Model your current U.S. team costs against Gigmote's hybrid Global Staffing + AI model in real time.
+              </p>
+            </FadeInOnScroll>
+
+            <div className="relative z-10 bg-white rounded-[2.5rem] p-6 md:p-10 shadow-lg border border-gray-100">
+              <ROICalculator />
+            </div>
+          </div>
+        </div>
+      </section>
 
       <ContactForm />
 
@@ -168,4 +237,3 @@ export default function PricingPage() {
     </main>
   );
 }
-

@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Gigmote",
-  description: "Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability.",
+  description: "Global staffing and AI for high-growth industries. Scale from 5 to 500 agents with operational excellence.",
   icons: {
     icon: "/icon.svg",
   },
@@ -31,6 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning={true}
       >
         <PageLoadReveal />
         {children}

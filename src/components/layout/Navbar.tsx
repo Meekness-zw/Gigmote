@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "../ui/Button";
 import { AnimatedNavbarLogo } from "../ui/AnimatedNavbarLogo";
 import { MobileMenu } from "./MobileMenu";
+import { usePathname } from "next/navigation";
 
 export const Navbar = () => {
     return (
@@ -15,42 +18,56 @@ export const Navbar = () => {
                 </div>
             </div>
             <nav className="bg-hugo-cream/95 backdrop-blur-md border-b border-hugo-black/5">
-            <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 md:h-20 flex items-center justify-between">
-                {/* Logo — animated spiral like clone */}
-                <AnimatedNavbarLogo />
+                <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 md:h-20 flex items-center justify-between">
+                    {/* Logo — animated spiral like clone */}
+                    <AnimatedNavbarLogo />
 
-                {/* Desktop Navigation — clone-style gap */}
-                <div className="hidden md:flex items-center gap-x-12">
-                    <NavLink href="/services">Services</NavLink>
-                    <NavLink href="/industries">Industries</NavLink>
-                    <NavLink href="/hire-a-dev">Hire a Dev</NavLink>
-                    <NavLink href="/about">About</NavLink>
-                    <NavLink href="/pricing">Pricing</NavLink>
-                </div>
+                    {/* Desktop Navigation — clone-style gap */}
+                    <div className="hidden md:flex items-center gap-x-12">
+                        <NavLink href="/services">Services</NavLink>
+                        <NavLink href="/hire-a-dev">Hire a Developer</NavLink>
+                        <NavLink href="/industries">Industries</NavLink>
+                        <NavLink href="/about">About</NavLink>
+                        <NavLink href="/pricing">Pricing</NavLink>
+                    </div>
 
-                {/* CTA + Mobile menu */}
-                <div className="flex items-center gap-4">
-                    <Link href="/contact" className="hidden md:block">
-                        <Button variant="primary" size="sm" className="font-bold">
-                            Get Started
-                        </Button>
-                    </Link>
-                    <MobileMenu />
+                    {/* CTA + Mobile menu */}
+                    <div className="flex items-center gap-3">
+                        <Link href="/join-gigmote" className="hidden lg:block">
+                            <Button variant="outline" size="sm" className="font-bold border-hugo-black/20 text-hugo-black hover:bg-hugo-black hover:text-white">
+                                Join Gigmote
+                            </Button>
+                        </Link>
+                        <Link href="/contact" className="hidden md:block">
+                            <Button variant="primary" size="sm" className="font-bold">
+                                Get Started
+                            </Button>
+                        </Link>
+                        <MobileMenu />
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
         </header>
     );
 };
 
-const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
-    <Link
-        href={href}
-        className="text-hugo-black/85 hover:text-hugo-black font-bold text-base transition-colors relative group"
-    >
-        <span className="relative inline-block">
-            {children}
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-hugo-gold group-hover:w-full transition-all duration-300" />
-        </span>
-    </Link>
-);
+const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => {
+    const pathname = usePathname();
+    const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
+
+    return (
+        <Link
+            href={href}
+            className={`text-hugo-black/85 hover:text-hugo-black font-bold text-base transition-colors relative group ${isActive ? "text-hugo-black" : ""
+                }`}
+        >
+            <span className="relative inline-block">
+                {children}
+                <span
+                    className={`absolute -bottom-0.5 left-0 h-0.5 bg-hugo-gold transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"
+                        }`}
+                />
+            </span>
+        </Link>
+    );
+};

@@ -1,13 +1,22 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useCallback } from "react";
 import { Calculator, DollarSign, Clock, Zap } from "lucide-react";
+
+const CURRENCIES = [
+    { code: "USD" as const, label: "US Dollar" },
+    { code: "GBP" as const, label: "British Pound" },
+    { code: "EUR" as const, label: "Euro" },
+] as const;
+
+// Approximate USD value of 1 unit of each currency (for conversion)
+const CURRENCY_TO_USD: Record<string, number> = { USD: 1, GBP: 1.27, EUR: 1.09 };
 
 export const ROICalculator = () => {
     // Inputs
+    const [currency, setCurrency] = useState<"USD" | "GBP" | "EUR">("USD");
     const [ftes, setFtes] = useState(5);
-    const [usRate, setUsRate] = useState(30); // Hourly rate
+    const [localRate, setLocalRate] = useState(30); // Hourly rate in selected currency
     const [hoursPerWeek, setHoursPerWeek] = useState(40);
     const [automationPct, setAutomationPct] = useState(20);
     const [aiEnabled, setAiEnabled] = useState(true);
@@ -18,8 +27,12 @@ export const ROICalculator = () => {
     const efficiencyFactor = 0.8; // default
     const weeksPerYear = 52;
 
-    // Formulas
-    const usAnnualCost = ftes * usRate * hoursPerWeek * weeksPerYear;
+    const toUsd = CURRENCY_TO_USD[currency];
+    const fromUsd = 1 / toUsd;
+
+    // All math in USD for comparison; display in selected currency
+    const localAnnualCost = ftes * localRate * hoursPerWeek * weeksPerYear;
+    const currentCostUsd = localAnnualCost * toUsd;
 
     const effectiveAutomationPct = aiEnabled ? automationPct : 0;
     const gigmoteStaffingCost = ftes * gigmoteRate * hoursPerWeek * weeksPerYear;
@@ -57,9 +70,12 @@ export const ROICalculator = () => {
     // Scenario B (Gigmote): You pay $Y / year for staff. AND you get Z hours/week done by AI for free (effectively).
     // Total Savings = (US Cost) - (Gigmote Cost).
 
-    const gigmoteAnnualCost = gigmoteStaffingCost;
-    const totalSavings = usAnnualCost - gigmoteAnnualCost;
-    const pctSavings = (totalSavings / usAnnualCost) * 100;
+    const gigmoteAnnualCostUsd = gigmoteStaffingCost;
+    const totalSavingsUsd = currentCostUsd - gigmoteAnnualCostUsd;
+    const pctSavings = (totalSavingsUsd / currentCostUsd) * 100;
+
+    const totalSavingsLocal = totalSavingsUsd * fromUsd;
+    const gigmoteAnnualCostLocal = gigmoteAnnualCostUsd * fromUsd;
 
     // Productivity/Time Saved
     // Time Saved = Hours Automated * FTEs * Efficiency Factor
@@ -72,18 +88,50 @@ export const ROICalculator = () => {
         Math.min(100, effectiveAutomationPct * 0.6 + errorRate * 0.4)
     );
 
-    const formatCurrency = (val: number) => {
-        return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
+    const formatCurrency = useCallback(
+        (val: number) =>
+            new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency,
+                maximumFractionDigits: 0,
+            }).format(val),
+        [currency]
+    );
+
+    const handleCurrencyChange = (newCurrency: "USD" | "GBP" | "EUR") => {
+        if (newCurrency === currency) return;
+        const oldToUsd = CURRENCY_TO_USD[currency];
+        const newToUsd = CURRENCY_TO_USD[newCurrency];
+        setLocalRate((prev) => (prev * oldToUsd) / newToUsd);
+        setCurrency(newCurrency);
     };
 
     return (
         <div className="bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-hugo-black/5">
             <div className="bg-hugo-black p-8 text-white">
-                <div className="flex items-center gap-3 mb-2">
-                    <Calculator className="text-hugo-gold" />
-                    <h3 className="text-2xl font-bold">ROI Calculator</h3>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-2">
+                    <div>
+                        <div className="flex items-center gap-3 mb-2">
+                            <Calculator className="text-hugo-gold" />
+                            <h3 className="text-2xl font-bold">ROI Calculator</h3>
+                        </div>
+                        <p className="text-white/70">See how much you can save with Global Staffing + AI.</p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <span className="text-sm text-white/60">Currency</span>
+                        <select
+                            value={currency}
+                            onChange={(e) => handleCurrencyChange(e.target.value as "USD" | "GBP" | "EUR")}
+                            className="bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-white font-medium focus:outline-none focus:ring-2 focus:ring-hugo-gold"
+                        >
+                            {CURRENCIES.map((c) => (
+                                <option key={c.code} value={c.code} className="bg-hugo-black text-white">
+                                    {c.code} – {c.label}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
-                <p className="text-white/70">See how much you can save with Global Staffing + AI.</p>
             </div>
 
             <div className="p-8 grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -100,10 +148,12 @@ export const ROICalculator = () => {
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-hugo-black mb-2">Current US Hourly Rate ($)</label>
+                        <label className="block text-sm font-medium text-hugo-black mb-2">
+                            Current Hourly Rate ({currency})
+                        </label>
                         <input
-                            type="number" value={usRate}
-                            onChange={(e) => setUsRate(Number(e.target.value))}
+                            type="number" value={localRate}
+                            onChange={(e) => setLocalRate(Number(e.target.value))}
                             className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-hugo-black outline-none"
                         />
                     </div>
@@ -173,7 +223,7 @@ export const ROICalculator = () => {
                     <div className="p-6 bg-hugo-cream rounded-2xl border border-hugo-black/5 relative overflow-hidden">
                         <div className="relative z-10">
                             <p className="text-sm font-medium text-hugo-black/60 mb-1">Estimated Annual Savings</p>
-                            <p className="text-4xl font-bold text-hugo-teal">{formatCurrency(totalSavings)}</p>
+                            <p className="text-4xl font-bold text-hugo-teal">{formatCurrency(totalSavingsLocal)}</p>
                             <p className="text-sm text-green-600 font-medium mt-2 flex items-center gap-1">
                                 <DollarSign size={14} /> {pctSavings.toFixed(0)}% Reduction
                             </p>
@@ -183,11 +233,11 @@ export const ROICalculator = () => {
                     <div className="grid grid-cols-2 gap-4">
                         <div className="p-4 bg-hugo-black/5 rounded-2xl">
                             <p className="text-xs font-medium text-hugo-black/60 mb-1">Your Current Cost</p>
-                            <p className="text-lg font-bold text-hugo-black">{formatCurrency(usAnnualCost)}</p>
+                            <p className="text-lg font-bold text-hugo-black">{formatCurrency(localAnnualCost)}</p>
                         </div>
                         <div className="p-4 bg-hugo-gold/10 rounded-2xl border border-hugo-gold/20">
                             <p className="text-xs font-medium text-hugo-black/60 mb-1">Gigmote Cost</p>
-                            <p className="text-lg font-bold text-hugo-black px-1 rounded bg-hugo-gold/20 inline-block">{formatCurrency(gigmoteAnnualCost)}</p>
+                            <p className="text-lg font-bold text-hugo-black px-1 rounded bg-hugo-gold/20 inline-block">{formatCurrency(gigmoteAnnualCostLocal)}</p>
                         </div>
                     </div>
 

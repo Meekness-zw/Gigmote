@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Instagram, Linkedin, Twitter } from "lucide-react";
 import { Button } from "../ui/Button";
 
 export const Footer = () => {
@@ -13,13 +14,18 @@ export const Footer = () => {
                             gigmote<span className="text-hugo-gold">.</span>
                         </Link>
                         <p className="text-white/60 leading-relaxed">
-                            Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability.
+                            Whether 5 or 500 agents, we help assemble reliable, high-impact teams that scale — so you can focus on building.
                         </p>
                         <div className="flex gap-4">
-                            {/* Social placeholders */}
-                            <div className="w-10 h-10 rounded-full bg-white/10 hover:bg-hugo-gold hover:text-hugo-black transition-colors flex items-center justify-center cursor-pointer">IG</div>
-                            <div className="w-10 h-10 rounded-full bg-white/10 hover:bg-hugo-gold hover:text-hugo-black transition-colors flex items-center justify-center cursor-pointer">LN</div>
-                            <div className="w-10 h-10 rounded-full bg-white/10 hover:bg-hugo-gold hover:text-hugo-black transition-colors flex items-center justify-center cursor-pointer">TW</div>
+                            <Link href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-hugo-gold hover:text-hugo-black transition-colors flex items-center justify-center" aria-label="Instagram">
+                                <Instagram className="w-5 h-5" strokeWidth={2} />
+                            </Link>
+                            <Link href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-hugo-gold hover:text-hugo-black transition-colors flex items-center justify-center" aria-label="LinkedIn">
+                                <Linkedin className="w-5 h-5" strokeWidth={2} />
+                            </Link>
+                            <Link href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-hugo-gold hover:text-hugo-black transition-colors flex items-center justify-center" aria-label="Twitter">
+                                <Twitter className="w-5 h-5" strokeWidth={2} />
+                            </Link>
                         </div>
                     </div>
 

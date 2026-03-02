@@ -19,8 +19,8 @@ export const Hero = ({
     variant = "home",
     title = "Built to make you better.",
     subtitle = "Outsourcing+",
-    description = "Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability — world-class teams that help you scale faster and smarter.",
-    imageSrc = "/images/hero-1.png",
+    description = "Precision, trust, and operational excellence. Domain expertise meets modern delivery for teams that scale.",
+    imageSrc = "/images/Gigmote Asset 3.jpg",
 }: HeroProps) => {
 
     const isHome = variant === "home";
@@ -35,7 +35,10 @@ export const Hero = ({
                 <div className="absolute inset-0 z-0">
                     <div className="absolute inset-0 bg-hugo-black/80 z-10"></div>
                     {/* Fallback pattern if no specific industry image */}
-                    <div className="w-full h-full bg-[url('/images/pattern-bg.png')] bg-cover bg-center opacity-30"></div>
+                    <div
+                        className="w-full h-full bg-cover bg-center opacity-30"
+                        style={{ backgroundImage: "url('/images/global bpo advisory.jpg')" }}
+                    ></div>
                 </div>
             )}
 
@@ -66,20 +69,29 @@ export const Hero = ({
                         <h1 className={`text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] ${isDark ? 'text-white' : 'text-hugo-black'}`}>
                             {isHome ? (
                                 <>
-                                    <AnimatedText text="Build Global Teams." variant="words" /> <br />
-                                    <span className="relative inline-block">
-                                        <AnimatedText text="Automate Smarter. Scale Faster." variant="words" delay={0.2} />
-                                        <motion.svg
-                                            initial={{ pathLength: 0 }}
-                                            animate={{ pathLength: 1 }}
-                                            transition={{ delay: 0.9, duration: 1.2, ease: eases.expo }}
-                                            className="absolute w-full h-3 -bottom-1 left-0 text-hugo-gold/80"
-                                            viewBox="0 0 100 10"
-                                            preserveAspectRatio="none"
-                                        >
-                                            <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" />
-                                        </motion.svg>
-                                    </span>
+                                    <div className="flex flex-col gap-2">
+                                        <div className="block">
+                                            <AnimatedText text="Build Global Teams." variant="words" />
+                                        </div>
+                                        <div className="block">
+                                            <AnimatedText text="Automate Smarter." variant="words" delay={0.15} />
+                                        </div>
+                                        <div className="block">
+                                            <span className="relative inline-block">
+                                                <AnimatedText text="Scale Faster." variant="words" delay={0.3} />
+                                                <motion.svg
+                                                    initial={{ pathLength: 0 }}
+                                                    animate={{ pathLength: 1 }}
+                                                    transition={{ delay: 1.0, duration: 1.2, ease: eases.expo }}
+                                                    className="absolute w-full h-3 -bottom-1 left-0 text-hugo-gold/80"
+                                                    viewBox="0 0 100 10"
+                                                    preserveAspectRatio="none"
+                                                >
+                                                    <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" />
+                                                </motion.svg>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </>
                             ) : (
                                 <AnimatedText text={title} variant="words" />
@@ -93,7 +105,7 @@ export const Hero = ({
                             className={`text-lg md:text-xl leading-relaxed max-w-lg ${isCentered ? 'mx-auto' : ''} ${isDark ? 'text-white/80' : 'text-hugo-black/70'}`}
                         >
                             {isHome
-                                ? "Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability — helping you hire global talent and build outsourcing that actually works."
+                                ? "We connect UK and North American companies with high-performing African professionals, design outsourcing models that actually work, and deploy AI agents that reduce operational load — without sacrificing quality or trust."
                                 : description}
                         </motion.p>
 
@@ -129,10 +141,10 @@ export const Hero = ({
                     {/* Animated floating pics + circles (Home, Service, or when showRightVisual) */}
                     {hasRightVisual && (
                         <FloatingHeroVisual
-                            image1={isHome ? "/images/hero-1.png" : imageSrc}
-                            image2="/images/hero-2.png"
-                            alt1="Professional team"
-                            alt2="Professional team"
+                            image1={isHome ? "/images/Gigmote Asset 3.jpg" : imageSrc}
+                            image2="/images/Gigmote Asset 4.jpg"
+                            alt1="Global team collaboration"
+                            alt2="Operational excellence in action"
                         />
                     )}
                 </div>

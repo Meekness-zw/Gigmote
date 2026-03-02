@@ -11,6 +11,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Code, Zap, Globe, Users, Rocket, Shield, TrendingUp, CheckCircle2, ArrowRight, Terminal, Cpu, Database, Sparkles } from "lucide-react";
+import { SiReact, SiNextdotjs, SiNodedotjs, SiPython, SiAmazon, SiDocker, SiKubernetes, SiTensorflow } from "react-icons/si";
 
 export default function HireADevPage() {
     const roles = [
@@ -71,7 +72,10 @@ export default function HireADevPage() {
             <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden min-h-[90vh] flex items-center">
                 {/* Animated Background */}
                 <div className="absolute inset-0 bg-hugo-black">
-                    <div className="absolute inset-0 bg-[url('/images/pattern-bg.png')] opacity-10"></div>
+                    <div
+                        className="absolute inset-0 opacity-10"
+                        style={{ backgroundImage: "url('/images/global bpo advisory.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+                    ></div>
                     {/* Animated Grid */}
                     <div className="absolute inset-0 bg-[linear-gradient(rgba(255,215,0,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,215,0,0.1)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
                     <BackgroundMotion variant="dark" className="z-0" />
@@ -121,7 +125,7 @@ export default function HireADevPage() {
                                 </Link>
                                 <Link href="/careers">
                                     <Button size="lg" variant="outline" className="w-full sm:w-auto text-white border-white hover:bg-white hover:text-black">
-                                        Apply as Developer
+                                        Apply as a Developer
                                     </Button>
                                 </Link>
                             </div>
@@ -238,7 +242,10 @@ export default function HireADevPage() {
 
             {/* Process - Visual Timeline */}
             <section className="py-24 bg-hugo-black text-white relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/images/pattern-bg.png')] opacity-5"></div>
+                <div
+                    className="absolute inset-0 opacity-5"
+                    style={{ backgroundImage: "url('/images/global bpo advisory.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+                ></div>
                 <BackgroundMotion variant="dark" />
                 <div className="container mx-auto px-6 max-w-6xl relative z-10">
                     <div className="text-center mb-20">
@@ -294,19 +301,33 @@ export default function HireADevPage() {
                     {/* Visual Tech Grid */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {[
-                            "React", "Next.js", "Node.js", "Python",
-                            "AI/ML", "AWS", "Docker", "Kubernetes"
+                            { name: "React", Icon: SiReact },
+                            { name: "Next.js", Icon: SiNextdotjs },
+                            { name: "Node.js", Icon: SiNodedotjs },
+                            { name: "Python", Icon: SiPython },
+                            { name: "AI/ML", Icon: SiTensorflow },
+                            { name: "AWS", Icon: SiAmazon },
+                            { name: "Docker", Icon: SiDocker },
+                            { name: "Kubernetes", Icon: SiKubernetes }
                         ].map((tech, idx) => (
                             <motion.div
-                                key={idx}
+                                key={tech.name}
                                 initial={{ opacity: 0, scale: 0.8 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: idx * 0.05 }}
                                 whileHover={{ scale: 1.05 }}
-                                className="bg-hugo-cream rounded-2xl p-6 aspect-square flex items-center justify-center border border-hugo-black/10 text-hugo-black font-bold text-lg shadow-lg hover:shadow-2xl hover:bg-hugo-gold/10 transition-all cursor-pointer"
+                                className="bg-hugo-cream rounded-2xl p-6 aspect-square flex items-center justify-center border border-hugo-black/10 shadow-lg hover:shadow-2xl hover:bg-hugo-gold/10 transition-all cursor-pointer"
                             >
-                                {tech}
+                                <div className="flex flex-col items-center gap-3">
+                                    {(() => {
+                                        const Icon = tech.Icon;
+                                        return (
+                                            <Icon className="w-10 h-10 md:w-12 md:h-12 text-hugo-black" />
+                                        );
+                                    })()}
+                                    <span className="text-hugo-black font-semibold text-sm md:text-base">{tech.name}</span>
+                                </div>
                             </motion.div>
                         ))}
                     </div>
@@ -315,7 +336,10 @@ export default function HireADevPage() {
 
             {/* Visual CTA */}
             <section className="py-32 bg-hugo-black text-white text-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/images/pattern-bg.png')] opacity-10"></div>
+                <div
+                    className="absolute inset-0 opacity-10"
+                    style={{ backgroundImage: "url('/images/global bpo advisory.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+                ></div>
                 <BackgroundMotion variant="dark" />
                 {/* Animated Background Elements */}
                 <motion.div
@@ -355,7 +379,7 @@ export default function HireADevPage() {
                             </Link>
                             <Link href="/careers">
                                 <Button size="lg" variant="outline" className="w-full sm:w-auto text-white border-white hover:bg-white hover:text-black">
-                                    Apply as Developer
+                                    Apply as a Developer
                                 </Button>
                             </Link>
                         </div>

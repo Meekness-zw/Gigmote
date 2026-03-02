@@ -9,79 +9,86 @@ import {
     Stethoscope,
     MonitorSmartphone,
     LineChart,
-    Banknote
+    Banknote,
+    Target,
+    Bot,
 } from "lucide-react";
 
 export const siteContent = {
-    /** Core value proposition — applies across the entire project */
+    /** Core value proposition — used for "Why companies choose" section on home */
     coreValue:
-        "Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability.",
+        "We combine global talent, BPO strategy, and AI-powered automation to help UK and North American companies scale smarter — without sacrificing quality or trust.",
     services: [
         {
             slug: "bpo-matchmaking-advisory",
             icon: ShieldCheck,
-            title: "BPO Matchmaking & Advisory",
-            slogan: "Outsource Without Guesswork",
-            description: "We help companies design, select, and manage outsourcing partners that deliver consistent performance.",
+            title: "BPO Consulting",
+            slogan: "Outsource Without Getting It Wrong",
+            description:
+                "We advise companies before they outsource — so they don't make expensive mistakes. From vendor selection to performance optimization, we design outsourcing models that actually work.",
             features: [
-                "Vendor selection",
-                "Operating model design",
-                "Performance metrics & oversight",
-                "Risk and compliance planning",
-                "Optimization of existing outsourcing"
+                "BPO strategy & vendor selection",
+                "Operating model design (pods, SLAs, QA, metrics)",
+                "Transition & onboarding playbooks",
+                "Performance optimization (CSAT, FCR, cost-to-serve)",
+                "Optimization of existing outsourcing relationships",
             ],
-            bestFor: ["CX Teams", "Operations", "Finance & Back Office", "Scaling Companies"],
+            bestFor: ["SaaS & FinTech Companies", "Startups scaling CX, Ops, or Finance", "Companies dissatisfied with their current BPO"],
             pricing: "Custom Pricing",
             stats: [
                 { label: "Cost Reduction", value: "40–60%" },
                 { label: "Faster Launch", value: "2–4x" }
-            ]
+            ],
+            differentiator: "Most BPO failures aren't talent issues — they're design and execution failures. Gigmote fixes that upstream."
         },
         {
             slug: "global-staffing",
             icon: Users,
-            title: "Global Staffing",
-            slogan: "Reliable Global Talent. Fully Integrated.",
-            description: "We place vetted, full-time professionals into your team. No freelancers. No temporary placements. Just long-term, accountable team members.",
+            title: "Global Staffing & Recruitment",
+            slogan: "Top African Talent. No Friction. No Compromise.",
+            description:
+                "We connect high-performing African professionals with UK and North American companies — with full vetting, strong communication, and timezone alignment. Not freelance. Not body-shopping. Curated, long-term talent with accountability.",
             features: [
-                "Vetted talent only",
-                "Full-time accountability",
-                "Optional oversight & management",
-                "Seamless onboarding support"
+                "Customer Support & CX Specialists",
+                "Operations & Admin Professionals",
+                "Finance Ops & Accounting Analysts",
+                "SDRs & RevOps roles",
+                "Technical & AI-adjacent roles",
             ],
             bestFor: [
-                "Customer Support, Admin & Operations",
-                "Data Scientists and Engineers",
-                "Full Stack Developers & AI/ML Engineers",
-                "Sales Enablement & Digital Marketing Specialists",
-                "Financial services & Fintech & Accounting",
-                "Healthcare Revenue Cycle Management"
+                "Customer Support & CX",
+                "Operations & Finance",
+                "Sales Development (SDR / RevOps)",
+                "Technical & AI-adjacent roles",
             ],
             pricing: "From $9/hour",
             stats: [
                 { label: "Cost Reduction", value: "40–60%" },
                 { label: "Retention Focus", value: "Long-term" }
-            ]
+            ],
+            differentiator: "This is not a freelance marketplace or body-shopping — it's curated, long-term talent with full accountability."
         },
         {
             slug: "ai-business-solutions",
             icon: Cpu,
             title: "AI Business Solutions",
             slogan: "Automate Busywork. Keep Humans in Control.",
-            description: "We implement practical AI tools that reduce repetitive workload and improve efficiency across customer support, sales, and internal operations.",
+            description:
+                "We help businesses automate repetitive work without replacing humans — making teams more productive. From AI chatbots to intelligent agents, we deploy AI that augments your team, not hype-driven automation that breaks trust.",
             features: [
-                "AI Chatbots",
-                "Workflow Automation",
-                "CRM AI Assistants",
-                "Data Processing Automation",
-                "AI Lead Qualification"
+                "Customer support & lead-capture chatbots",
+                "Internal helpdesk & knowledge base bots",
+                "Ops automation agents (ticket triage, tagging, routing)",
+                "Finance agents (invoice processing, reconciliation)",
+                "Sales & RevOps agents (CRM updates, follow-ups)",
             ],
-            bestFor: ["Customer Support", "Sales & RevOps", "Operations", "Founders & Leadership Teams"],
+            bestFor: ["Customer Support Teams", "Sales & RevOps", "Finance & Back Office Operations", "Founders & Leadership Teams"],
             pricing: "From $3,000 per deployment",
             stats: [
                 { label: "Time Saved", value: "1000s hrs" },
                 { label: "Efficiency Boost", value: "30–50%" }
-            ]
+            ],
+            differentiator: "AI that augments teams — not hype-driven automation that breaks trust."
         }
     ],
     industries: [
@@ -128,81 +135,89 @@ export const siteContent = {
             heroTitle: "Operational partners who understand compliance, security, and regulation."
         }
     ],
+    about: {
+        heroTitle: "Built by operators, not recruiters.",
+        heroDescription: "We built Gigmote after watching outsourcing fail real businesses. Our model combines high-quality African talent, proven BPO strategy, and practical AI — so growing companies can scale without the guesswork.",
+    },
     company: {
         heroTitle: "Built by operators, not recruiters.",
-        heroDescription: "Traditional outsourcing focuses on cost. We focus on performance, reliability, and scalability — and we built Gigmote to fix what traditional outsourcing gets wrong.",
+        heroDescription: "Deep CX, FinTech, and SaaS experience. Metrics-driven, process-first delivery. Human + AI — not one or the other. That's the Gigmote standard.",
         stats: [
             { label: "Average Cost Savings", value: "40–60%" },
-            { label: "Global Talent Hubs", value: "Multiple" },
+            { label: "Target Markets", value: "UK / US / CA" },
             { label: "Focus", value: "Quality & Retention" }
         ]
     },
     faqs: [
         {
             question: "How quickly can you scale a team?",
-            answer: "We can launch a dedicated team in as little as 2 weeks, thanks to our pre-vetted talent pool."
+            answer: "We can launch a dedicated team in as little as 2 weeks, thanks to our pre-vetted African talent pool and structured onboarding playbooks."
         },
         {
-            question: "Where are your agents located?",
-            answer: "We have delivery centers in the Philippines, Colombia, South Africa, and Eastern Europe, providing varied price points and skill sets."
+            question: "Where are your talent hubs located?",
+            answer: "Our primary talent hubs are across Africa — including South Africa, Kenya, Nigeria, and Egypt — giving you access to top-tier professionals at competitive rates, with strong English communication and timezone alignment for UK and North American companies."
         },
         {
-            question: "Do you offer 24/7 support?",
-            answer: "Yes, our global footprint allows us to provide disparate time-zone coverage for true 'follow-the-sun' support."
+            question: "Do you offer 24/7 support coverage?",
+            answer: "Yes. African talent hubs are strategically positioned for timezone overlap with both the UK and North America, and we can structure follow-the-sun coverage where needed."
         },
         {
             question: "What is your pricing model?",
-            answer: "We offer flexible pricing models including hourly rates, dedicated monthly teams, and outcome-based pricing."
+            answer: "We offer flexible models: hourly staffing from $9/hour, dedicated monthly teams, BPO consulting engagements (custom pricing), and AI deployments from $3,000. We recommend starting with a 30–60 day pilot."
+        },
+        {
+            question: "How is Gigmote different from a freelance marketplace?",
+            answer: "We are not a marketplace. Every placement is vetted, full-time, and built for long-term accountability. We design the operating model, set KPIs, and provide optional managed oversight — so you get a real team, not a list of profiles."
         }
     ],
     pricing: {
         heroTitle: "Transparent & Simple Pricing"
     },
     hero: {
-        trustBar: "Supporting teams in FinTech • Healthcare • SaaS • IT • Marketing • Sales"
+        trustBar: "Serving companies worldwide 🌍"
     },
     valueProps: [
         {
-            icon: Users,
+            icon: Briefcase,
             title: "Built by operators",
-            description: "We’ve personally built, scaled, and managed global teams — so we design systems that actually work in the real world."
+            description: "We've personally built, scaled, and managed global teams across CX, FinTech, and SaaS — so we design systems that work in the real world, not just on paper."
         },
         {
-            icon: Cpu,
-            title: "Human + AI delivery",
-            description: "We blend vetted talent with practical AI automation, keeping humans in control for quality and compliance."
+            icon: Target,
+            title: "Metrics-driven, process-first",
+            description: "Every engagement is designed around your KPIs — with clear SLAs, QA frameworks, and visibility into performance from day one."
         },
         {
-            icon: ShieldCheck,
-            title: "Quality & compliance first",
-            description: "We prioritize retention, security, and long-term performance — not race-to-the-bottom outsourcing."
+            icon: Bot,
+            title: "Human + AI model",
+            description: "We blend high-performing African talent with practical AI automation — keeping humans in control for quality and compliance."
         },
         {
             icon: Globe,
-            title: "Global talent, western aligned",
-            description: "Teams that understand western business expectations, communication standards, and customer experience."
+            title: "Africa → Global",
+            description: "High-quality African professionals serving UK and North American companies. Strong communication, timezone alignment, and long-term retention focus."
         }
     ],
     howItWorks: [
         {
             step: 1,
-            title: "Operational Audit",
-            description: "We identify repetitive work, workflow gaps, and automation opportunities."
+            title: "Choose Your Wedge",
+            description: "We start focused — CX staffing, Ops hiring, or BPO consulting — so you see results quickly without overcommitting."
         },
         {
             step: 2,
-            title: "Precision Match",
-            description: "We provide 2–3 highly vetted talent options or AI solutions tailored to your exact workflow."
+            title: "30–60 Day Pilot",
+            description: "We match you with vetted talent or the right BPO partner and run a structured pilot with clear KPIs and full transparency."
         },
         {
             step: 3,
-            title: "Managed Integration",
-            description: "We support onboarding, KPI setup, and workflow integration."
+            title: "Layer In AI",
+            description: "Once trust is built, we introduce AI agents and automation to reduce repetitive load and boost team productivity."
         },
         {
             step: 4,
-            title: "Scale & Optimize",
-            description: "We continuously improve efficiency through data, automation, and operational refinement."
+            title: "Expand & Optimize",
+            description: "We grow the engagement from staffing → consulting → AI — scaling with you as your needs evolve."
         }
     ],
     caseStudies: [
@@ -213,7 +228,7 @@ export const siteContent = {
             challenge:
                 "A fast-growing US-based e-commerce brand with $4.2M in annual revenue was battling backlogged bookkeeping, delayed month-end closes, and poor cash flow visibility. Their in-house finance manager was overwhelmed, and hiring two additional U.S. accountants would have cost roughly $165,000 annually including benefits.",
             solution:
-                "Gigmote deployed a dedicated offshore accounting pod (senior accountant + junior bookkeeper), streamlined AP/AR, codified monthly close procedures, and integrated reporting dashboards into their Shopify and Stripe stack — all while working within the client’s existing tools for full transparency.",
+                "Gigmote deployed a dedicated offshore accounting pod (senior accountant + junior bookkeeper), streamlined AP/AR, codified monthly close procedures, and integrated reporting dashboards into their Shopify and Stripe stack — all while working within the client's existing tools for full transparency.",
             results: [
                 "58% reduction in finance operations cost (~$92,000 annually saved)",
                 "Month-end close time cut from 21 days to 6 days",
@@ -225,7 +240,7 @@ export const siteContent = {
             industry: "B2B SaaS Sales Development",
             title: "B2B Sales Development Acceleration",
             challenge:
-                "A seed-stage U.S. SaaS company selling into logistics providers had strong product-market fit but an inconsistent pipeline. Founders were running outbound themselves, resulting in fewer than 8 qualified demos per month. Hiring U.S.-based SDRs at $70,000–$85,000 each wasn’t feasible.",
+                "A seed-stage U.S. SaaS company selling into logistics providers had strong product-market fit but an inconsistent pipeline. Founders were running outbound themselves, resulting in fewer than 8 qualified demos per month. Hiring U.S.-based SDRs at $70,000–$85,000 each wasn't feasible.",
             solution:
                 "Gigmote built and trained a two-person Sales Development team to own outbound prospecting, LinkedIn engagement, CRM hygiene, and pipeline qualification. We implemented scripts, daily activity targets, and a KPI dashboard tied to demos and opportunity conversion.",
             results: [
