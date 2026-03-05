@@ -17,8 +17,6 @@ import { AnimatedNumber } from "@/components/ui/AnimatedNumber";
 import { MaskSection } from "@/components/ui/MaskSection";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ScrollRotate } from "@/components/ui/ScrollRotate";
-import { Marquee } from "@/components/ui/Marquee";
-import { UnderlineReveal } from "@/components/ui/UnderlineReveal";
 import { FadeInOnScroll } from "@/components/ui/FadeInOnScroll";
 import { StepsAccordion } from "@/components/ui/StepsAccordion";
 import { StrokeReveal } from "@/components/ui/StrokeReveal";
@@ -37,78 +35,6 @@ export default function Home() {
       <Navbar />
 
       <Hero variant="home" />
-
-      {/* Trust Bar — marquee + underline label */}
-      <section className="py-10 border-b border-hugo-black/5 bg-white/50 backdrop-blur-sm">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-hugo-black/40 mb-6">
-            <UnderlineReveal underlineClass="bg-hugo-gold">{siteContent.hero.trustBar}</UnderlineReveal>
-          </p>
-          <Marquee duration={60} className="flex items-center">
-            {[
-              { name: "Warner Music Group", type: "image", src: "/images/clients/warner_music_group.png" },
-              { name: "Atlanta Tech Village", type: "image", src: "/images/clients/atlanta_tech_village_alt.png" },
-              { name: "M Lab South Africa", type: "image", src: "/images/clients/mlab_sa.png" },
-              { name: "Tech Gofer", type: "text" },
-              { name: "Rev Cycle IQ", type: "text" },
-              { name: "Kids in Common NYC", type: "text" },
-              { name: "Athstat", type: "text" },
-              { name: "Bite Data", type: "text" },
-              { name: "DOT", type: "text" },
-              { name: "Build/", type: "text" },
-              { name: "Collectively", type: "text" },
-              { name: "Cloud Concepts", type: "text" },
-              { name: "College Connect", type: "text" },
-              { name: "Baller Scholar", type: "image", src: "/images/clients/baller_scholar.jpg" },
-              { name: "Train4work", type: "text" },
-              { name: "Afro Digital", type: "text" },
-              { name: "BCC Groupe", type: "text" },
-              { name: "Datadvise", type: "text" },
-              { name: "Mzila Worx", type: "text" },
-              { name: "HumanX Life", type: "text" },
-              { name: "Omni Contact", type: "text" },
-              { name: "Zulu Digital", type: "image", src: "/images/clients/zulu_digital.jpg" },
-              { name: "Sociale Fintech", type: "text" },
-              { name: "Energy Sustainability", type: "text" },
-              { name: "Electric Vehicle Association", type: "image", src: "/images/clients/electric_vehicle_association.jpg" }
-            ].map((client) => {
-              const initials = client.name
-                .split(" ")
-                .filter(Boolean)
-                .slice(0, 2)
-                .map((word) => word[0]?.toUpperCase() ?? "")
-                .join("");
-
-              return (
-                <div
-                  key={client.name}
-                  className="flex items-center shrink-0 px-6 md:px-10 opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-                >
-                  {client.type === "image" ? (
-                    <div className="relative h-8 md:h-10 w-32 flex items-center justify-center">
-                      <img
-                        src={client.src}
-                        alt={client.name}
-                        className="h-full w-auto object-contain brightness-0 contrast-100"
-                      />
-                    </div>
-                  ) : (
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-hugo-black/5 border border-hugo-black/10 flex items-center justify-center text-xs md:text-sm font-bold text-hugo-black/60">
-                        {initials}
-                      </div>
-                      <span className="text-xl md:text-2xl font-bold text-hugo-black/40 tracking-tighter whitespace-nowrap">
-                        {client.name}
-                      </span>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </Marquee>
-
-        </div>
-      </section>
 
       {/* Featured cards — three key stories instead of carousel */}
       <section className="py-12 md:py-16 bg-hugo-cream">

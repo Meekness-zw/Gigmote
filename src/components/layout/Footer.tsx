@@ -33,10 +33,30 @@ export const Footer = () => {
                     <div>
                         <h4 className="text-lg font-semibold mb-6">Services</h4>
                         <ul className="space-y-4 text-white/60">
-                            <li><Link href="/services/customer-support" className="hover:text-white transition-colors">Customer Support</Link></li>
-                            <li><Link href="/services/trust-safety" className="hover:text-white transition-colors">Trust & Safety</Link></li>
-                            <li><Link href="/services/data-ai" className="hover:text-white transition-colors">Data & AI</Link></li>
-                            <li><Link href="/services/digital-operations" className="hover:text-white transition-colors">Digital Operations</Link></li>
+                            <li>
+                                <Link
+                                    href="/services/bpo-matchmaking-advisory"
+                                    className="hover:text-white transition-colors"
+                                >
+                                    BPO Consulting
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/services/global-staffing"
+                                    className="hover:text-white transition-colors"
+                                >
+                                    Global Staffing & Recruitment
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    href="/services/ai-business-solutions"
+                                    className="hover:text-white transition-colors"
+                                >
+                                    AI Business Solutions
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 

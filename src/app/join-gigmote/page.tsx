@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
@@ -9,33 +10,27 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { eases } from "@/utils/animations";
 import { Upload, File, CheckCircle2, ChevronDown, Rocket, Code, Database, BrainCircuit, Terminal } from "lucide-react";
-import { submitRegistration } from "@/app/actions/register"; // Server Action
 
 export default function JoinGigmotePage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [file, setFile] = useState<File | null>(null);
 
     // Accordion state for specialty selection
     const [selectedSpecialty, setSelectedSpecialty] = useState<string>("");
     const [otherSpecialty, setOtherSpecialty] = useState<string>("");
     const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+    const [cvLink, setCvLink] = useState<string>("");
+    const [cvFile, setCvFile] = useState<File | null>(null);
 
-    // Specialty options with icons
+    // Specialty options with icons (broad roles, not just engineering)
     const specialties = [
-        { id: "full-stack", name: "Full Stack Development", icon: Code },
-        { id: "backend", name: "Backend / Systems", icon: Database },
-        { id: "ai-ml", name: "AI / Machine Learning", icon: BrainCircuit },
-        { id: "devops", name: "DevOps / Cloud Ops", icon: Terminal },
+        { id: "eng-systems", name: "Engineering / Systems", icon: Code },
+        { id: "ai-data", name: "AI / Data & Analytics", icon: BrainCircuit },
+        { id: "product-strategy", name: "Product / Strategy / Consulting", icon: Database },
+        { id: "ops-delivery", name: "Operations / Delivery / Enablement", icon: Terminal },
         { id: "other", name: "Other Expertise", icon: Rocket },
     ];
-
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            setFile(e.target.files[0]);
-        }
-    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -45,35 +40,50 @@ export default function JoinGigmotePage() {
             setError("Please select a specialty.");
             return;
         }
-        if (!file) {
-            setError("Please attach your CV.");
+        if (!cvLink.trim() && !cvFile) {
+            setError("Please add a CV / portfolio link or upload your CV.");
             return;
         }
 
-        setIsSubmitting(true);
+        const form = e.currentTarget;
+        const formData = new FormData(form);
 
-        const formData = new FormData(e.currentTarget);
+        let specialtyValue = selectedSpecialty;
         if (selectedSpecialty === "Other Expertise") {
             if (!otherSpecialty.trim()) {
                 setError("Please specify your expertise.");
-                setIsSubmitting(false);
                 return;
             }
-            formData.append("specialty", `Other: ${otherSpecialty}`);
-        } else {
-            formData.append("specialty", selectedSpecialty);
+            specialtyValue = `Other: ${otherSpecialty}`;
         }
 
-        // We don't need to manually append the file if the input has `name="cv"`, 
-        // but just to be sure we can append the state if needed. It will already be in formData.
+        const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+        const templateId = process.env.NEXT_PUBLIC_EMAILJS_JOIN_TEMPLATE_ID;
+        const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+        if (!serviceId || !templateId || !publicKey) {
+            setError("Application form is not configured. Please contact the site owner.");
+            return;
+        }
+
+        const templateParams = {
+            name: formData.get("name") || "",
+            email: formData.get("email") || "",
+            specialty: specialtyValue,
+            cv_link: cvLink || "",
+            profile_summary: formData.get("profile_summary") || "",
+            cv_file_name: cvFile ? cvFile.name : "",
+        };
+
+        setIsSubmitting(true);
 
         try {
-            const response = await submitRegistration(formData);
-            if (response.success) {
+            const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+
+            if (result.status === 200) {
                 setSuccess(true);
-                // Reset form or redirect
             } else {
-                setError(response.error || "Failed to submit. Please try again.");
+                setError("Failed to submit. Please try again later.");
             }
         } catch (err) {
             setError("An unexpected error occurred. Please try again.");
@@ -172,8 +182,12 @@ export default function JoinGigmotePage() {
                         ) : (
                             <div className="bg-white rounded-[2rem] shadow-xl border border-hugo-black/5 p-8 md:p-12">
                                 <div className="mb-8 border-b border-gray-100 pb-8">
-                                    <h2 className="text-3xl font-bold text-hugo-black tracking-tight mb-2">Apply to the Network</h2>
-                                    <p className="text-hugo-black/60 font-light">Tell us about yourself and drop your CV below.</p>
+                                    <h2 className="text-3xl font-bold text-hugo-black tracking-tight mb-2">
+                                        Tell us how you like to work.
+                                    </h2>
+                                    <p className="text-hugo-black/60 font-light">
+                                        Share your background, what you do best, and the kinds of problems and teams you’re excited to work with. We’ll only reach out for opportunities that match that profile.
+                                    </p>
                                 </div>
 
                                 {error && (
@@ -187,7 +201,7 @@ export default function JoinGigmotePage() {
                                     {/* Basic Info */}
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="flex flex-col gap-2">
-                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">Full Name *</label>
+                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">Your name *</label>
                                             <input
                                                 name="name"
                                                 required
@@ -196,7 +210,9 @@ export default function JoinGigmotePage() {
                                             />
                                         </div>
                                         <div className="flex flex-col gap-2">
-                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">Email *</label>
+                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
+                                                Email *
+                                            </label>
                                             <input
                                                 name="email"
                                                 type="email"
@@ -209,7 +225,9 @@ export default function JoinGigmotePage() {
 
                                     {/* Specialty Custom Accordion Selection */}
                                     <div className="flex flex-col gap-2">
-                                        <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">Your Specialty *</label>
+                                        <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
+                                            Your primary expertise *
+                                        </label>
                                         <div className="relative">
                                             {/* Trigger */}
                                             <button
@@ -219,7 +237,7 @@ export default function JoinGigmotePage() {
                                                     }`}
                                             >
                                                 <span className={selectedSpecialty ? "font-medium" : "text-gray-400"}>
-                                                    {selectedSpecialty || "Select your primary discipline"}
+                                                    {selectedSpecialty || "What type of work do you do best?"}
                                                 </span>
                                                 <ChevronDown size={20} className={`transition-transform duration-300 ${isAccordionOpen ? "rotate-180" : ""}`} />
                                             </button>
@@ -270,12 +288,14 @@ export default function JoinGigmotePage() {
                                                     className="overflow-hidden"
                                                 >
                                                     <div className="flex flex-col gap-2 pt-4">
-                                                        <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">Please Specify *</label>
+                                                        <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
+                                                            Briefly describe your expertise *
+                                                        </label>
                                                         <input
                                                             value={otherSpecialty}
                                                             onChange={(e) => setOtherSpecialty(e.target.value)}
                                                             className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-hugo-black outline-none transition-colors bg-gray-50 text-hugo-black"
-                                                            placeholder="E.g. Technical Product Manager"
+                                                            placeholder="e.g. Staff-level platform engineer, AI product strategist, revenue operations lead"
                                                         />
                                                     </div>
                                                 </motion.div>
@@ -283,34 +303,37 @@ export default function JoinGigmotePage() {
                                         </AnimatePresence>
                                     </div>
 
-                                    {/* File Upload Area */}
-                                    <div className="flex flex-col gap-2">
-                                        <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">Attach CV *</label>
-                                        <div className="relative group">
+                                    {/* CV / Portfolio Link or Upload */}
+                                    <div className="flex flex-col gap-3">
+                                        <div className="flex flex-col gap-1">
+                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
+                                                Where can we see your work?
+                                            </label>
+                                            <p className="text-xs text-hugo-black/60">
+                                                Share a link to your CV or portfolio, or upload your CV directly. We review every profile by hand.
+                                            </p>
+                                        </div>
+                                        <input
+                                            name="cv_link"
+                                            type="url"
+                                            value={cvLink}
+                                            onChange={(e) => setCvLink(e.target.value)}
+                                            className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-hugo-black outline-none transition-colors bg-gray-50 text-hugo-black"
+                                            placeholder="https://drive.google.com/your-cv or portfolio URL"
+                                        />
+                                        <div className="flex flex-col gap-1">
+                                            <span className="text-xs font-semibold text-hugo-black/70">
+                                                Or upload your CV
+                                            </span>
                                             <input
                                                 type="file"
-                                                name="cv"
-                                                required
-                                                onChange={handleFileChange}
                                                 accept=".pdf,.doc,.docx"
-                                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                                                onChange={(e) => {
+                                                    const file = e.target.files?.[0] ?? null;
+                                                    setCvFile(file);
+                                                }}
+                                                className="w-full text-sm text-hugo-black file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-hugo-black file:text-white hover:file:bg-hugo-black/90"
                                             />
-                                            <div className={`w-full flex flex-col items-center justify-center border-2 border-dashed rounded-2xl p-10 transition-colors ${file ? "border-hugo-gold bg-hugo-gold/5" : "border-gray-200 bg-gray-50 group-hover:border-hugo-black/30 group-hover:bg-gray-100"
-                                                }`}>
-                                                {file ? (
-                                                    <>
-                                                        <File size={32} className="text-hugo-gold mb-4" />
-                                                        <p className="font-medium text-hugo-black text-center">{file.name}</p>
-                                                        <p className="text-xs text-hugo-black/40 mt-1">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <Upload size={32} className="text-gray-400 mb-4 group-hover:text-hugo-black transition-colors" />
-                                                        <p className="font-medium text-hugo-black mb-1">Click to upload or drag & drop</p>
-                                                        <p className="text-sm text-gray-500">PDF or Word (max. 10MB)</p>
-                                                    </>
-                                                )}
-                                            </div>
                                         </div>
                                     </div>
 

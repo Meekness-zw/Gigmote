@@ -50,7 +50,7 @@ export default function PricingPage() {
               <AnimatedText text="Simple plans. Massive scale." variant="words" />
             </h1>
             <p className="text-xl md:text-2xl text-white/60 font-light max-w-3xl mx-auto leading-relaxed">
-              Clear pricing designed for ambitious teams. No hidden fees. No basic vibes. Just top-tier global staffing and AI solutions.
+              Clear pricing designed for ambitious teams. No hidden fees.
             </p>
           </FadeInOnScroll>
         </div>

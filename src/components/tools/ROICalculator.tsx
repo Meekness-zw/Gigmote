@@ -176,32 +176,44 @@ export const ROICalculator = () => {
                                 AI automation adoption
                             </span>
                             <p className="text-xs text-hugo-black/60">
-                                Toggle whether you plan to automate part of the workload with AI.
+                                Toggle on if you plan to automate part of the workload with AI.
                             </p>
                         </div>
                         <button
                             type="button"
                             onClick={() => setAiEnabled((prev) => !prev)}
-                            className={`relative inline-flex h-7 w-14 items-center rounded-full border transition-colors ${aiEnabled ? "bg-hugo-black border-hugo-black" : "bg-gray-200 border-gray-300"
+                            className={`relative inline-flex h-7 w-16 items-center rounded-full border px-1 transition-colors ${aiEnabled ? "bg-hugo-black border-hugo-black" : "bg-gray-200 border-gray-300"
                                 }`}
                         >
                             <span
-                                className={`inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform ${aiEnabled ? "translate-x-7" : "translate-x-1"
+                                className={`inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform ${aiEnabled ? "translate-x-7" : "translate-x-0"
                                     }`}
                             />
+                            <span className="ml-2 text-[10px] font-semibold uppercase tracking-wide text-white/80">
+                                {aiEnabled ? "On" : "Off"}
+                            </span>
                         </button>
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-hugo-black mb-2">Function is Automatable (%)</label>
+                    <div className={aiEnabled ? "" : "opacity-40 pointer-events-none"}>
+                        <label className="block text-sm font-medium text-hugo-black mb-2">
+                            Function is automatable (%)
+                        </label>
                         <input
-                            type="range" min="0" max="100" value={automationPct}
+                            type="range"
+                            min="0"
+                            max="100"
+                            value={automationPct}
                             onChange={(e) => setAutomationPct(Number(e.target.value))}
                             className="w-full accent-hugo-gold h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                         />
                         <div className="flex items-center justify-between mt-1">
-                            <span className="text-xs text-hugo-black/50">Percent of work you expect AI to handle</span>
-                            <span className="font-bold text-hugo-gold">{effectiveAutomationPct}%</span>
+                            <span className="text-xs text-hugo-black/50">
+                                Percent of work you expect AI to handle when automation is on
+                            </span>
+                            <span className="font-bold text-hugo-gold">
+                                {aiEnabled ? `${automationPct}%` : "0%"}
+                            </span>
                         </div>
                     </div>
 
