@@ -6,7 +6,7 @@ const smtpPort = process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : undefin
 const smtpUser = process.env.SMTP_USER;
 const smtpPass = process.env.SMTP_PASS;
 const fromEmail = process.env.SMTP_FROM_EMAIL || smtpUser;
-const toEmail = process.env.CONTACT_TO_EMAIL || "zen@energyss.io";
+const toEmail = process.env.CONTACT_TO_EMAIL || "zen@gigmote.com";
 
 if (!smtpHost || !smtpPort || !smtpUser || !smtpPass || !fromEmail || !toEmail) {
   console.warn("[contact] SMTP environment variables are not fully configured.");
@@ -24,9 +24,33 @@ const transporter = nodemailer.createTransport({
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, company, message } = await req.json();
+    const {
+      fullName,
+      email,
+      company,
+      challenge,
+      unlock,
+      teamStructure,
+      idealPartner,
+    } = await req.json();
 
-    if (!name || !email || !company || !message) {
+    console.log("[contact] API received submission", {
+      fullName,
+      email,
+      company,
+      unlock,
+      teamStructure,
+      hasChallenge: !!challenge,
+      hasIdealPartner: !!idealPartner,
+    });
+
+    const unlockSelections: string[] = Array.isArray(unlock)
+      ? unlock
+      : typeof unlock === "string" && unlock
+      ? [unlock]
+      : [];
+
+    if (!fullName || !email || !company || !challenge || !idealPartner) {
       return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
     }
 
@@ -37,26 +61,44 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const unlockText =
+      unlockSelections.length > 0 ? unlockSelections.join(", ") : "Not specified";
+
+    const teamStructureText = teamStructure || "Not specified";
+
     await transporter.sendMail({
       from: `"Gigmote Website" <${fromEmail}>`,
       to: toEmail,
       replyTo: email,
-      subject: `New contact from ${name} (${company})`,
+      subject: `New get started enquiry from ${fullName} (${company})`,
       text: `
-Name: ${name}
+Name: ${fullName}
 Email: ${email}
 Company: ${company}
 
-Message:
-${message}
+Current challenge:
+${challenge}
+
+If solved in 90 days, this would unlock:
+${unlockText}
+
+Current team structure:
+${teamStructureText}
+
+Ideal support partner:
+${idealPartner}
       `.trim(),
       html: `
         <h2>New contact submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Name:</strong> ${fullName}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Company:</strong> ${company}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, "<br />")}</p>
+        <p><strong>Current challenge slowing the business:</strong></p>
+        <p>${challenge.replace(/\n/g, "<br />")}</p>
+        <p><strong>If solved in 90 days, this would unlock:</strong> ${unlockText}</p>
+        <p><strong>Current team structure:</strong> ${teamStructureText}</p>
+        <p><strong>Ideal support partner:</strong></p>
+        <p>${idealPartner.replace(/\n/g, "<br />")}</p>
       `,
     });
 

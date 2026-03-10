@@ -6,7 +6,7 @@ const smtpPort = process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : undefin
 const smtpUser = process.env.SMTP_USER;
 const smtpPass = process.env.SMTP_PASS;
 const fromEmail = process.env.SMTP_FROM_EMAIL || smtpUser;
-const toEmail = process.env.CONTACT_TO_EMAIL || "zen@energyss.io";
+const toEmail = process.env.CONTACT_TO_EMAIL || "zen@gigmote.com";
 
 const transporter = nodemailer.createTransport({
   host: smtpHost,
@@ -24,24 +24,62 @@ export async function POST(req: NextRequest) {
 
     const name = (formData.get("name") ?? "").toString();
     const email = (formData.get("email") ?? "").toString();
-    const specialty = (formData.get("specialty") ?? "").toString();
-    const cvLink = (formData.get("cv_link") ?? "").toString();
-    const cvFile = formData.get("cv_file") as File | null;
-    const profileSummary = (formData.get("profile_summary") ?? "").toString();
+    const phone = (formData.get("phone") ?? "").toString();
+    const jobTitle = (formData.get("job_title") ?? "").toString();
+    const coreSkills = (formData.get("core_skills") ?? "").toString();
+    const yearsExperience = (formData.get("years_experience") ?? "").toString();
+    const areasOfExpertise = (formData.get("areas_of_expertise") ?? "").toString();
+    const portfolioLink = (formData.get("portfolio_link") ?? "").toString();
+    const githubLink = (formData.get("github_dribbble_link") ?? "").toString();
+    const qComplexProject = (formData.get("q_complex_project") ?? "").toString();
+    const qLearningNewSkill = (formData.get("q_learning_new_skill") ?? "").toString();
+    const qProcessImprovement = (formData.get("q_process_improvement") ?? "").toString();
+    const qGlobalTeam = (formData.get("q_global_team") ?? "").toString();
+    const qUniqueContribution = (formData.get("q_unique_contribution") ?? "").toString();
 
-    if (!name || !email || !specialty || (!cvLink && !cvFile)) {
+    const portfolioFile = formData.get("portfolio_file") as File | null;
+    const resumeFile = formData.get("resume_file") as File | null;
+
+    console.log("[join-gigmote] API received submission", {
+      name,
+      email,
+      jobTitle,
+      coreSkills,
+      yearsExperience,
+      hasPortfolioFile: !!portfolioFile,
+      hasResumeFile: !!resumeFile,
+      hasPortfolioLink: !!portfolioLink,
+      hasGithubLink: !!githubLink,
+    });
+
+    if (!name || !email || !jobTitle || !coreSkills || !yearsExperience || !areasOfExpertise) {
       return NextResponse.json(
-        { error: "Name, email, specialty, and at least a CV link or file are required." },
+        { error: "Name, email, job title, core skills, years of experience, and areas of expertise are required." },
         { status: 400 }
       );
     }
 
-    const attachments = [] as { filename: string; content: Buffer }[];
+    if (!portfolioLink && !portfolioFile && !resumeFile) {
+      return NextResponse.json(
+        { error: "Please provide at least a portfolio link/file or upload your resume." },
+        { status: 400 }
+      );
+    }
 
-    if (cvFile) {
-      const arrayBuffer = await cvFile.arrayBuffer();
+    const attachments: { filename: string; content: Buffer }[] = [];
+
+    if (portfolioFile) {
+      const arrayBuffer = await portfolioFile.arrayBuffer();
       attachments.push({
-        filename: cvFile.name || "cv.pdf",
+        filename: portfolioFile.name || "portfolio.pdf",
+        content: Buffer.from(arrayBuffer),
+      });
+    }
+
+    if (resumeFile) {
+      const arrayBuffer = await resumeFile.arrayBuffer();
+      attachments.push({
+        filename: resumeFile.name || "resume.pdf",
         content: Buffer.from(arrayBuffer),
       });
     }
@@ -50,27 +88,68 @@ export async function POST(req: NextRequest) {
       `<h2>New talent application</h2>`,
       `<p><strong>Name:</strong> ${name}</p>`,
       `<p><strong>Email:</strong> ${email}</p>`,
-      `<p><strong>Primary expertise:</strong> ${specialty}</p>`,
+      phone ? `<p><strong>Phone:</strong> ${phone}</p>` : "",
+      `<p><strong>Job Title / Desired Role:</strong> ${jobTitle}</p>`,
+      `<p><strong>Core Skills:</strong> ${coreSkills}</p>`,
+      `<p><strong>Years of Experience:</strong> ${yearsExperience}</p>`,
+      `<p><strong>Areas of Expertise / Specializations:</strong> ${areasOfExpertise}</p>`,
     ];
 
-    if (profileSummary) {
+    if (portfolioLink) {
       lines.push(
-        `<p><strong>How they like to work / what they’re looking for:</strong><br />${profileSummary
-          .split("\n")
-          .map((line) => line.trim())
-          .filter(Boolean)
-          .join("<br />")}</p>`
+        `<p><strong>Portfolio / Work Samples Link:</strong> <a href="${portfolioLink}">${portfolioLink}</a></p>`
       );
     }
 
-    if (cvLink) {
+    if (githubLink) {
       lines.push(
-        `<p><strong>CV / Portfolio Link:</strong> <a href="${cvLink}">${cvLink}</a></p>`
+        `<p><strong>GitHub / Dribbble / Online Portfolio:</strong> <a href="${githubLink}">${githubLink}</a></p>`
       );
     }
 
-    if (cvFile) {
-      lines.push(`<p><strong>CV File:</strong> Attached to this email.</p>`);
+    const formatMultiline = (value: string) =>
+      value
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean)
+        .join("<br />");
+
+    if (qComplexProject) {
+      lines.push(
+        `<p><strong>Complex project solved:</strong><br />${formatMultiline(qComplexProject)}</p>`
+      );
+    }
+
+    if (qLearningNewSkill) {
+      lines.push(
+        `<p><strong>Approach to learning new skills:</strong><br />${formatMultiline(qLearningNewSkill)}</p>`
+      );
+    }
+
+    if (qProcessImprovement) {
+      lines.push(
+        `<p><strong>Process / system improvement:</strong><br />${formatMultiline(qProcessImprovement)}</p>`
+      );
+    }
+
+    if (qGlobalTeam) {
+      lines.push(
+        `<p><strong>What excites them about global, performance‑driven teams:</strong><br />${formatMultiline(qGlobalTeam)}</p>`
+      );
+    }
+
+    if (qUniqueContribution) {
+      lines.push(
+        `<p><strong>Unique contribution to Gigmote:</strong><br />${formatMultiline(qUniqueContribution)}</p>`
+      );
+    }
+
+    if (portfolioFile) {
+      lines.push(`<p><strong>Portfolio file:</strong> Attached to this email.</p>`);
+    }
+
+    if (resumeFile) {
+      lines.push(`<p><strong>Resume / CV:</strong> Attached to this email.</p>`);
     }
 
     await transporter.sendMail({

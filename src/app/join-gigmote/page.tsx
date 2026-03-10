@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import emailjs from "@emailjs/browser";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
@@ -9,83 +8,108 @@ import { AnimatedText } from "@/components/ui/AnimatedText";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { eases } from "@/utils/animations";
-import { Upload, File, CheckCircle2, ChevronDown, Rocket, Code, Database, BrainCircuit, Terminal } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
+
+const CORE_SKILL_OPTIONS = [
+    "Data Analysis",
+    "UX / Product Design",
+    "Software Development",
+    "CX / Customer Operations",
+    "Revenue / Sales Operations",
+    "Project / Program Management",
+];
 
 export default function JoinGigmotePage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    // Accordion state for specialty selection
-    const [selectedSpecialty, setSelectedSpecialty] = useState<string>("");
-    const [otherSpecialty, setOtherSpecialty] = useState<string>("");
-    const [isAccordionOpen, setIsAccordionOpen] = useState(false);
-    const [cvLink, setCvLink] = useState<string>("");
-    const [cvFile, setCvFile] = useState<File | null>(null);
+    const [coreSkills, setCoreSkills] = useState<string[]>([]);
+    const [otherCoreSkill, setOtherCoreSkill] = useState<string>("");
+    const [yearsExperience, setYearsExperience] = useState<string>("");
+    const [portfolioLink, setPortfolioLink] = useState<string>("");
+    const [portfolioFile, setPortfolioFile] = useState<File | null>(null);
+    const [resumeFile, setResumeFile] = useState<File | null>(null);
 
-    // Specialty options with icons (broad roles, not just engineering)
-    const specialties = [
-        { id: "eng-systems", name: "Engineering / Systems", icon: Code },
-        { id: "ai-data", name: "AI / Data & Analytics", icon: BrainCircuit },
-        { id: "product-strategy", name: "Product / Strategy / Consulting", icon: Database },
-        { id: "ops-delivery", name: "Operations / Delivery / Enablement", icon: Terminal },
-        { id: "other", name: "Other Expertise", icon: Rocket },
-    ];
+    const toggleCoreSkill = (skill: string) => {
+        setCoreSkills((prev) =>
+            prev.includes(skill) ? prev.filter((s) => s !== skill) : [...prev, skill],
+        );
+    };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError(null);
 
-        if (!selectedSpecialty) {
-            setError("Please select a specialty.");
-            return;
-        }
-        if (!cvLink.trim() && !cvFile) {
-            setError("Please add a CV / portfolio link or upload your CV.");
-            return;
-        }
-
         const form = e.currentTarget;
         const formData = new FormData(form);
 
-        let specialtyValue = selectedSpecialty;
-        if (selectedSpecialty === "Other Expertise") {
-            if (!otherSpecialty.trim()) {
-                setError("Please specify your expertise.");
-                return;
-            }
-            specialtyValue = `Other: ${otherSpecialty}`;
-        }
+        const trimmedOtherSkill = otherCoreSkill.trim();
+        const allCoreSkills =
+            coreSkills.length || trimmedOtherSkill
+                ? [...coreSkills, ...(trimmedOtherSkill ? [`Other: ${trimmedOtherSkill}`] : [])]
+                : [];
 
-        const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-        const templateId = process.env.NEXT_PUBLIC_EMAILJS_JOIN_TEMPLATE_ID;
-        const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-
-        if (!serviceId || !templateId || !publicKey) {
-            setError("Application form is not configured. Please contact the site owner.");
+        if (allCoreSkills.length === 0) {
+            setError("Please select at least one core skill.");
             return;
         }
 
-        const templateParams = {
-            name: formData.get("name") || "",
-            email: formData.get("email") || "",
-            specialty: specialtyValue,
-            cv_link: cvLink || "",
-            profile_summary: formData.get("profile_summary") || "",
-            cv_file_name: cvFile ? cvFile.name : "",
-        };
+        if (!yearsExperience.trim()) {
+            setError("Please add your years of experience.");
+            return;
+        }
+
+        if (!portfolioLink.trim() && !portfolioFile && !resumeFile) {
+            setError("Please add a portfolio link/file or upload your resume.");
+            return;
+        }
+
+        console.log("[join-gigmote] Submitting form", {
+            coreSkills: allCoreSkills,
+            yearsExperience,
+            hasPortfolioFile: !!portfolioFile,
+            hasResumeFile: !!resumeFile,
+            hasPortfolioLink: !!portfolioLink.trim(),
+        });
+
+        formData.set("core_skills", allCoreSkills.join(", "));
+        formData.set("years_experience", yearsExperience);
+        formData.set("portfolio_link", portfolioLink || "");
+
+        if (portfolioFile) {
+            formData.set("portfolio_file", portfolioFile);
+        } else {
+            formData.delete("portfolio_file");
+        }
+
+        if (resumeFile) {
+            formData.set("resume_file", resumeFile);
+        } else {
+            formData.delete("resume_file");
+        }
 
         setIsSubmitting(true);
 
         try {
-            const result = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+            const res = await fetch("/api/join-gigmote", {
+                method: "POST",
+                body: formData,
+            });
 
-            if (result.status === 200) {
+            if (res.ok) {
+                console.log("[join-gigmote] Submission successful");
                 setSuccess(true);
             } else {
-                setError("Failed to submit. Please try again later.");
+                const data = await res.json().catch(() => null);
+                console.warn("[join-gigmote] Submission failed", {
+                    status: res.status,
+                    body: data,
+                });
+                setError(data?.error || "Failed to submit. Please try again later.");
             }
         } catch (err) {
+            console.error("[join-gigmote] Network or unexpected error", err);
             setError("An unexpected error occurred. Please try again.");
         } finally {
             setIsSubmitting(false);
@@ -201,7 +225,7 @@ export default function JoinGigmotePage() {
                                     {/* Basic Info */}
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="flex flex-col gap-2">
-                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">Your name *</label>
+                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">Full Name *</label>
                                             <input
                                                 name="name"
                                                 required
@@ -211,7 +235,7 @@ export default function JoinGigmotePage() {
                                         </div>
                                         <div className="flex flex-col gap-2">
                                             <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
-                                                Email *
+                                                Email Address *
                                             </label>
                                             <input
                                                 name="email"
@@ -223,116 +247,219 @@ export default function JoinGigmotePage() {
                                         </div>
                                     </div>
 
-                                    {/* Specialty Custom Accordion Selection */}
-                                    <div className="flex flex-col gap-2">
-                                        <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
-                                            Your primary expertise *
-                                        </label>
-                                        <div className="relative">
-                                            {/* Trigger */}
-                                            <button
-                                                type="button"
-                                                onClick={() => setIsAccordionOpen(!isAccordionOpen)}
-                                                className={`w-full flex items-center justify-between px-5 py-4 rounded-xl border bg-gray-50 text-hugo-black transition-colors ${isAccordionOpen ? "border-hugo-black" : "border-gray-200"
-                                                    }`}
-                                            >
-                                                <span className={selectedSpecialty ? "font-medium" : "text-gray-400"}>
-                                                    {selectedSpecialty || "What type of work do you do best?"}
-                                                </span>
-                                                <ChevronDown size={20} className={`transition-transform duration-300 ${isAccordionOpen ? "rotate-180" : ""}`} />
-                                            </button>
-
-                                            {/* Dropdown / Accordion Body */}
-                                            <AnimatePresence>
-                                                {isAccordionOpen && (
-                                                    <motion.div
-                                                        initial={{ opacity: 0, y: -10 }}
-                                                        animate={{ opacity: 1, y: 0 }}
-                                                        exit={{ opacity: 0, y: -10 }}
-                                                        className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 shadow-2xl rounded-2xl overflow-hidden z-20"
-                                                    >
-                                                        <div className="flex flex-col">
-                                                            {specialties.map((spec) => {
-                                                                const Icon = spec.icon;
-                                                                const isSelected = selectedSpecialty === spec.name;
-                                                                return (
-                                                                    <button
-                                                                        key={spec.id}
-                                                                        type="button"
-                                                                        onClick={() => {
-                                                                            setSelectedSpecialty(spec.name);
-                                                                            setIsAccordionOpen(false);
-                                                                        }}
-                                                                        className={`flex items-center gap-4 px-6 py-4 text-left transition-colors ${isSelected ? "bg-hugo-cream font-bold" : "hover:bg-gray-50"
-                                                                            }`}
-                                                                    >
-                                                                        <Icon size={20} className={isSelected ? "text-hugo-gold" : "text-gray-400"} />
-                                                                        <span className="text-hugo-black">{spec.name}</span>
-                                                                        {isSelected && <CheckCircle2 size={16} className="ml-auto text-hugo-black" />}
-                                                                    </button>
-                                                                );
-                                                            })}
-                                                        </div>
-                                                    </motion.div>
-                                                )}
-                                            </AnimatePresence>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
+                                                Phone Number
+                                            </label>
+                                            <input
+                                                name="phone"
+                                                className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-hugo-black outline-none transition-colors bg-gray-50 text-hugo-black"
+                                                placeholder="+44 7123 456 789"
+                                            />
                                         </div>
-
-                                        {/* Conditional Other Expertise Input */}
-                                        <AnimatePresence>
-                                            {selectedSpecialty === "Other Expertise" && (
-                                                <motion.div
-                                                    initial={{ opacity: 0, height: 0 }}
-                                                    animate={{ opacity: 1, height: "auto" }}
-                                                    exit={{ opacity: 0, height: 0 }}
-                                                    className="overflow-hidden"
-                                                >
-                                                    <div className="flex flex-col gap-2 pt-4">
-                                                        <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
-                                                            Briefly describe your expertise *
-                                                        </label>
-                                                        <input
-                                                            value={otherSpecialty}
-                                                            onChange={(e) => setOtherSpecialty(e.target.value)}
-                                                            className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-hugo-black outline-none transition-colors bg-gray-50 text-hugo-black"
-                                                            placeholder="e.g. Staff-level platform engineer, AI product strategist, revenue operations lead"
-                                                        />
-                                                    </div>
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
+                                                Job Title / Desired Role *
+                                            </label>
+                                            <input
+                                                name="job_title"
+                                                required
+                                                className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-hugo-black outline-none transition-colors bg-gray-50 text-hugo-black"
+                                                placeholder="Senior Data Analyst, Full‑stack Engineer, CX Lead..."
+                                            />
+                                        </div>
                                     </div>
 
-                                    {/* CV / Portfolio Link or Upload */}
+                                    {/* Core Skills */}
                                     <div className="flex flex-col gap-3">
+                                        <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
+                                            Core Skills (select all that apply) *
+                                        </label>
+                                        <p className="text-xs text-hugo-black/60">
+                                            This helps us understand the kinds of roles and projects you’re best suited for.
+                                        </p>
+                                        <div className="flex flex-wrap gap-2">
+                                            {CORE_SKILL_OPTIONS.map((skill) => {
+                                                const selected = coreSkills.includes(skill);
+                                                return (
+                                                    <button
+                                                        key={skill}
+                                                        type="button"
+                                                        onClick={() => toggleCoreSkill(skill)}
+                                                        className={`px-4 py-2 rounded-full border text-sm transition-colors ${selected
+                                                            ? "bg-hugo-black text-white border-hugo-black"
+                                                            : "bg-gray-50 text-hugo-black border-gray-200 hover:border-hugo-black/50"
+                                                            }`}
+                                                    >
+                                                        {skill}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-xs font-semibold text-hugo-black/70">
+                                                Other core skills
+                                            </label>
+                                            <input
+                                                value={otherCoreSkill}
+                                                onChange={(e) => setOtherCoreSkill(e.target.value)}
+                                                className="w-full px-5 py-3 rounded-xl border border-gray-200 focus:border-hugo-black outline-none transition-colors bg-gray-50 text-hugo-black text-sm"
+                                                placeholder="e.g. DevOps, Growth marketing, Revenue operations..."
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Experience & Expertise */}
+                                    <div className="flex flex-col gap-6">
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
+                                                Years of Experience *
+                                            </label>
+                                            <input
+                                                type="number"
+                                                min={0}
+                                                name="years_experience_input"
+                                                value={yearsExperience}
+                                                onChange={(e) => setYearsExperience(e.target.value)}
+                                                className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-hugo-black outline-none transition-colors bg-gray-50 text-hugo-black"
+                                                placeholder="5"
+                                            />
+                                        </div>
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
+                                                Link to GitHub, Dribbble, or other portfolio (optional)
+                                            </label>
+                                            <input
+                                                name="github_dribbble_link"
+                                                type="url"
+                                                className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-hugo-black outline-none transition-colors bg-gray-50 text-hugo-black"
+                                                placeholder="https://github.com/your-handle or portfolio URL"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="flex flex-col gap-2">
+                                        <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
+                                            Areas of Expertise / Specializations *
+                                        </label>
+                                        <textarea
+                                            name="areas_of_expertise"
+                                            required
+                                            rows={3}
+                                            className="w-full px-5 py-4 rounded-2xl border border-gray-200 focus:border-hugo-black outline-none transition-colors bg-gray-50 text-hugo-black resize-none text-sm"
+                                            placeholder="e.g. B2B SaaS analytics, subscription billing systems, CX playbook design, revenue operations, LLM‑powered tooling..."
+                                        />
+                                    </div>
+
+                                    {/* Portfolio & Resume */}
+                                    <div className="flex flex-col gap-4">
                                         <div className="flex flex-col gap-1">
                                             <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
-                                                Where can we see your work?
+                                                Portfolio / Work Samples
                                             </label>
                                             <p className="text-xs text-hugo-black/60">
-                                                Share a link to your CV or portfolio, or upload your CV directly. We review every profile by hand.
+                                                Share a link or upload a PDF / image that best represents your work.
                                             </p>
                                         </div>
                                         <input
-                                            name="cv_link"
+                                            name="portfolio_link_input"
                                             type="url"
-                                            value={cvLink}
-                                            onChange={(e) => setCvLink(e.target.value)}
+                                            value={portfolioLink}
+                                            onChange={(e) => setPortfolioLink(e.target.value)}
                                             className="w-full px-5 py-4 rounded-xl border border-gray-200 focus:border-hugo-black outline-none transition-colors bg-gray-50 text-hugo-black"
-                                            placeholder="https://drive.google.com/your-cv or portfolio URL"
+                                            placeholder="URL to case studies, designs, repos, or past work"
                                         />
                                         <div className="flex flex-col gap-1">
                                             <span className="text-xs font-semibold text-hugo-black/70">
-                                                Or upload your CV
+                                                Or upload a portfolio file
                                             </span>
                                             <input
                                                 type="file"
+                                                name="portfolio_file"
+                                                accept=".pdf,.png,.jpg,.jpeg"
+                                                onChange={(e) => {
+                                                    const file = e.target.files?.[0] ?? null;
+                                                    setPortfolioFile(file);
+                                                }}
+                                                className="w-full text-sm text-hugo-black file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-hugo-black file:text-white hover:file:bg-hugo-black/90"
+                                            />
+                                        </div>
+                                        <div className="flex flex-col gap-1 pt-2 border-t border-gray-100">
+                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
+                                                Resume / CV Upload
+                                            </label>
+                                            <p className="text-xs text-hugo-black/60">
+                                                PDF or DOC preferred. You can upload this instead of a portfolio link if you like.
+                                            </p>
+                                            <input
+                                                type="file"
+                                                name="resume_file"
                                                 accept=".pdf,.doc,.docx"
                                                 onChange={(e) => {
                                                     const file = e.target.files?.[0] ?? null;
-                                                    setCvFile(file);
+                                                    setResumeFile(file);
                                                 }}
                                                 className="w-full text-sm text-hugo-black file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-hugo-black file:text-white hover:file:bg-hugo-black/90"
+                                            />
+                                        </div>
+                                    </div>
+
+                                    {/* Insightful Questions */}
+                                    <div className="space-y-6">
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
+                                                Describe a project where you solved a complex problem. What was your role and impact? *
+                                            </label>
+                                            <textarea
+                                                name="q_complex_project"
+                                                required
+                                                rows={4}
+                                                className="w-full px-5 py-4 rounded-2xl border border-gray-200 focus:border-hugo-black outline-none transition-colors bg-gray-50 text-hugo-black resize-none text-sm"
+                                            />
+                                        </div>
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
+                                                How do you approach learning a new skill or tool quickly? *
+                                            </label>
+                                            <textarea
+                                                name="q_learning_new_skill"
+                                                required
+                                                rows={3}
+                                                className="w-full px-5 py-4 rounded-2xl border border-gray-200 focus:border-hugo-black outline-none transition-colors bg-gray-50 text-hugo-black resize-none text-sm"
+                                            />
+                                        </div>
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
+                                                Tell us about a time you improved a process or system. What was the result? *
+                                            </label>
+                                            <textarea
+                                                name="q_process_improvement"
+                                                required
+                                                rows={3}
+                                                className="w-full px-5 py-4 rounded-2xl border border-gray-200 focus:border-hugo-black outline-none transition-colors bg-gray-50 text-hugo-black resize-none text-sm"
+                                            />
+                                        </div>
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
+                                                What excites you most about working in a global, performance‑driven team? *
+                                            </label>
+                                            <textarea
+                                                name="q_global_team"
+                                                required
+                                                rows={3}
+                                                className="w-full px-5 py-4 rounded-2xl border border-gray-200 focus:border-hugo-black outline-none transition-colors bg-gray-50 text-hugo-black resize-none text-sm"
+                                            />
+                                        </div>
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-sm font-bold text-hugo-black tracking-wide uppercase">
+                                                If hired, what unique contribution would you bring to Gigmote? *
+                                            </label>
+                                            <textarea
+                                                name="q_unique_contribution"
+                                                required
+                                                rows={3}
+                                                className="w-full px-5 py-4 rounded-2xl border border-gray-200 focus:border-hugo-black outline-none transition-colors bg-gray-50 text-hugo-black resize-none text-sm"
                                             />
                                         </div>
                                     </div>
