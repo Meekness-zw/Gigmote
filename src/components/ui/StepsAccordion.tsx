@@ -14,7 +14,7 @@ interface StepsAccordionProps {
 }
 
 /**
- * Expandable steps — like the clone's data-component="Steps" (steps-item, js-dd).
+ * Expandable steps  like the clone's data-component="Steps" (steps-item, js-dd).
  */
 export function StepsAccordion({ steps, className = "" }: StepsAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);

@@ -19,15 +19,15 @@ export const Navbar = () => {
             </div>
             <nav className="bg-hugo-cream/95 backdrop-blur-md border-b border-hugo-black/5">
                 <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 md:h-20 flex items-center justify-between">
-                    {/* Logo — animated spiral like clone */}
+                    {/* Logo  animated spiral like clone */}
                     <AnimatedNavbarLogo />
 
-                    {/* Desktop Navigation — clone-style gap */}
+                    {/* Desktop Navigation  clone-style gap */}
                     <div className="hidden md:flex items-center gap-x-12">
+                        <NavLink href="/about">About</NavLink>
                         <NavLink href="/services">Services</NavLink>
                         <NavLink href="/hire-a-dev">Hire a Developer</NavLink>
                         <NavLink href="/industries">Industries</NavLink>
-                        <NavLink href="/about">About</NavLink>
                         <NavLink href="/pricing">Pricing</NavLink>
                     </div>
 

@@ -11,7 +11,7 @@ const BUFFER_MS = 300;
 const TOTAL_MS = PAUSE_MS + REVEAL_DURATION_MS + BUFFER_MS;
 
 /**
- * Page load reveal — full-screen overlay.
+ * Page load reveal  full-screen overlay.
  * Initial load: logo + spiral. Page transitions: spiral only.
  * Total duration: 4 seconds.
  */
@@ -67,7 +67,7 @@ export function PageLoadReveal() {
           aria-hidden
           aria-busy={isVisible}
         >
-          {/* Bottom: white/cream — reveals page when it clips up */}
+          {/* Bottom: white/cream  reveals page when it clips up */}
           <motion.div
             className="absolute inset-0 bg-hugo-cream"
             initial={{ clipPath: "inset(0 0 0 0)" }}
@@ -80,7 +80,7 @@ export function PageLoadReveal() {
               delay: 0.1,
             }}
           />
-          {/* Top: gold — what user sees, clips up first */}
+          {/* Top: gold  what user sees, clips up first */}
           <motion.div
             className="absolute inset-0 bg-hugo-gold flex items-center justify-center"
             initial={{ clipPath: "inset(0 0 0 0)" }}

@@ -60,7 +60,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 </div>
             </section>
 
-            {/* Features & "Best For" — clone-style */}
+            {/* Features & "Best For"  clone-style */}
             <MaskSection variant="clipUp" className="py-24 md:py-28">
                 <div className="container mx-auto px-6 max-w-7xl">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">

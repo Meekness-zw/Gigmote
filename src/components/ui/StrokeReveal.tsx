@@ -11,7 +11,7 @@ interface StrokeRevealProps {
 }
 
 /**
- * Wraps content (e.g. SVG) and reveals it via stroke / clip — like the clone's js-s-stroke.
+ * Wraps content (e.g. SVG) and reveals it via stroke / clip  like the clone's js-s-stroke.
  * Use with overflow-hidden parent and an SVG that has stroke (path).
  */
 export function StrokeReveal({

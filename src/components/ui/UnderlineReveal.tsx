@@ -11,7 +11,7 @@ interface UnderlineRevealProps {
 }
 
 /**
- * Text with an underline that draws in on view — like the clone's has-underline / label.
+ * Text with an underline that draws in on view  like the clone's has-underline / label.
  */
 export function UnderlineReveal({
   children,

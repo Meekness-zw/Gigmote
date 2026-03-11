@@ -15,7 +15,7 @@ interface FadeInOnScrollProps {
 }
 
 /**
- * Fade + slide up when in view — like the clone's js-fade.
+ * Fade + slide up when in view  like the clone's js-fade.
  */
 export function FadeInOnScroll({
   children,

@@ -11,7 +11,7 @@ interface ScrollRotateProps {
 }
 
 /**
- * Element that rotates slightly based on scroll position — like the clone's js-s-rotate.
+ * Element that rotates slightly based on scroll position  like the clone's js-s-rotate.
  */
 export function ScrollRotate({
   children,

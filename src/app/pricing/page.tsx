@@ -129,7 +129,7 @@ export default function PricingPage() {
                   AI Business Solutions
                 </h3>
                 <p className="text-sm text-white/80 leading-relaxed font-light">
-                  Done-for-you AI agents and automations that plug into your existing tools — always with humans in the loop.
+                  Done-for-you AI agents and automations that plug into your existing tools  always with humans in the loop.
                 </p>
               </div>
 

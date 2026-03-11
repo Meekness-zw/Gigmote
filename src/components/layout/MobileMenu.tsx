@@ -20,10 +20,10 @@ function useLockBodyScroll(locked: boolean) {
 }
 
 const navLinks = [
+  { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
   { href: "/hire-a-dev", label: "Hire a Developer" },
   { href: "/industries", label: "Industries" },
-  { href: "/about", label: "About" },
   { href: "/pricing", label: "Pricing" },
 ];
 
@@ -51,13 +51,13 @@ export function MobileMenu() {
         </div>
       </button>
 
-      {/* Menu rendered via portal to body — avoids navbar/layout affecting fixed position */}
+      {/* Menu rendered via portal to body  avoids navbar/layout affecting fixed position */}
       {mounted &&
         createPortal(
           <AnimatePresence>
             {isOpen && (
               <>
-                {/* Backdrop — blur + fade */}
+                {/* Backdrop  blur + fade */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -68,7 +68,7 @@ export function MobileMenu() {
                   aria-hidden
                 />
 
-                {/* Menu panel — anchored to bottom, slides up from below */}
+                {/* Menu panel  anchored to bottom, slides up from below */}
                 <motion.div
                   initial={{ opacity: 0, y: "100%" }}
                   animate={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ export function MobileMenu() {
                   <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-hugo-teal/15 blur-2xl" />
 
                   <div className="relative px-6 pt-8 pb-8 overflow-y-auto">
-                    {/* Close button — morphing X */}
+                    {/* Close button  morphing X */}
                     <motion.button
                       onClick={handleClose}
                       className="absolute top-6 right-6 w-14 h-14 rounded-full bg-hugo-black text-white flex items-center justify-center hover:bg-hugo-black/90 transition-colors"
@@ -104,7 +104,7 @@ export function MobileMenu() {
                       </svg>
                     </motion.button>
 
-                    {/* Menu links — stagger from bottom with staggered slide-up */}
+                    {/* Menu links  stagger from bottom with staggered slide-up */}
                     <nav className="flex flex-col gap-1 pt-4 pb-8">
                       {navLinks.map((link, idx) => (
                         <motion.div
@@ -128,7 +128,7 @@ export function MobileMenu() {
                       ))}
                     </nav>
 
-                    {/* CTA — sticky at bottom */}
+                    {/* CTA  sticky at bottom */}
                     <motion.div
                       initial={{ opacity: 0, y: 24 }}
                       animate={{ opacity: 1, y: 0 }}

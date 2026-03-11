@@ -10,7 +10,7 @@ interface BackgroundMotionProps {
 }
 
 /**
- * Live background animations — orbs, particles, drifting grid, and light sweeps.
+ * Live background animations  orbs, particles, drifting grid, and light sweeps.
  */
 export function BackgroundMotion({ variant = "light", className = "" }: BackgroundMotionProps) {
   const isDark = variant === "dark";
@@ -148,7 +148,7 @@ export function BackgroundMotion({ variant = "light", className = "" }: Backgrou
         </>
       )}
 
-      {/* ─── Live dot grid — continuous drift ─────────────────────────────── */}
+      {/* ─── Live dot grid  continuous drift ─────────────────────────────── */}
       <motion.div
         className="absolute"
         style={{

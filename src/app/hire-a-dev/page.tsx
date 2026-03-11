@@ -203,7 +203,7 @@ export default function HireADevPage() {
                 </div>
             </MaskSection>
 
-            {/* Roles - Visual Cards — clone-style */}
+            {/* Roles - Visual Cards  clone-style */}
             <MaskSection variant="clipUp" className="py-24 md:py-28 bg-hugo-cream relative overflow-hidden">
                 <BackgroundMotion variant="light" />
                 <div className="container mx-auto px-6 max-w-7xl relative z-10">

@@ -17,7 +17,7 @@ interface CTAPeopleCirclesProps {
 }
 
 /**
- * Two large circular visuals for CTA — clone-style modal-left / modal-right.
+ * Two large circular visuals for CTA  clone-style modal-left / modal-right.
  * If no images provided, shows gradient circles with smileys.
  */
 export function CTAPeopleCircles({

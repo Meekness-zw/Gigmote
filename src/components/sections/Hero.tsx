@@ -105,7 +105,7 @@ export const Hero = ({
                             className={`text-lg md:text-xl leading-relaxed max-w-lg ${isCentered ? 'mx-auto' : ''} ${isDark ? 'text-white/80' : 'text-hugo-black/70'}`}
                         >
                             {isHome
-                                ? "We connect UK and North American companies with high-performing African professionals, design outsourcing models that actually work, and deploy AI agents that reduce operational load — without sacrificing quality or trust."
+                                ? "We connect UK and North American companies with high-performing African professionals, design outsourcing models that actually work, and deploy AI agents that reduce operational load  without sacrificing quality or trust."
                                 : description}
                         </motion.p>
 

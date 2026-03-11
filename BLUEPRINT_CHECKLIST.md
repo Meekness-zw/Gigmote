@@ -8,7 +8,7 @@
 - ✅ Primary CTA: "Book a Strategy Call"
 - ✅ Secondary CTA: "Explore Services"
 - ✅ Trust Bar with industry logos/text
-- ✅ Value Proposition Section: "Built By Operators — Not Recruiters"
+- ✅ Value Proposition Section: "Built By Operators  Not Recruiters"
 - ✅ Value proposition bullet points (4 items)
 - ✅ What We Do (3 Pillars Section) with all services
 - ✅ Why Companies Choose Gigmote comparison table

@@ -21,7 +21,7 @@ interface MiniImageCarouselProps {
 }
 
 /**
- * Mini carousel — clone-style: one image + caption + progress bar / dots.
+ * Mini carousel  clone-style: one image + caption + progress bar / dots.
  * Renders static first frame for SSR so server and client match (avoids hydration error).
  */
 export function MiniImageCarousel({
@@ -47,7 +47,7 @@ export function MiniImageCarousel({
 
   const slide = slides[index];
 
-  // Static first paint (server + initial client) — no AnimatePresence/motion to avoid hydration mismatch
+  // Static first paint (server + initial client)  no AnimatePresence/motion to avoid hydration mismatch
   if (!mounted) {
     return (
       <div className={`rounded-3xl overflow-hidden bg-hugo-cream border border-hugo-black/10 p-6 md:p-10 ${className}`}>

@@ -14,7 +14,7 @@ export const Footer = () => {
                             gigmote<span className="text-hugo-gold">.</span>
                         </Link>
                         <p className="text-white/60 leading-relaxed">
-                            Whether 5 or 500 agents, we help assemble reliable, high-impact teams that scale — so you can focus on building.
+                            Whether 5 or 500 agents, we help assemble reliable, high-impact teams that scale  so you can focus on building.
                         </p>
                         <div className="flex gap-4">
                             <Link href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-hugo-gold hover:text-hugo-black transition-colors flex items-center justify-center" aria-label="Instagram">
@@ -71,7 +71,7 @@ export const Footer = () => {
                         </ul>
                     </div>
 
-                    {/* Newsletter / CTA — clone-style */}
+                    {/* Newsletter / CTA  clone-style */}
                     <div className="space-y-6">
                         <h4 className="text-lg font-bold">Stay in the loop</h4>
                         <p className="text-white/60 text-base">Join our newsletter for the latest insights on scaling global teams.</p>

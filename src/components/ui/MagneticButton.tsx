@@ -11,7 +11,7 @@ interface MagneticButtonProps {
 }
 
 /**
- * Wrapper that makes its child subtly follow the cursor (magnetic effect) — like the clone's data-component="Magnetic".
+ * Wrapper that makes its child subtly follow the cursor (magnetic effect)  like the clone's data-component="Magnetic".
  */
 export function MagneticButton({
   children,

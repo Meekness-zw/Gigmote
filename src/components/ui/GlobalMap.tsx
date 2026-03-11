@@ -84,7 +84,7 @@ export function GlobalMap() {
               <span className="text-xs font-bold uppercase tracking-widest text-hugo-black/40">African Talent Hubs</span>
             </div>
             <h3 className="text-2xl font-bold text-hugo-black leading-tight">
-              Africa's best talent — serving UK & North American companies.
+              Africa's best talent  serving UK & North American companies.
             </h3>
             <p className="text-sm text-hugo-black/60">
               High-performing professionals with strong English communication, western business alignment, and timezone coverage for the UK, US & Canada.

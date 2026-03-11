@@ -12,7 +12,7 @@ interface SectionLabelProps {
 }
 
 /**
- * Clone-style section label (e.g. "Outsourcing+", "What We Do") — small caps + animated underline.
+ * Clone-style section label (e.g. "Outsourcing+", "What We Do")  small caps + animated underline.
  */
 export function SectionLabel({
   children,

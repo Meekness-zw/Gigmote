@@ -10,7 +10,7 @@ interface ImageShowcaseSectionProps {
   body: string;
   imageSrc: string;
   imageAlt: string;
-  /** "left" | "right" — which side the image is on */
+  /** "left" | "right"  which side the image is on */
   imageSide?: "left" | "right";
   /** Optional second image for a small stacked/card look */
   imageSrc2?: string;
@@ -19,7 +19,7 @@ interface ImageShowcaseSectionProps {
 }
 
 /**
- * Two-column section with large image + text — clone-style layout for more imagery.
+ * Two-column section with large image + text  clone-style layout for more imagery.
  */
 export function ImageShowcaseSection({
   title,

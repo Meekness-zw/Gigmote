@@ -14,7 +14,7 @@ interface MarqueeProps {
 }
 
 /**
- * Infinite horizontal marquee — like the clone's marq__row (scrolling client logos).
+ * Infinite horizontal marquee  like the clone's marq__row (scrolling client logos).
  */
 export function Marquee({
   children,

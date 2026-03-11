@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 export function AnimatedNavbarLogo() {
   return (
     <Link href="/" className="flex items-center gap-2 text-hugo-black group">
-      {/* Spiral icon — draws in on mount */}
+      {/* Spiral icon  draws in on mount */}
       <motion.svg
         viewBox="0 0 32 32"
         className="w-8 h-8 text-hugo-gold"

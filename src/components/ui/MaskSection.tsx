@@ -11,7 +11,7 @@ interface MaskSectionProps {
 }
 
 /**
- * Section that reveals on scroll — like the clone's MaskSections.
+ * Section that reveals on scroll  like the clone's MaskSections.
  * Uses clip-path or translate so content "reveals" as it enters view.
  */
 export function MaskSection({

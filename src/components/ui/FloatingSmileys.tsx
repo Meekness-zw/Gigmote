@@ -33,7 +33,7 @@ interface FloatingSmileysProps {
 }
 
 /**
- * Bobbing / floating smiley faces — clone-style footer & CTA decoration.
+ * Bobbing / floating smiley faces  clone-style footer & CTA decoration.
  */
 export function FloatingSmileys({
   variant = "svg",

@@ -180,7 +180,7 @@ export default function CareersPage() {
         </div>
       </MaskSection>
 
-      {/* Application Form — Glassmorphic Premium Layout */}
+      {/* Application Form  Glassmorphic Premium Layout */}
       <section className="py-32 bg-hugo-cream relative border-t border-hugo-black/5">
         <BackgroundMotion variant="light" />
         <div className="container mx-auto px-6 max-w-6xl relative z-10">

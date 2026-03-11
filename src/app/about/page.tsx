@@ -32,7 +32,7 @@ export default function AboutPage() {
         {
             icon: Target,
             title: "Built by Operators",
-            description: "We've personally scaled CX orgs, FinTech teams, and SaaS operations. We design systems that work in the real world — not just on paper.",
+            description: "We've personally scaled CX orgs, FinTech teams, and SaaS operations. We design systems that work in the real world  not just on paper.",
             img: "/images/A product manager and software team planning a tech roadmap on digital whiteboard screens, agile sprint boards and UX wireframes visible, sleek tech office or remote work setup, clean modern business .jpg"
         },
         {
@@ -44,13 +44,13 @@ export default function AboutPage() {
         {
             icon: Users,
             title: "Human + AI Model",
-            description: "We blend high-performing African talent with practical AI tools that augment your team — without replacing human judgment.",
+            description: "We blend high-performing African talent with practical AI tools that augment your team  without replacing human judgment.",
             img: "/images/AI Curiosity lab in the rainforset jungle of africa in a call centre setting- bright setting, icons flying , glass office setting add people (3) (1).jpg"
         },
         {
             icon: Globe,
             title: "Africa → Global",
-            description: "We connect UK and North American companies with top-tier African professionals. Long-term, accountable — not freelance.",
+            description: "We connect UK and North American companies with top-tier African professionals. Long-term, accountable  not freelance.",
             img: "/images/create an image with the Hero title _AfriCode_ Connecting African Developers to Global Businesses --- (3).jpg"
         }
     ];
@@ -59,13 +59,13 @@ export default function AboutPage() {
         {
             year: "Why outsourcing fails",
             event: "Cost over quality",
-            description: "Most traditional providers compete on price instead of performance — leading to poor quality, high turnover, and little accountability.",
+            description: "Most traditional providers compete on price instead of performance  leading to poor quality, high turnover, and little accountability.",
             align: "left"
         },
         {
             year: "Why Gigmote exists",
             event: "Operator-led model",
-            description: "We built Gigmote after watching outsourcing fail real businesses. Our model prioritizes outcomes, systems, and people — not seat-filling.",
+            description: "We built Gigmote after watching outsourcing fail real businesses. Our model prioritizes outcomes, systems, and people  not seat-filling.",
             align: "right"
         },
         {
@@ -204,7 +204,7 @@ export default function AboutPage() {
                                 We watched outsourcing fail real businesses. Companies lost money, time, and trust through poor BPO strategy, low-quality talent, and hype-driven AI.
                             </p>
                             <p className="text-lg text-hugo-black/60 leading-relaxed">
-                                So we built a new model. One that combines high-quality African talent, proven operational consulting, and practical AI automation — giving growing companies in the UK, US, and Canada a smarter way to scale.
+                                So we built a new model. One that combines high-quality African talent, proven operational consulting, and practical AI automation  giving growing companies in the UK, US, and Canada a smarter way to scale.
                             </p>
 
                             <div className="pt-4 flex items-center gap-6">
@@ -448,7 +448,7 @@ export default function AboutPage() {
                                         "Curated, long-term African talent",
                                         "BPO strategy & operating model design",
                                         "Metrics-driven onboarding & oversight",
-                                        "AI that augments — not replaces — your team",
+                                        "AI that augments  not replaces  your team",
                                         "Total operational accountability"
                                     ].map((item, idx) => (
                                         <li key={idx} className="flex items-start gap-4">
@@ -460,9 +460,15 @@ export default function AboutPage() {
 
                                 <div className="mt-12 pt-8 border-t border-white/10">
                                     <Link href="/services">
-                                        <Button variant="primary" className="w-full sm:w-auto bg-white text-hugo-black hover:bg-gray-100 flex items-center gap-2 group/btn">
+                                        <Button
+                                            variant="secondary"
+                                            className="w-full sm:w-auto flex items-center gap-2 group/btn"
+                                        >
                                             See how it works
-                                            <ArrowRight size={18} className="transform transition-transform group-hover/btn:translate-x-1" />
+                                            <ArrowRight
+                                                size={18}
+                                                className="transform transition-transform group-hover/btn:translate-x-1"
+                                            />
                                         </Button>
                                     </Link>
                                 </div>
@@ -472,7 +478,7 @@ export default function AboutPage() {
                 </div>
             </MaskSection>
 
-            {/* Case Studies — Dynamic Image Layout */}
+            {/* Case Studies  Dynamic Image Layout */}
             <MaskSection variant="slideUp" className="py-32 bg-hugo-cream">
                 <div className="container mx-auto px-6 max-w-7xl">
                     <FadeInOnScroll className="text-center mb-24">
@@ -560,7 +566,7 @@ export default function AboutPage() {
                         <SectionLabel variant="dark">Our Reach</SectionLabel>
                         <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">African Talent. <br /><span className="text-hugo-gold">Globally Deployed.</span></h2>
                         <p className="text-xl text-white/60 max-w-2xl mx-auto font-light">
-                            Our talent hubs span South, East, West, and North Africa — strategically aligned for perfect timezone overlap with the UK, US, and Canada.
+                            Our talent hubs span South, East, West, and North Africa  strategically aligned for perfect timezone overlap with the UK, US, and Canada.
                         </p>
                     </FadeInOnScroll>
 

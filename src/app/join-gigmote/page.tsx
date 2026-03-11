@@ -123,7 +123,7 @@ export default function JoinGigmotePage() {
             <div className="flex-1 flex flex-col lg:flex-row pt-24 lg:pt-0">
 
                 {/* Left Side - Visual & Context */}
-                <div className="w-full lg:w-5/12 xl:w-1/2 bg-hugo-black relative flex flex-col justify-center min-h-[50vh] lg:min-h-screen p-8 lg:p-16 xl:p-24 text-white overflow-hidden">
+                <div className="w-full lg:w-5/12 xl:w-1/2 bg-hugo-black relative flex flex-col justify-start min-h-[50vh] lg:min-h-screen p-8 lg:p-16 xl:p-24 text-white overflow-hidden">
                     {/* Background Image with Overlay */}
                     <div className="absolute inset-0 z-0">
                         <Image
@@ -139,7 +139,7 @@ export default function JoinGigmotePage() {
                         <div className="absolute top-0 left-0 w-96 h-96 bg-hugo-gold/15 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
                     </div>
 
-                    <div className="relative z-10 max-w-xl">
+                    <div className="relative z-10 max-w-2xl space-y-20 pt-12 lg:pt-24">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -157,16 +157,76 @@ export default function JoinGigmotePage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4, duration: 0.6 }}
-                            className="text-xl text-white/60 leading-relaxed font-light mb-12"
+                            className="text-xl text-white/60 leading-relaxed font-light"
                         >
                             We're looking for top 1% engineers, AI specialists, and operators to join our vetted talent network. Work with global clients on complex, scaling infrastructures.
                         </motion.p>
 
                         <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5, duration: 0.6 }}
+                            className="space-y-4 text-white/75 text-base leading-relaxed"
+                        >
+                            <h2 className="text-2xl font-semibold text-white">
+                                Join the Future of Work
+                            </h2>
+                            <p>
+                                At Gigmote, we’re building a global network of high‑performing teams that power businesses around the world. We don’t just offer jobs – we create opportunities for talented professionals to grow, innovate, and shape the future of outsourcing.
+                            </p>
+                            <p>
+                                Whether you’re a data scientist, developer, designer, or operations specialist, we want to hear from you. Even if there isn’t a role open today, all submissions will be considered for future opportunities.
+                            </p>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.6, duration: 0.6 }}
+                            className="space-y-4 pt-8 border-t border-white/10 bg-white/5 rounded-2xl p-6 backdrop-blur-sm"
+                        >
+                            <h3 className="text-lg font-semibold text-white">
+                                Why Work With Us
+                            </h3>
+                            <ul className="space-y-3 text-sm text-white/80">
+                                <li>
+                                    <span className="font-semibold">Global Impact:</span>{" "}
+                                    Collaborate with U.S. and international clients on cutting‑edge projects.
+                                </li>
+                                <li>
+                                    <span className="font-semibold">Performance &amp; Growth:</span>{" "}
+                                    Work in an environment that rewards initiative, innovation, and results.
+                                </li>
+                                <li>
+                                    <span className="font-semibold">Flexible &amp; Remote:</span>{" "}
+                                    Join a team that embraces remote‑first work, while staying connected and empowered.
+                                </li>
+                                <li>
+                                    <span className="font-semibold">Innovative Culture:</span>{" "}
+                                    Be part of a team that leverages AI, modern tools, and creative thinking to solve real business challenges.
+                                </li>
+                            </ul>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.7, duration: 0.6 }}
+                            className="space-y-3 text-sm text-white/75 bg-white/5 rounded-2xl p-6 backdrop-blur-sm"
+                        >
+                            <h3 className="text-lg font-semibold text-white">
+                                How We Evaluate Talent
+                            </h3>
+                            <p>
+                                We value curiosity, problem‑solving, and measurable impact. When you apply, we look beyond resumes – we want to understand your skills, portfolio, and what makes you stand out.
+                            </p>
+                        </motion.div>
+
+                        <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ delay: 0.6, duration: 0.8 }}
-                            className="space-y-4 pt-8 border-t border-white/10"
+                            transition={{ delay: 0.9, duration: 0.8 }}
+                            className="space-y-4 pt-10 mt-2 border-t border-white/10"
                         >
                             {[
                                 "Global client exposure",

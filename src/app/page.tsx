@@ -36,7 +36,7 @@ export default function Home() {
 
       <Hero variant="home" />
 
-      {/* Featured cards — three key stories instead of carousel */}
+      {/* Featured cards  three key stories instead of carousel */}
       <section className="py-12 md:py-16 bg-hugo-cream">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
@@ -91,7 +91,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Value Proposition — mask reveal like clone */}
+      {/* Value Proposition  mask reveal like clone */}
       <MaskSection variant="clipUp" className="relative py-24">
         <div className="container mx-auto px-6 max-w-7xl relative z-10">
           <motion.div
@@ -103,14 +103,14 @@ export default function Home() {
           >
             <StrokeReveal trigger="view" className="inline-block mb-6">
               <span className="inline-block px-4 py-2 rounded-full bg-hugo-gold/20 text-hugo-black text-sm font-bold border border-hugo-gold/30">
-                Built By Operators — Not Recruiters
+                Built By Operators  Not Recruiters
               </span>
             </StrokeReveal>
             <h2 className="text-4xl md:text-5xl font-bold text-hugo-black mb-6 leading-tight">
               <AnimatedText text="We focus on performance, compliance, and long-term success." variant="words" />
             </h2>
             <p className="text-xl text-hugo-black/60">
-              We’ve built, scaled, and managed real global teams. That means we focus on performance, compliance, and long-term success — not quick placements.
+              We’ve built, scaled, and managed real global teams. That means we focus on performance, compliance, and long-term success  not quick placements.
             </p>
           </motion.div>
 
@@ -168,7 +168,7 @@ export default function Home() {
             </ResponsiveCarousel>
           </motion.div>
 
-          {/* Animated illustrations — carousel on mobile, strip on desktop */}
+          {/* Animated illustrations  carousel on mobile, strip on desktop */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -196,12 +196,12 @@ export default function Home() {
         </div>
       </MaskSection>
 
-      {/* Two-column image showcase — more imagery, clone-style layout */}
+      {/* Two-column image showcase  more imagery, clone-style layout */}
       <ImageShowcaseSection
         imageSide="right"
         title="African talent. Global-ready."
         subtitle="Why clients choose us"
-        body="We connect UK and North American companies with high-performing African professionals — vetted, full-time, and built for long-term accountability. Not a marketplace. Not body-shopping. Real teams, real metrics, real results."
+        body="We connect UK and North American companies with high-performing African professionals  vetted, full-time, and built for long-term accountability. Not a marketplace. Not body-shopping. Real teams, real metrics, real results."
         imageSrc="/images/AI Curiosity lab in the rainforset jungle of africa in a call centre setting- bright setting, icons flying , glass office setting add people (1) (1).jpg"
         imageAlt="Team working together on delivery and operations"
         imageSrc2="/images/AI Curiosity lab in the rainforset jungle of africa in a call centre setting- bright setting, icons flying , glass office setting add people (2).jpg"
@@ -211,7 +211,7 @@ export default function Home() {
       {/* 3 Pillars / What We Do */}
       <section className="py-24 bg-hugo-black text-white relative overflow-hidden">
         <BackgroundMotion variant="dark" />
-        {/* Decorative BG — scroll-linked rotation like clone */}
+        {/* Decorative BG  scroll-linked rotation like clone */}
         <ScrollRotate maxDegrees={7} className="absolute top-0 right-0 w-[600px] h-[600px] translate-x-1/2 -translate-y-1/2 origin-center">
           <motion.div
             animate={{
@@ -286,7 +286,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Image gallery strip — more images */}
+      {/* Image gallery strip  more images */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6 max-w-6xl">
           <FadeInOnScroll amount={0.2} className="text-center mb-12">
@@ -303,7 +303,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Choose Gigmote — responsive table / cards */}
+      {/* Why Choose Gigmote  responsive table / cards */}
       <MaskSection variant="slideUp" className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-6 max-w-5xl">
           <motion.div
@@ -331,8 +331,8 @@ export default function Home() {
               rows={[
                 { feature: "Model", trad: "Built by recruiters", pros: ["Built by operators with real CX, FinTech & SaaS experience"] },
                 { feature: "Talent", trad: "Freelance marketplaces & body-shopping", pros: ["Curated, long-term African talent with full accountability"] },
-                { feature: "BPO Strategy", trad: "No design — just vendor selection", pros: ["Full BPO consulting: model design, SLAs, QA & playbooks"] },
-                { feature: "AI", trad: "Hype-driven automation", pros: ["AI that augments teams — chatbots, agents & workflow automation"] },
+                { feature: "BPO Strategy", trad: "No design  just vendor selection", pros: ["Full BPO consulting: model design, SLAs, QA & playbooks"] },
+                { feature: "AI", trad: "Hype-driven automation", pros: ["AI that augments teams  chatbots, agents & workflow automation"] },
                 { feature: "Oversight", trad: "Minimal reporting & visibility", pros: ["Metrics-driven onboarding, KPI dashboards & ongoing optimization"] },
                 { feature: "Pricing", trad: "Opaque and unpredictable", pros: ["Transparent pricing: pilot → staffing → consulting → AI"] },
               ]}
@@ -341,7 +341,7 @@ export default function Home() {
         </div>
       </MaskSection>
 
-      {/* How it works — StepsAccordion */}
+      {/* How it works  StepsAccordion */}
       <section className="py-16 bg-hugo-cream">
         <div className="max-w-5xl mx-auto px-6">
           <FadeInOnScroll amount={0.2} className="text-center mb-10">
@@ -355,10 +355,10 @@ export default function Home() {
           <FadeInOnScroll amount={0.2} delay={0.1} className="mt-6">
             <StepsAccordion
               steps={[
-                { title: "Choose your wedge", content: "We start focused — CX staffing, Ops hiring, or BPO consulting — so you see results fast without overcommitting." },
+                { title: "Choose your wedge", content: "We start focused  CX staffing, Ops hiring, or BPO consulting  so you see results fast without overcommitting." },
                 { title: "30–60 day pilot", content: "We match you with vetted African talent or the right BPO partner and run a structured pilot with clear KPIs and full transparency." },
                 { title: "Layer in AI", content: "Once trust is built, we introduce AI agents and automation to reduce repetitive load and boost your team's productivity." },
-                { title: "Expand & optimize", content: "We grow the engagement from staffing → consulting → AI — scaling with you as your needs evolve." },
+                { title: "Expand & optimize", content: "We grow the engagement from staffing → consulting → AI  scaling with you as your needs evolve." },
               ]}
             />
           </FadeInOnScroll>
@@ -415,7 +415,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ROI Calculator Teaser — FadeInOnScroll */}
+      {/* ROI Calculator Teaser  FadeInOnScroll */}
       <section className="py-24 bg-hugo-cream relative">
         <div className="container mx-auto px-6 max-w-5xl">
           <FadeInOnScroll amount={0.2} y={20} className="text-center mb-12">
@@ -430,7 +430,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Final CTA — smileys + people circles like clone */}
+      {/* Final CTA  smileys + people circles like clone */}
       <section className="py-32 bg-hugo-black text-white text-center relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-10"

@@ -81,7 +81,7 @@ export default function HowItWorksPage() {
                             <AnimatedText text="Systems that scale." variant="words" />
                         </h1>
                         <p className="text-xl md:text-2xl text-white/60 font-light max-w-3xl mx-auto leading-relaxed">
-                            From process audit to talent integration — how we build teams that help your business run without you.
+                            From process audit to talent integration  how we build teams that help your business run without you.
                         </p>
                     </FadeInOnScroll>
                 </div>

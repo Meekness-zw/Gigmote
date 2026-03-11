@@ -3,14 +3,14 @@
 import { motion } from "framer-motion";
 
 interface AnimatedLogoProps {
-  /** "spiral" | "text" | "both" — spiral draw, text reveal, or both */
+  /** "spiral" | "text" | "both"  spiral draw, text reveal, or both */
   variant?: "spiral" | "text" | "both";
   className?: string;
   size?: "sm" | "md" | "lg";
 }
 
 /**
- * Animated logo — spiral draw + text reveal (clone-style logo animation).
+ * Animated logo  spiral draw + text reveal (clone-style logo animation).
  */
 export function AnimatedLogo({
   variant = "both",

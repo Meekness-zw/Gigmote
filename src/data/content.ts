@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 
 export const siteContent = {
-    /** Core value proposition — used for "Why companies choose" section on home */
+    /** Core value proposition  used for "Why companies choose" section on home */
     coreValue:
-        "We combine global talent, BPO strategy, and AI-powered automation to help UK and North American companies scale smarter — without sacrificing quality or trust.",
+        "We combine global talent, BPO strategy, and AI-powered automation to help UK and North American companies scale smarter  without sacrificing quality or trust.",
     services: [
         {
             slug: "bpo-matchmaking-advisory",
@@ -25,7 +25,7 @@ export const siteContent = {
             title: "BPO Consulting",
             slogan: "Outsource Without Getting It Wrong",
             description:
-                "We advise companies before they outsource — so they don't make expensive mistakes. From vendor selection to performance optimization, we design outsourcing models that actually work.",
+                "We advise companies before they outsource  so they don't make expensive mistakes. From vendor selection to performance optimization, we design outsourcing models that actually work.",
             features: [
                 "BPO strategy & vendor selection",
                 "Operating model design (pods, SLAs, QA, metrics)",
@@ -39,7 +39,7 @@ export const siteContent = {
                 { label: "Cost Reduction", value: "40–60%" },
                 { label: "Faster Launch", value: "2–4x" }
             ],
-            differentiator: "Most BPO failures aren't talent issues — they're design and execution failures. Gigmote fixes that upstream."
+            differentiator: "Most BPO failures aren't talent issues  they're design and execution failures. Gigmote fixes that upstream."
         },
         {
             slug: "global-staffing",
@@ -47,7 +47,7 @@ export const siteContent = {
             title: "Global Staffing & Recruitment",
             slogan: "Top African Talent. No Friction. No Compromise.",
             description:
-                "We connect high-performing African professionals with UK and North American companies — with full vetting, strong communication, and timezone alignment. Not freelance. Not body-shopping. Curated, long-term talent with accountability.",
+                "We connect high-performing African professionals with UK and North American companies  with full vetting, strong communication, and timezone alignment. Not freelance. Not body-shopping. Curated, long-term talent with accountability.",
             features: [
                 "Customer Support & CX Specialists",
                 "Operations & Admin Professionals",
@@ -66,7 +66,7 @@ export const siteContent = {
                 { label: "Cost Reduction", value: "40–60%" },
                 { label: "Retention Focus", value: "Long-term" }
             ],
-            differentiator: "This is not a freelance marketplace or body-shopping — it's curated, long-term talent with full accountability."
+            differentiator: "This is not a freelance marketplace or body-shopping  it's curated, long-term talent with full accountability."
         },
         {
             slug: "ai-business-solutions",
@@ -74,7 +74,7 @@ export const siteContent = {
             title: "AI Business Solutions",
             slogan: "Automate Busywork. Keep Humans in Control.",
             description:
-                "We help businesses automate repetitive work without replacing humans — making teams more productive. From AI chatbots to intelligent agents, we deploy AI that augments your team, not hype-driven automation that breaks trust.",
+                "We help businesses automate repetitive work without replacing humans  making teams more productive. From AI chatbots to intelligent agents, we deploy AI that augments your team, not hype-driven automation that breaks trust.",
             features: [
                 "Customer support & lead-capture chatbots",
                 "Internal helpdesk & knowledge base bots",
@@ -88,7 +88,7 @@ export const siteContent = {
                 { label: "Time Saved", value: "1000s hrs" },
                 { label: "Efficiency Boost", value: "30–50%" }
             ],
-            differentiator: "AI that augments teams — not hype-driven automation that breaks trust."
+            differentiator: "AI that augments teams  not hype-driven automation that breaks trust."
         }
     ],
     industries: [
@@ -137,11 +137,11 @@ export const siteContent = {
     ],
     about: {
         heroTitle: "Built by operators, not recruiters.",
-        heroDescription: "We built Gigmote after watching outsourcing fail real businesses. Our model combines high-quality African talent, proven BPO strategy, and practical AI — so growing companies can scale without the guesswork.",
+        heroDescription: "We built Gigmote after watching outsourcing fail real businesses. Our model combines high-quality African talent, proven BPO strategy, and practical AI  so growing companies can scale without the guesswork.",
     },
     company: {
         heroTitle: "Built by operators, not recruiters.",
-        heroDescription: "Deep CX, FinTech, and SaaS experience. Metrics-driven, process-first delivery. Human + AI — not one or the other. That's the Gigmote standard.",
+        heroDescription: "Deep CX, FinTech, and SaaS experience. Metrics-driven, process-first delivery. Human + AI  not one or the other. That's the Gigmote standard.",
         stats: [
             { label: "Average Cost Savings", value: "40–60%" },
             { label: "Target Markets", value: "UK / US / CA" },
@@ -155,7 +155,7 @@ export const siteContent = {
         },
         {
             question: "Where are your talent hubs located?",
-            answer: "Our primary talent hubs are across Africa — including South Africa, Kenya, Nigeria, and Egypt — giving you access to top-tier professionals at competitive rates, with strong English communication and timezone alignment for UK and North American companies."
+            answer: "Our primary talent hubs are across Africa  including South Africa, Kenya, Nigeria, and Egypt  giving you access to top-tier professionals at competitive rates, with strong English communication and timezone alignment for UK and North American companies."
         },
         {
             question: "Do you offer 24/7 support coverage?",
@@ -167,7 +167,7 @@ export const siteContent = {
         },
         {
             question: "How is Gigmote different from a freelance marketplace?",
-            answer: "We are not a marketplace. Every placement is vetted, full-time, and built for long-term accountability. We design the operating model, set KPIs, and provide optional managed oversight — so you get a real team, not a list of profiles."
+            answer: "We are not a marketplace. Every placement is vetted, full-time, and built for long-term accountability. We design the operating model, set KPIs, and provide optional managed oversight  so you get a real team, not a list of profiles."
         }
     ],
     pricing: {
@@ -180,17 +180,17 @@ export const siteContent = {
         {
             icon: Briefcase,
             title: "Built by operators",
-            description: "We've personally built, scaled, and managed global teams across CX, FinTech, and SaaS — so we design systems that work in the real world, not just on paper."
+            description: "We've personally built, scaled, and managed global teams across CX, FinTech, and SaaS  so we design systems that work in the real world, not just on paper."
         },
         {
             icon: Target,
             title: "Metrics-driven, process-first",
-            description: "Every engagement is designed around your KPIs — with clear SLAs, QA frameworks, and visibility into performance from day one."
+            description: "Every engagement is designed around your KPIs  with clear SLAs, QA frameworks, and visibility into performance from day one."
         },
         {
             icon: Bot,
             title: "Human + AI model",
-            description: "We blend high-performing African talent with practical AI automation — keeping humans in control for quality and compliance."
+            description: "We blend high-performing African talent with practical AI automation  keeping humans in control for quality and compliance."
         },
         {
             icon: Globe,
@@ -202,7 +202,7 @@ export const siteContent = {
         {
             step: 1,
             title: "Choose Your Wedge",
-            description: "We start focused — CX staffing, Ops hiring, or BPO consulting — so you see results quickly without overcommitting."
+            description: "We start focused  CX staffing, Ops hiring, or BPO consulting  so you see results quickly without overcommitting."
         },
         {
             step: 2,
@@ -217,7 +217,7 @@ export const siteContent = {
         {
             step: 4,
             title: "Expand & Optimize",
-            description: "We grow the engagement from staffing → consulting → AI — scaling with you as your needs evolve."
+            description: "We grow the engagement from staffing → consulting → AI  scaling with you as your needs evolve."
         }
     ],
     caseStudies: [
@@ -228,7 +228,7 @@ export const siteContent = {
             challenge:
                 "A fast-growing US-based e-commerce brand with $4.2M in annual revenue was battling backlogged bookkeeping, delayed month-end closes, and poor cash flow visibility. Their in-house finance manager was overwhelmed, and hiring two additional U.S. accountants would have cost roughly $165,000 annually including benefits.",
             solution:
-                "Gigmote deployed a dedicated offshore accounting pod (senior accountant + junior bookkeeper), streamlined AP/AR, codified monthly close procedures, and integrated reporting dashboards into their Shopify and Stripe stack — all while working within the client's existing tools for full transparency.",
+                "Gigmote deployed a dedicated offshore accounting pod (senior accountant + junior bookkeeper), streamlined AP/AR, codified monthly close procedures, and integrated reporting dashboards into their Shopify and Stripe stack  all while working within the client's existing tools for full transparency.",
             results: [
                 "58% reduction in finance operations cost (~$92,000 annually saved)",
                 "Month-end close time cut from 21 days to 6 days",

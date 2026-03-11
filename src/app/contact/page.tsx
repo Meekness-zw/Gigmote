@@ -14,12 +14,13 @@ export default function ContactPage() {
     fullName: "",
     company: "",
     email: "",
-    challenge: "",
     teamStructure: "",
     idealPartner: "",
   });
   const [unlock, setUnlock] = useState<string[]>([]);
   const [unlockOther, setUnlockOther] = useState("");
+  const [talentAreas, setTalentAreas] = useState<string[]>([]);
+  const [talentOther, setTalentOther] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -36,6 +37,12 @@ export default function ContactPage() {
     );
   };
 
+  const toggleTalentArea = (value: string) => {
+    setTalentAreas((prev) =>
+      prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
+    );
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -46,9 +53,23 @@ export default function ContactPage() {
         ? [...unlock, ...(unlockOther.trim() ? [`Other: ${unlockOther.trim()}`] : [])]
         : [];
 
+    const talentSelections = [
+      ...talentAreas,
+      ...(talentOther.trim() ? [`Other: ${talentOther.trim()}`] : []),
+    ];
+
+    if (!talentSelections.length) {
+      setIsSubmitting(false);
+      setError(
+        "Please select at least one area where you need immediate talent support."
+      );
+      return;
+    }
+
     console.log("[contact-page] Submitting contact form", {
       formData,
       unlockSelections,
+      talentSelections,
     });
 
     try {
@@ -61,7 +82,7 @@ export default function ContactPage() {
           fullName: formData.fullName,
           company: formData.company,
           email: formData.email,
-          challenge: formData.challenge,
+          challenge: talentSelections.join(", "),
           unlock: unlockSelections,
           teamStructure: formData.teamStructure,
           idealPartner: formData.idealPartner,
@@ -75,12 +96,13 @@ export default function ContactPage() {
           fullName: "",
           company: "",
           email: "",
-          challenge: "",
           teamStructure: "",
           idealPartner: "",
         });
         setUnlock([]);
         setUnlockOther("");
+        setTalentAreas([]);
+        setTalentOther("");
       } else {
         const data = await res.json().catch(() => null);
         console.warn("[contact-page] Submission failed", {
@@ -185,7 +207,7 @@ export default function ContactPage() {
                 )}
                 {success && !error && (
                   <div className="p-3 rounded-xl bg-green-50 border border-green-100 text-green-700 text-sm mb-2">
-                    Thanks — we’ve received your message and will be in touch.
+                    Thanks  we’ve received your message and will be in touch.
                   </div>
                 )}
 
@@ -229,17 +251,51 @@ export default function ContactPage() {
 
                 <div className="flex flex-col gap-2">
                   <label className="text-base font-bold text-hugo-black">
-                    * What challenge is currently slowing your business down the most?
+                    * Which areas of your business need immediate talent support?
                   </label>
-                  <textarea
-                    name="challenge"
-                    required
-                    rows={4}
-                    className="w-full px-5 py-4 rounded-2xl border-2 border-hugo-black/10 focus:border-hugo-gold focus:ring-2 focus:ring-hugo-gold/20 outline-none transition-all bg-hugo-cream-warm text-hugo-black resize-none"
-                    placeholder="Share what’s blocking revenue, time, quality, or scale right now."
-                    value={formData.challenge}
-                    onChange={handleChange}
-                  />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {[
+                      "Accounting / Finance",
+                      "Software Development",
+                      "Data & Analytics",
+                      "Operations / Back Office",
+                      "Customer Support",
+                      "Research & Strategy",
+                    ].map((label) => (
+                      <label
+                        key={label}
+                        className="flex items-center gap-2 text-sm text-hugo-black/80"
+                      >
+                        <input
+                          type="checkbox"
+                          className="h-4 w-4 shrink-0 rounded border-hugo-black/30 text-hugo-gold focus:ring-hugo-gold"
+                          checked={talentAreas.includes(label)}
+                          onChange={() => toggleTalentArea(label)}
+                        />
+                        <span className="whitespace-nowrap">{label}</span>
+                      </label>
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-2 mt-1">
+                    <input
+                      type="checkbox"
+                      className="h-4 w-4 shrink-0 rounded border-hugo-black/30 text-hugo-gold focus:ring-hugo-gold"
+                      checked={!!talentOther.trim()}
+                      onChange={(e) => {
+                        if (!e.target.checked) {
+                          setTalentOther("");
+                        }
+                      }}
+                    />
+                    <span className="text-sm text-hugo-black/80">Other:</span>
+                    <input
+                      type="text"
+                      className="flex-1 px-3 py-2 rounded-full border-2 border-hugo-black/10 focus:border-hugo-gold focus:ring-2 focus:ring-hugo-gold/20 outline-none bg-hugo-cream-warm text-hugo-black text-sm"
+                      placeholder="Describe other areas you need support"
+                      value={talentOther}
+                      onChange={(e) => setTalentOther(e.target.value)}
+                    />
+                  </div>
                 </div>
 
                 {/* Unlock in 90 days */}
@@ -331,7 +387,7 @@ export default function ContactPage() {
                     required
                     rows={4}
                     className="w-full px-5 py-4 rounded-2xl border-2 border-hugo-black/10 focus:border-hugo-gold focus:ring-2 focus:ring-hugo-gold/20 outline-none transition-all bg-hugo-cream-warm text-hugo-black resize-none"
-                    placeholder="Share what great would look like — ways of working, outcomes, communication, and where you’d like us to plug in."
+                    placeholder="Share what great would look like  ways of working, outcomes, communication, and where you’d like us to plug in."
                     value={formData.idealPartner}
                     onChange={handleChange}
                   />
