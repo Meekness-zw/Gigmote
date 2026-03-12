@@ -150,32 +150,63 @@ export default function JoinGigmotePage() {
                         </motion.div>
 
                         <h1 className="text-5xl lg:text-7xl font-bold tracking-tight mb-6 leading-[1.05]">
-                            <AnimatedText text="Build the future remotely." variant="words" />
+                            <AnimatedText
+                                text="Build the Future Remotely or in our delivery centers"
+                                variant="words"
+                            />
                         </h1>
 
-                        <motion.p
+                        <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4, duration: 0.6 }}
-                            className="text-xl text-white/60 leading-relaxed font-light"
+                            className="space-y-4 text-white/70 text-base leading-relaxed"
                         >
-                            We're looking for top 1% engineers, AI specialists, and operators to join our vetted talent network. Work with global clients on complex, scaling infrastructures.
-                        </motion.p>
+                            <p>
+                                We’re building a global network of exceptional professionals across technology,
+                                operations, finance, sales, customer experience, design, and data.
+                            </p>
+                            <p>
+                                At GigMote, we connect top-tier talent with companies around the world solving
+                                meaningful business challenges. Our vetted talent community works with ambitious
+                                organizations that are scaling fast and need capable professionals who can think
+                                critically, execute with precision, and deliver results.
+                            </p>
+                            <p>
+                                If you're someone who takes ownership, thrives in a high-performance environment,
+                                and wants to contribute to projects that matter, we want to hear from you.
+                            </p>
+                        </motion.div>
 
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.5, duration: 0.6 }}
-                            className="space-y-4 text-white/75 text-base leading-relaxed"
+                            className="space-y-4 text-white/75 text-base leading-relaxed pt-6 border-t border-white/10"
                         >
                             <h2 className="text-2xl font-semibold text-white">
                                 Join the Future of Work
                             </h2>
                             <p>
-                                At Gigmote, we’re building a global network of high‑performing teams that power businesses around the world. We don’t just offer jobs – we create opportunities for talented professionals to grow, innovate, and shape the future of outsourcing.
+                                At GigMote, we’re building a global network of high-performing teams that power
+                                businesses across industries.
                             </p>
                             <p>
-                                Whether you’re a data scientist, developer, designer, or operations specialist, we want to hear from you. Even if there isn’t a role open today, all submissions will be considered for future opportunities.
+                                We don’t just offer jobs, we create opportunities for talented professionals to
+                                collaborate, grow their expertise, and work on projects that shape the future of
+                                modern business operations.
+                            </p>
+                            <p>
+                                Our talent community includes professionals across engineering, data science,
+                                finance, accounting, operations, customer success, sales, marketing, and design.
+                                Whether you're an experienced specialist or an ambitious professional ready to
+                                contribute to global teams, GigMote provides a pathway to work on impactful
+                                projects with companies around the world.
+                            </p>
+                            <p>
+                                Even if there isn’t a role open today, we encourage you to apply. We actively
+                                review submissions and reach out when opportunities match your skills and
+                                experience.
                             </p>
                         </motion.div>
 
@@ -183,7 +214,7 @@ export default function JoinGigmotePage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6, duration: 0.6 }}
-                            className="space-y-4 pt-8 border-t border-white/10 bg-white/5 rounded-2xl p-6 backdrop-blur-sm"
+                            className="space-y-4 pt-8 bg-white/5 rounded-2xl p-6 backdrop-blur-sm border border-white/10"
                         >
                             <h3 className="text-lg font-semibold text-white">
                                 Why Work With Us
@@ -191,19 +222,31 @@ export default function JoinGigmotePage() {
                             <ul className="space-y-3 text-sm text-white/80">
                                 <li>
                                     <span className="font-semibold">Global Impact:</span>{" "}
-                                    Collaborate with U.S. and international clients on cutting‑edge projects.
+                                    Collaborate with U.S. and international clients solving real business
+                                    problems and scaling innovative companies.
+                                </li>
+                                <li>
+                                    <span className="font-semibold">Meaningful Work:</span>{" "}
+                                    Contribute to projects that drive measurable outcomes, from building
+                                    products and analyzing data to supporting operations and helping
+                                    companies grow.
                                 </li>
                                 <li>
                                     <span className="font-semibold">Performance &amp; Growth:</span>{" "}
-                                    Work in an environment that rewards initiative, innovation, and results.
+                                    Work in an environment that rewards initiative, ownership, and results.
+                                    High-performing professionals in our network often gain access to
+                                    long-term engagements and leadership opportunities.
                                 </li>
                                 <li>
                                     <span className="font-semibold">Flexible &amp; Remote:</span>{" "}
-                                    Join a team that embraces remote‑first work, while staying connected and empowered.
+                                    Join a truly remote-first ecosystem designed to support productivity,
+                                    autonomy, and work-life balance while staying connected with global
+                                    teams.
                                 </li>
                                 <li>
                                     <span className="font-semibold">Innovative Culture:</span>{" "}
-                                    Be part of a team that leverages AI, modern tools, and creative thinking to solve real business challenges.
+                                    Be part of a network that embraces modern tools, automation, AI, and
+                                    forward-thinking approaches to solving complex business challenges.
                                 </li>
                             </ul>
                         </motion.div>
@@ -212,32 +255,49 @@ export default function JoinGigmotePage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.7, duration: 0.6 }}
-                            className="space-y-3 text-sm text-white/75 bg-white/5 rounded-2xl p-6 backdrop-blur-sm"
+                            className="space-y-4 text-sm text-white/80 bg-white/5 rounded-2xl p-6 backdrop-blur-sm"
                         >
                             <h3 className="text-lg font-semibold text-white">
                                 How We Evaluate Talent
                             </h3>
                             <p>
-                                We value curiosity, problem‑solving, and measurable impact. When you apply, we look beyond resumes – we want to understand your skills, portfolio, and what makes you stand out.
+                                At GigMote, we believe talent goes beyond a résumé. We look for professionals
+                                who demonstrate curiosity, strong problem-solving ability, and the capacity to
+                                create real impact.
                             </p>
+                            <p className="font-semibold text-white">
+                                When you apply, we evaluate:
+                            </p>
+                            <ul className="list-disc list-inside space-y-1 text-white/80">
+                                <li>Your experience and technical or functional expertise</li>
+                                <li>Portfolio, projects, or measurable results</li>
+                                <li>Communication and collaboration ability</li>
+                                <li>Adaptability in remote, global work environments</li>
+                                <li>Your potential to contribute to high-performing teams</li>
+                            </ul>
                         </motion.div>
 
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.9, duration: 0.8 }}
-                            className="space-y-4 pt-10 mt-2 border-t border-white/10"
+                            className="space-y-4 pt-8 border-t border-white/10"
                         >
-                            {[
-                                "Global client exposure",
-                                "Fully remote flexibility",
-                                "Upskilling in AI & Automation tools"
-                            ].map((benefit, idx) => (
-                                <div key={idx} className="flex items-center gap-3">
-                                    <CheckCircle2 size={20} className="text-hugo-gold" />
-                                    <span className="text-white/80">{benefit}</span>
-                                </div>
-                            ))}
+                            <h3 className="text-lg font-semibold text-white">
+                                What You Gain
+                            </h3>
+                            <ul className="space-y-2 text-sm text-white/80">
+                                <li>Exposure to global clients and fast-growing companies</li>
+                                <li>Opportunities to work on high-impact projects across industries</li>
+                                <li>Fully remote flexibility and distributed team collaboration</li>
+                                <li>Access to modern tools, AI platforms, and automation technologies</li>
+                                <li>Continuous learning and upskilling opportunities</li>
+                                <li>The chance to join a vetted global talent network</li>
+                                <li>Potential long-term engagements and career advancement</li>
+                                <li>
+                                    A professional community focused on performance, innovation, and growth
+                                </li>
+                            </ul>
                         </motion.div>
                     </div>
                 </div>

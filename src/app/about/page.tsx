@@ -161,9 +161,14 @@ export default function AboutPage() {
                         className="grid grid-cols-1 md:grid-cols-3 gap-6"
                     >
                         {siteContent.company.stats.map((stat, idx) => {
-                            const numMatch = stat.value.match(/(\d+)/);
+                            const cleanedValue = stat.value.replace(/,/g, "");
+                            const numMatch = cleanedValue.match(/(\d+)/);
                             const number = numMatch ? parseInt(numMatch[1]) : 0;
-                            const suffix = stat.value.includes("+") ? "+" : "";
+                            const suffix = stat.value.includes("+")
+                                ? "+"
+                                : stat.value.includes("%")
+                                ? "%"
+                                : "";
 
                             return (
                                 <motion.div

@@ -143,9 +143,9 @@ export const siteContent = {
         heroTitle: "Built by operators, not recruiters.",
         heroDescription: "Deep CX, FinTech, and SaaS experience. Metrics-driven, process-first delivery. Human + AI  not one or the other. That's the Gigmote standard.",
         stats: [
-            { label: "Average Cost Savings", value: "40–60%" },
-            { label: "Target Markets", value: "UK / US / CA" },
-            { label: "Focus", value: "Quality & Retention" }
+            { label: "Average Cost Savings", value: "40%" },
+            { label: "Target Markets", value: "North America & Europe" },
+            { label: "Focus", value: "5,000+ Pre vetted Professionals" }
         ]
     },
     faqs: [
