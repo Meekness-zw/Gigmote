@@ -22,6 +22,7 @@ function useLockBodyScroll(locked: boolean) {
 const navLinks = [
   { href: "/about", label: "About" },
   { href: "/services", label: "Services" },
+  { href: "/case-studies", label: "Case Studies" },
   { href: "/hire-a-dev", label: "Hire a Developer" },
   { href: "/industries", label: "Industries" },
   { href: "/pricing", label: "Pricing" },

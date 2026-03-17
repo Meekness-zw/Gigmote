@@ -26,6 +26,7 @@ export const Navbar = () => {
                     <div className="hidden md:flex items-center gap-x-12">
                         <NavLink href="/about">About</NavLink>
                         <NavLink href="/services">Services</NavLink>
+                        <NavLink href="/case-studies">Case Studies</NavLink>
                         <NavLink href="/hire-a-dev">Hire a Developer</NavLink>
                         <NavLink href="/industries">Industries</NavLink>
                         <NavLink href="/pricing">Pricing</NavLink>

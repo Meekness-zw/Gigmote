@@ -145,7 +145,7 @@ export const siteContent = {
         stats: [
             { label: "Average Cost Savings", value: "40%" },
             { label: "Target Markets", value: "North America & Europe" },
-            { label: "Focus", value: "5,000+ Pre vetted Professionals" }
+            { label: "Talent Pool", value: "5,000+ Pre vetted Professionals" }
         ]
     },
     faqs: [
