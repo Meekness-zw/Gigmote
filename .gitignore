@@ -47,3 +47,4 @@ next-env.d.ts
 # uploads (local-dev resume storage fallback)
 /uploads
 /public/uploads
+.env*.local
