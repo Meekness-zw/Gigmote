@@ -191,9 +191,7 @@ export default async function ApplicationsPage({
                   <Info label="Resume">
                     {app.resumeUrl ? (
                       <a
-                        href={app.resumeUrl}
-                        target="_blank"
-                        rel="noreferrer"
+                        href={`/api/admin/applications/${app.id}/resume`}
                         download={app.resumeName}
                         className="inline-flex items-center gap-1.5 text-hugo-black hover:text-hugo-gold font-medium underline underline-offset-2"
                       >

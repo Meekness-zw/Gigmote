@@ -9,12 +9,14 @@ export type UploadedFile = {
 };
 
 /**
- * Upload a file to durable storage and return a public URL.
+ * Upload a resume to durable storage.
  *
- * - If BLOB_READ_WRITE_TOKEN is set, uploads to Vercel Blob.
+ * - If BLOB_READ_WRITE_TOKEN is set, uploads to Vercel Blob (private store).
  * - In local dev (no token, not on Vercel), writes to /public/uploads.
  * - In production without a token, throws — the local filesystem is read-only
  *   on serverless runtimes and the silent fallback would mask the misconfig.
+ *
+ * Blob URLs are not directly downloadable; serve via the admin resume API route.
  */
 export async function uploadResume(
   file: File,
@@ -26,7 +28,7 @@ export async function uploadResume(
   if (process.env.BLOB_READ_WRITE_TOKEN) {
     try {
       const blob = await put(key, file, {
-        access: "public",
+        access: "private",
         addRandomSuffix: false,
         allowOverwrite: true,
         contentType: file.type || "application/octet-stream",

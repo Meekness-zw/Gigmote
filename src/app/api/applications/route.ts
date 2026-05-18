@@ -117,7 +117,7 @@ export async function POST(req: NextRequest) {
             phone ? `Phone: ${phone}` : null,
             portfolioLink ? `Portfolio: ${portfolioLink}` : null,
             ``,
-            `Resume: ${uploaded.url}`,
+            `Resume: ${process.env.AUTH_URL || ""}/admin/applications`,
             ``,
             `Cover Letter:`,
             coverLetter || "(none)",
