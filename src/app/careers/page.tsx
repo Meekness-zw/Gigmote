@@ -131,7 +131,7 @@ export default function CareersPage() {
             >
               <div className="text-center p-6">
                 <h3 className="text-hugo-black font-bold text-2xl mb-1">Top 1%</h3>
-                <p className="text-hugo-black/60 text-xs uppercase tracking-widest font-semibold">African Talent</p>
+                <p className="text-hugo-black/60 text-xs uppercase tracking-widest font-semibold">Remote Talent</p>
               </div>
             </motion.div>
             <motion.div

@@ -45,9 +45,9 @@ export const siteContent = {
             slug: "global-staffing",
             icon: Users,
             title: "Global Staffing & Recruitment",
-            slogan: "Top African Talent. No Friction. No Compromise.",
+            slogan: "Top Remote Talent. No Friction. No Compromise.",
             description:
-                "We connect high-performing African professionals with UK and North American companies  with full vetting, strong communication, and timezone alignment. Not freelance. Not body-shopping. Curated, long-term talent with accountability.",
+                "We connect high-performing remote professionals with UK and North American companies  with full vetting, strong communication, and timezone alignment. Not freelance. Not body-shopping. Curated, long-term talent with accountability.",
             features: [
                 "Customer Support & CX Specialists",
                 "Operations & Admin Professionals",
@@ -137,7 +137,7 @@ export const siteContent = {
     ],
     about: {
         heroTitle: "Built by operators, not recruiters.",
-        heroDescription: "We built Gigmote after watching outsourcing fail real businesses. Our model combines high-quality African talent, proven BPO strategy, and practical AI  so growing companies can scale without the guesswork.",
+        heroDescription: "We built Gigmote after watching outsourcing fail real businesses. Our model combines high-quality remote talent, proven BPO strategy, and practical AI  so growing companies can scale without the guesswork.",
     },
     company: {
         heroTitle: "Built by operators, not recruiters.",
@@ -151,15 +151,15 @@ export const siteContent = {
     faqs: [
         {
             question: "How quickly can you scale a team?",
-            answer: "We can launch a dedicated team in as little as 2 weeks, thanks to our pre-vetted African talent pool and structured onboarding playbooks."
+            answer: "We can launch a dedicated team in as little as 2 weeks, thanks to our pre-vetted remote talent pool and structured onboarding playbooks."
         },
         {
             question: "Where are your talent hubs located?",
-            answer: "Our primary talent hubs are across Africa  including South Africa, Kenya, Nigeria, and Egypt  giving you access to top-tier professionals at competitive rates, with strong English communication and timezone alignment for UK and North American companies."
+            answer: "Our remote talent network spans multiple regions  giving you access to top-tier professionals at competitive rates, with strong English communication and timezone alignment for UK and North American companies."
         },
         {
             question: "Do you offer 24/7 support coverage?",
-            answer: "Yes. African talent hubs are strategically positioned for timezone overlap with both the UK and North America, and we can structure follow-the-sun coverage where needed."
+            answer: "Yes. Our remote talent network is strategically positioned for timezone overlap with both the UK and North America, and we can structure follow-the-sun coverage where needed."
         },
         {
             question: "What is your pricing model?",
@@ -190,12 +190,12 @@ export const siteContent = {
         {
             icon: Bot,
             title: "Human + AI model",
-            description: "We blend high-performing African talent with practical AI automation  keeping humans in control for quality and compliance."
+            description: "We blend high-performing remote talent with practical AI automation  keeping humans in control for quality and compliance."
         },
         {
             icon: Globe,
-            title: "Africa → Global",
-            description: "High-quality African professionals serving UK and North American companies. Strong communication, timezone alignment, and long-term retention focus."
+            title: "Remote → Global",
+            description: "High-quality remote professionals serving UK and North American companies. Strong communication, timezone alignment, and long-term retention focus."
         }
     ],
     howItWorks: [

@@ -24,7 +24,7 @@ const servicesItems: DropdownItem[] = [
     {
         href: "/hire-a-dev",
         label: "Hire a Developer",
-        description: "Top 1% African engineering talent",
+        description: "Top 1% remote engineering talent",
     },
     {
         href: "/industries",

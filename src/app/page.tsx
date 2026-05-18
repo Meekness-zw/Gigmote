@@ -199,9 +199,9 @@ export default function Home() {
       {/* Two-column image showcase  more imagery, clone-style layout */}
       <ImageShowcaseSection
         imageSide="right"
-        title="African talent. Global-ready."
+        title="Remote talent. Global-ready."
         subtitle="Why clients choose us"
-        body="We connect UK and North American companies with high-performing African professionals  vetted, full-time, and built for long-term accountability. Not a marketplace. Not body-shopping. Real teams, real metrics, real results."
+        body="We connect UK and North American companies with high-performing remote professionals  vetted, full-time, and built for long-term accountability. Not a marketplace. Not body-shopping. Real teams, real metrics, real results."
         imageSrc="/images/AI Curiosity lab in the rainforset jungle of africa in a call centre setting- bright setting, icons flying , glass office setting add people (1) (1).jpg"
         imageAlt="Team working together on delivery and operations"
         imageSrc2="/images/AI Curiosity lab in the rainforset jungle of africa in a call centre setting- bright setting, icons flying , glass office setting add people (2).jpg"
@@ -330,7 +330,7 @@ export default function Home() {
             <ComparisonTable
               rows={[
                 { feature: "Model", trad: "Built by recruiters", pros: ["Built by operators with real CX, FinTech & SaaS experience"] },
-                { feature: "Talent", trad: "Freelance marketplaces & body-shopping", pros: ["Curated, long-term African talent with full accountability"] },
+                { feature: "Talent", trad: "Freelance marketplaces & body-shopping", pros: ["Curated, long-term remote talent with full accountability"] },
                 { feature: "BPO Strategy", trad: "No design  just vendor selection", pros: ["Full BPO consulting: model design, SLAs, QA & playbooks"] },
                 { feature: "AI", trad: "Hype-driven automation", pros: ["AI that augments teams  chatbots, agents & workflow automation"] },
                 { feature: "Oversight", trad: "Minimal reporting & visibility", pros: ["Metrics-driven onboarding, KPI dashboards & ongoing optimization"] },
@@ -356,7 +356,7 @@ export default function Home() {
             <StepsAccordion
               steps={[
                 { title: "Choose your wedge", content: "We start focused  CX staffing, Ops hiring, or BPO consulting  so you see results fast without overcommitting." },
-                { title: "30–60 day pilot", content: "We match you with vetted African talent or the right BPO partner and run a structured pilot with clear KPIs and full transparency." },
+                { title: "30–60 day pilot", content: "We match you with vetted remote talent or the right BPO partner and run a structured pilot with clear KPIs and full transparency." },
                 { title: "Layer in AI", content: "Once trust is built, we introduce AI agents and automation to reduce repetitive load and boost your team's productivity." },
                 { title: "Expand & optimize", content: "We grow the engagement from staffing → consulting → AI  scaling with you as your needs evolve." },
               ]}

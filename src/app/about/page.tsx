@@ -44,13 +44,13 @@ export default function AboutPage() {
         {
             icon: Users,
             title: "Human + AI Model",
-            description: "We blend high-performing African talent with practical AI tools that augment your team  without replacing human judgment.",
+            description: "We blend high-performing remote talent with practical AI tools that augment your team  without replacing human judgment.",
             img: "/images/AI Curiosity lab in the rainforset jungle of africa in a call centre setting- bright setting, icons flying , glass office setting add people (3) (1).jpg"
         },
         {
             icon: Globe,
-            title: "Africa → Global",
-            description: "We connect UK and North American companies with top-tier African professionals. Long-term, accountable  not freelance.",
+            title: "Remote → Global",
+            description: "We connect UK and North American companies with top-tier remote professionals. Long-term, accountable  not freelance.",
             img: "/images/create an image with the Hero title _AfriCode_ Connecting African Developers to Global Businesses --- (3).jpg"
         }
     ];
@@ -127,7 +127,7 @@ export default function AboutPage() {
                             transition={{ delay: 0.6, duration: 0.8, ease: eases.smoothStrong }}
                             className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto leading-relaxed font-light"
                         >
-                            Gigmote isn't a marketplace. We're an operations partner blending top-tier African talent with practical AI to scale your business smarter.
+                            Gigmote isn't a marketplace. We're an operations partner blending top-tier remote talent with practical AI to scale your business smarter.
                         </motion.p>
                     </motion.div>
                 </div>
@@ -209,7 +209,7 @@ export default function AboutPage() {
                                 We watched outsourcing fail real businesses. Companies lost money, time, and trust through poor BPO strategy, low-quality talent, and hype-driven AI.
                             </p>
                             <p className="text-lg text-hugo-black/60 leading-relaxed">
-                                So we built a new model. One that combines high-quality African talent, proven operational consulting, and practical AI automation  giving growing companies in the UK, US, and Canada a smarter way to scale.
+                                So we built a new model. One that combines high-quality remote talent, proven operational consulting, and practical AI automation  giving growing companies in the UK, US, and Canada a smarter way to scale.
                             </p>
 
                             <div className="pt-4 flex items-center gap-6">
@@ -450,7 +450,7 @@ export default function AboutPage() {
                                 </div>
                                 <ul className="space-y-6">
                                     {[
-                                        "Curated, long-term African talent",
+                                        "Curated, long-term remote talent",
                                         "BPO strategy & operating model design",
                                         "Metrics-driven onboarding & oversight",
                                         "AI that augments  not replaces  your team",
@@ -493,9 +493,9 @@ export default function AboutPage() {
                 <div className="container mx-auto px-6 max-w-7xl relative z-10">
                     <FadeInOnScroll className="text-center mb-16">
                         <SectionLabel variant="dark">Our Reach</SectionLabel>
-                        <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">African Talent. <br /><span className="text-hugo-gold">Globally Deployed.</span></h2>
+                        <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Remote Talent. <br /><span className="text-hugo-gold">Globally Deployed.</span></h2>
                         <p className="text-xl text-white/60 max-w-2xl mx-auto font-light">
-                            Our talent hubs span South, East, West, and North Africa  strategically aligned for perfect timezone overlap with the UK, US, and Canada.
+                            Our talent network spans multiple regions  strategically aligned for timezone overlap with the UK, US, and Canada.
                         </p>
                     </FadeInOnScroll>
 

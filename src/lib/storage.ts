@@ -12,7 +12,9 @@ export type UploadedFile = {
  * Upload a file to durable storage and return a public URL.
  *
  * - If BLOB_READ_WRITE_TOKEN is set, uploads to Vercel Blob.
- * - Otherwise writes to /public/uploads (local dev fallback).
+ * - In local dev (no token, not on Vercel), writes to /public/uploads.
+ * - In production without a token, throws — the local filesystem is read-only
+ *   on serverless runtimes and the silent fallback would mask the misconfig.
  */
 export async function uploadResume(
   file: File,
@@ -22,15 +24,32 @@ export async function uploadResume(
   const key = `resumes/${applicationId}-${Date.now()}-${safeName}`;
 
   if (process.env.BLOB_READ_WRITE_TOKEN) {
-    const blob = await put(key, file, {
-      access: "public",
-      addRandomSuffix: false,
-      contentType: file.type || "application/octet-stream",
-    });
-    return { url: blob.url, name: safeName, size: file.size };
+    try {
+      const blob = await put(key, file, {
+        access: "public",
+        addRandomSuffix: false,
+        allowOverwrite: true,
+        contentType: file.type || "application/octet-stream",
+      });
+      return { url: blob.url, name: safeName, size: file.size };
+    } catch (err) {
+      console.error("[storage] Vercel Blob upload failed", {
+        key,
+        size: file.size,
+        type: file.type,
+        message: err instanceof Error ? err.message : String(err),
+      });
+      throw err;
+    }
   }
 
-  // Local fallback — writes under public/uploads/
+  // No Blob token — only allow local filesystem fallback outside production.
+  if (process.env.VERCEL || process.env.NODE_ENV === "production") {
+    throw new Error(
+      "BLOB_READ_WRITE_TOKEN is not set. Configure Vercel Blob in your project's environment variables."
+    );
+  }
+
   const buffer = Buffer.from(await file.arrayBuffer());
   const uploadDir = path.join(process.cwd(), "public", "uploads", "resumes");
   await mkdir(uploadDir, { recursive: true });
