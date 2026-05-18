@@ -170,10 +170,10 @@ export default function ServicesPage() {
                         </p>
                       </div>
                       <Link href={`/services/${service.slug}`}>
-                        <button className={`group relative px-8 py-4 overflow-hidden rounded-2xl font-semibold transition-all duration-300 ${isEven ? 'bg-hugo-black text-white hover:bg-gray-900 shadow-xl' : 'bg-white text-hugo-black hover:bg-gray-100 shadow-xl'}`}>
-                          <span className="relative z-10 flex items-center gap-2">
+                        <button className={`group relative h-11 px-6 overflow-hidden rounded-lg text-base font-semibold transition-all duration-300 ${isEven ? 'bg-hugo-black text-white hover:bg-gray-900' : 'bg-white text-hugo-black hover:bg-gray-100 shadow-sm'}`}>
+                          <span className="relative z-10 flex items-center gap-1.5">
                             View details
-                            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                           </span>
                           <div className={`absolute inset-0 bg-gradient-to-r ${isEven ? 'from-transparent via-white/10 to-transparent' : 'from-transparent via-black/5 to-transparent'} translate-x-[-100%] group-hover:animate-shine`}></div>
                         </button>

@@ -19,12 +19,22 @@ function useLockBodyScroll(locked: boolean) {
   }, [locked]);
 }
 
-const navLinks = [
+type NavLink =
+  | { href: string; label: string; children?: undefined }
+  | { label: string; children: { href: string; label: string }[]; href?: undefined };
+
+const navLinks: NavLink[] = [
   { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
+  {
+    label: "Services",
+    children: [
+      { href: "/services", label: "All services" },
+      { href: "/hire-a-dev", label: "Hire a Developer" },
+      { href: "/industries", label: "Industries" },
+    ],
+  },
   { href: "/case-studies", label: "Case Studies" },
-  { href: "/hire-a-dev", label: "Hire a Developer" },
-  { href: "/industries", label: "Industries" },
+  { href: "/jobs", label: "Jobs" },
   { href: "/pricing", label: "Pricing" },
 ];
 
@@ -109,7 +119,7 @@ export function MobileMenu() {
                     <nav className="flex flex-col gap-1 pt-4 pb-8">
                       {navLinks.map((link, idx) => (
                         <motion.div
-                          key={link.href}
+                          key={link.href ?? link.label}
                           initial={{ opacity: 0, y: 40, x: -20 }}
                           animate={{ opacity: 1, y: 0, x: 0 }}
                           transition={{
@@ -118,13 +128,33 @@ export function MobileMenu() {
                             ease: [0.22, 1, 0.36, 1],
                           }}
                         >
-                          <Link
-                            href={link.href}
-                            onClick={handleClose}
-                            className="block py-4 px-5 rounded-2xl text-2xl font-bold text-hugo-black hover:bg-hugo-gold/20 hover:text-hugo-black transition-colors active:scale-[0.98]"
-                          >
-                            {link.label}
-                          </Link>
+                          {link.children ? (
+                            <div className="py-2 px-2">
+                              <div className="px-3 pb-2 text-xs font-bold uppercase tracking-widest text-hugo-black/50">
+                                {link.label}
+                              </div>
+                              <div className="flex flex-col">
+                                {link.children.map((child) => (
+                                  <Link
+                                    key={child.href}
+                                    href={child.href}
+                                    onClick={handleClose}
+                                    className="block py-3 px-3 rounded-xl text-xl font-bold text-hugo-black hover:bg-hugo-gold/20 transition-colors active:scale-[0.98]"
+                                  >
+                                    {child.label}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          ) : (
+                            <Link
+                              href={link.href}
+                              onClick={handleClose}
+                              className="block py-4 px-5 rounded-2xl text-2xl font-bold text-hugo-black hover:bg-hugo-gold/20 hover:text-hugo-black transition-colors active:scale-[0.98]"
+                            >
+                              {link.label}
+                            </Link>
+                          )}
                         </motion.div>
                       ))}
                     </nav>

@@ -393,7 +393,7 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <Button type="submit" size="lg" variant="primary" className="w-full font-bold">
+                <Button type="submit" size="lg" variant="primary" className="w-full">
                   {isSubmitting ? "Sending..." : "Get Started"}
                 </Button>
               </form>

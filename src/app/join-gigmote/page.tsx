@@ -588,7 +588,7 @@ export default function JoinGigmotePage() {
                                         type="submit"
                                         size="lg"
                                         variant="primary"
-                                        className="w-full mt-4 font-bold relative overflow-hidden"
+                                        className="w-full mt-4 relative overflow-hidden"
                                         disabled={isSubmitting}
                                     >
                                         {isSubmitting ? (

@@ -374,7 +374,7 @@ export const ContactForm = () => {
                 type="submit"
                 size="lg"
                 variant="primary"
-                className="w-full font-bold"
+                className="w-full"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Sending..." : "Get started"}
