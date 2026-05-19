@@ -13,14 +13,14 @@ interface AnimatedTextProps {
 /**
  * Animated text reveal - words or letters animate in sequentially
  */
-export function AnimatedText({ 
-  text, 
-  variant = "words", 
+export function AnimatedText({
+  text,
+  variant = "words",
   className = "",
-  delay = 0 
+  delay = 0
 }: AnimatedTextProps) {
   const words = text.split(" ");
-  
+
   if (variant === "letters") {
     return (
       <motion.span
@@ -36,7 +36,7 @@ export function AnimatedText({
             variants={splitTextLetter}
             style={{ display: "inline-block" }}
           >
-            {char === " " ? "\u00A0" : char}
+            {char === " " ? " " : char}
           </motion.span>
         ))}
       </motion.span>
@@ -52,15 +52,18 @@ export function AnimatedText({
       className={className}
       transition={{ delay }}
     >
-      {words.map((word, i) => (
-        <motion.span
-          key={i}
-          variants={textRevealWord}
-          style={{ display: "inline-block", marginRight: "0.25em" }}
-        >
-          {word}
-        </motion.span>
-      ))}
+      {words.map((word, i) => {
+        const isLast = i === words.length - 1;
+        return (
+          <motion.span
+            key={i}
+            variants={textRevealWord}
+            style={{ display: "inline-block", whiteSpace: "pre" }}
+          >
+            {isLast ? word : `${word} `}
+          </motion.span>
+        );
+      })}
     </motion.span>
   );
 }

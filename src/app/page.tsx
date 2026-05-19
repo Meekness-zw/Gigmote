@@ -36,57 +36,106 @@ export default function Home() {
 
       <Hero variant="home" />
 
-      {/* Featured cards  three key stories instead of carousel */}
-      <section className="py-12 md:py-16 bg-hugo-cream">
+      {/* What we do  two capabilities, one integrated model */}
+      <section className="py-20 md:py-28 bg-hugo-cream border-t border-hugo-black/5">
         <div className="container mx-auto px-6 max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            <div className="rounded-3xl overflow-hidden bg-hugo-cream border border-hugo-black/10 p-6 md:p-8 flex flex-col h-full">
-              <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-4 bg-hugo-black/5">
-                <img
-                  src="/images/Powered by People. Enhanced by Technology._Connecting international companies with high-quality African outsourcing partners, while empowering entrepreneurs to build sustainable BPO operations.-create.jpg"
-                  alt="Team collaboration and planning"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h4 className="text-xl md:text-2xl font-bold text-hugo-black mb-2">
-                Built for performance
-              </h4>
-              <p className="text-hugo-black/60 text-sm md:text-base">
-                We focus on outcomes, not just headcount. Real teams, real metrics.
-              </p>
-            </div>
+          <FadeInOnScroll className="max-w-3xl mb-12 md:mb-16">
+            <span className="inline-block text-xs font-semibold uppercase tracking-widest text-hugo-gold mb-4">
+              What we do
+            </span>
+            <h2 className="text-3xl md:text-5xl font-semibold text-hugo-black tracking-tight mb-5 leading-[1.1]">
+              Two capabilities. One integrated model.
+            </h2>
+            <p className="text-base md:text-lg text-hugo-black/70 leading-relaxed">
+              Gigmote operates at the intersection of technical talent and intelligent
+              infrastructure sourcing the engineers, AML / KYC compliance ops, and data
+              scientists who define competitive advantage, then deploying the automation
+              systems that make them operate at full leverage.
+            </p>
+          </FadeInOnScroll>
 
-            <div className="rounded-3xl overflow-hidden bg-hugo-cream border border-hugo-black/10 p-6 md:p-8 flex flex-col h-full">
-              <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-4 bg-hugo-black/5">
-                <img
-                  src="/images/Gigmote Asset 1.jpg"
-                  alt="Global team working together"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h4 className="text-xl md:text-2xl font-bold text-hugo-black mb-2">
-                Scale without the guesswork
-              </h4>
-              <p className="text-hugo-black/60 text-sm md:text-base">
-                Vetted talent and proven playbooks so you launch faster.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+            {[
+              {
+                number: "01",
+                title: "AI & Technical Talent Sourcing",
+                body: "Pre-vetted AI engineers, AML / KYC compliance ops, data scientists, ML ops specialists, and senior technical operators — placed with precision, onboarded with rigour, accountable from day one. Not a marketplace. A placement model built on performance.",
+              },
+              {
+                number: "02",
+                title: "Intelligent Workflow Deployment",
+                body: "AI agents, data pipelines, and automation architecture designed to reduce operational load without compromising quality or control. Built for teams that run on outcomes, not headcount.",
+              },
+              {
+                number: "03",
+                title: "Technical BPO Advisory",
+                body: "For organizations outsourcing technical and non-technical functions, we design the operating model before a single hire is made. Vendor selection, SLAs, QA frameworks, and performance governance included. Our strength is access to experienced, elite talent anywhere in the world.",
+              },
+            ].map((card, idx) => (
+              <FadeInOnScroll
+                key={card.number}
+                delay={idx * 0.08}
+                className="bg-white rounded-2xl border border-hugo-black/5 p-6 md:p-7 flex flex-col hover:border-hugo-black/15 hover:shadow-sm transition-all"
+              >
+                <span className="text-xs font-semibold uppercase tracking-widest text-hugo-gold mb-5">
+                  {card.number}
+                </span>
+                <h3 className="text-xl md:text-2xl font-semibold text-hugo-black tracking-tight mb-3 leading-tight">
+                  {card.title}
+                </h3>
+                <p className="text-sm md:text-base text-hugo-black/70 leading-relaxed">
+                  {card.body}
+                </p>
+              </FadeInOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div className="rounded-3xl overflow-hidden bg-hugo-cream border border-hugo-black/10 p-6 md:p-8 flex flex-col h-full">
-              <div className="relative w-full aspect-video rounded-2xl overflow-hidden mb-4 bg-hugo-black/5">
-                <img
-                  src="/images/global bpo advisory.jpg"
-                  alt="Strategy and operations"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h4 className="text-xl md:text-2xl font-bold text-hugo-black mb-2">
-                From strategy to delivery
-              </h4>
-              <p className="text-hugo-black/60 text-sm md:text-base">
-                BPO matchmaking, staffing, and AI solutions under one roof.
-              </p>
-            </div>
+      {/* Our position  editorial credentials block */}
+      <section className="py-20 md:py-28 bg-hugo-cream border-t border-hugo-black/5">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <FadeInOnScroll className="max-w-4xl">
+            <span className="inline-block text-xs font-semibold uppercase tracking-widest text-hugo-gold mb-4">
+              Our position
+            </span>
+            <h2 className="text-3xl md:text-5xl font-semibold text-hugo-black tracking-tight leading-[1.1] mb-8">
+              Built by operators who have built BPOs & shipped AI systems not
+              recruiters who have read about them.
+            </h2>
+            <div className="w-12 h-px bg-hugo-black/30 mb-2" />
+          </FadeInOnScroll>
+
+          <div className="divide-y divide-hugo-black/10">
+            {[
+              {
+                label: "Talent standard",
+                body: "Rigorous vetting across technical depth, communication, and long-term retention profile not résumé matching.",
+              },
+              {
+                label: "AI integration",
+                body: "Automation is embedded into every engagement not offered as a bolt-on after placement.",
+              },
+              {
+                label: "Operating model",
+                body: "Every engagement is scoped around your KPIs. SLAs, QA frameworks, and performance dashboards are standard not optional.",
+              },
+              {
+                label: "Engagement design",
+                body: "Pilot → scale → optimise. We start focused and expand with evidence not with promises.",
+              },
+            ].map((row, idx) => (
+              <FadeInOnScroll key={row.label} delay={idx * 0.06}>
+                <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-3 md:gap-12 py-6 md:py-7">
+                  <div className="text-sm font-medium text-hugo-black/45">
+                    {row.label}
+                  </div>
+                  <p className="text-base md:text-lg text-hugo-black/85 leading-relaxed max-w-3xl">
+                    {row.body}
+                  </p>
+                </div>
+              </FadeInOnScroll>
+            ))}
           </div>
         </div>
       </section>

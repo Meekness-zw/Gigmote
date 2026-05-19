@@ -12,7 +12,6 @@ interface HeroProps {
     title?: string;
     subtitle?: string;
     description?: string;
-    imageSrc?: string;
 }
 
 export const Hero = ({
@@ -20,7 +19,6 @@ export const Hero = ({
     title = "Built to make you better.",
     subtitle = "Outsourcing+",
     description = "Precision, trust, and operational excellence. Domain expertise meets modern delivery for teams that scale.",
-    imageSrc = "/images/Gigmote Asset 3.jpg",
 }: HeroProps) => {
 
     const isHome = variant === "home";
@@ -66,33 +64,28 @@ export const Hero = ({
                             </div>
                         )}
 
-                        <h1 className={`text-5xl md:text-7xl font-bold tracking-tight leading-[1.1] ${isDark ? 'text-white' : 'text-hugo-black'}`}>
+                        <h1 className={`text-4xl md:text-6xl font-bold tracking-tight leading-[1.08] ${isDark ? 'text-white' : 'text-hugo-black'}`}>
                             {isHome ? (
-                                <>
-                                    <div className="flex flex-col gap-2">
-                                        <div className="block">
-                                            <AnimatedText text="Build Global Teams." variant="words" />
-                                        </div>
-                                        <div className="block">
-                                            <AnimatedText text="Automate Smarter." variant="words" delay={0.15} />
-                                        </div>
-                                        <div className="block">
-                                            <span className="relative inline-block">
-                                                <AnimatedText text="Scale Faster." variant="words" delay={0.3} />
-                                                <motion.svg
-                                                    initial={{ pathLength: 0 }}
-                                                    animate={{ pathLength: 1 }}
-                                                    transition={{ delay: 1.0, duration: 1.2, ease: eases.expo }}
-                                                    className="absolute w-full h-3 -bottom-1 left-0 text-hugo-gold/80"
-                                                    viewBox="0 0 100 10"
-                                                    preserveAspectRatio="none"
-                                                >
-                                                    <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" />
-                                                </motion.svg>
-                                            </span>
-                                        </div>
+                                <div className="flex flex-col gap-3">
+                                    <div className="block">
+                                        <AnimatedText text="Source the Minds Building the Future." variant="words" />
                                     </div>
-                                </>
+                                    <div className="block">
+                                        <span className="relative inline-block">
+                                            <AnimatedText text="Deploy the Systems That Compound Their Impact." variant="words" delay={0.2} />
+                                            <motion.svg
+                                                initial={{ pathLength: 0 }}
+                                                animate={{ pathLength: 1 }}
+                                                transition={{ delay: 1.0, duration: 1.2, ease: eases.expo }}
+                                                className="absolute w-full h-3 -bottom-1 left-0 text-hugo-gold/80"
+                                                viewBox="0 0 100 10"
+                                                preserveAspectRatio="none"
+                                            >
+                                                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="none" />
+                                            </motion.svg>
+                                        </span>
+                                    </div>
+                                </div>
                             ) : (
                                 <AnimatedText text={title} variant="words" />
                             )}
@@ -102,10 +95,10 @@ export const Hero = ({
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 0.2, duration: 0.6, ease: eases.smooth }}
-                            className={`text-lg md:text-xl leading-relaxed max-w-lg ${isCentered ? 'mx-auto' : ''} ${isDark ? 'text-white/80' : 'text-hugo-black/70'}`}
+                            className={`text-lg md:text-xl leading-relaxed max-w-xl ${isCentered ? 'mx-auto' : ''} ${isDark ? 'text-white/80' : 'text-hugo-black/70'}`}
                         >
                             {isHome
-                                ? "We connect UK and North American companies with high-performing remote professionals, design outsourcing models that actually work, and deploy AI agents that reduce operational load  without sacrificing quality or trust."
+                                ? "The most consequential constraint facing high-growth organizations isn't capital. It's access to elite AI and technical talent and the operational infrastructure to make them perform. Gigmote solves both."
                                 : description}
                         </motion.p>
 
@@ -138,15 +131,8 @@ export const Hero = ({
                         </motion.div>
                     </motion.div>
 
-                    {/* Animated floating pics + circles (Home, Service, or when showRightVisual) */}
-                    {hasRightVisual && (
-                        <FloatingHeroVisual
-                            image1={isHome ? "/images/Gigmote Asset 3.jpg" : imageSrc}
-                            image2="/images/Gigmote Asset 4.jpg"
-                            alt1="Global team collaboration"
-                            alt2="Operational excellence in action"
-                        />
-                    )}
+                    {/* Editorial composition  rings + brand mark + kinetic concepts (home only) */}
+                    {hasRightVisual && <FloatingHeroVisual />}
                 </div>
             </div>
 

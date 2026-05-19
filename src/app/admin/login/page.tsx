@@ -1,7 +1,22 @@
+import { AuthError } from "next-auth";
 import { signIn, auth, isAdminEmail } from "@/lib/auth";
+import {
+  isAdminAllowlistConfigured,
+  isAuthConfigured,
+  isSmtpConfigured,
+} from "@/lib/auth-env";
 import { isDeviceTrustedFor } from "@/lib/admin-trust";
+import { isNavigationRedirect } from "@/lib/navigation";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+
+function resolveSignInRedirect(resultUrl: string) {
+  const base = process.env.AUTH_URL ?? "https://www.gigmote.com";
+  const next = new URL(resultUrl, base);
+  const errCode = next.searchParams.get("error");
+  if (errCode) redirect(`/admin/login?error=${errCode}`);
+  redirect(`${next.pathname}${next.search}`);
+}
 
 type SearchParams = Promise<{ callbackUrl?: string; error?: string }>;
 
@@ -23,26 +38,54 @@ export default async function AdminLoginPage({
       .trim()
       .toLowerCase();
 
+    if (!isAuthConfigured()) {
+      console.error("[admin/login] AUTH_SECRET is not configured");
+      redirect("/admin/login?error=Configuration");
+    }
+
+    if (!isAdminAllowlistConfigured()) {
+      console.error("[admin/login] ADMIN_EMAILS is empty");
+      redirect("/admin/login?error=Configuration");
+    }
+
     // Reject non-admin emails immediately — no magic link gets sent.
     if (!email || !isAdminEmail(email)) {
       redirect("/admin/login?error=AccessDenied");
     }
 
-    // If this device has previously verified this email, skip the magic link
-    // and sign them in directly.
-    if (await isDeviceTrustedFor(email)) {
-      await signIn("trusted-device", {
-        email,
-        redirectTo: callbackUrl,
-      });
-      return;
-    }
+    try {
+      // redirect: false — signIn() otherwise calls redirect(), which throws and
+      // was being caught here as a false "Unknown" failure.
+      let resultUrl: string;
 
-    // First time on this device — send a magic link to verify ownership.
-    await signIn("nodemailer", {
-      email,
-      redirectTo: callbackUrl,
-    });
+      if (await isDeviceTrustedFor(email)) {
+        resultUrl = await signIn("trusted-device", {
+          email,
+          redirectTo: callbackUrl,
+          redirect: false,
+        });
+      } else {
+        if (!isSmtpConfigured()) {
+          console.error("[admin/login] SMTP is not fully configured");
+          redirect("/admin/login?error=EmailSignin");
+        }
+
+        resultUrl = await signIn("nodemailer", {
+          email,
+          redirectTo: callbackUrl,
+          redirect: false,
+        });
+      }
+
+      resolveSignInRedirect(resultUrl);
+    } catch (err) {
+      if (isNavigationRedirect(err)) throw err;
+      console.error("[admin/login] signIn failed", err);
+      if (err instanceof AuthError) {
+        redirect(`/admin/login?error=${err.type}`);
+      }
+      redirect("/admin/login?error=Unknown");
+    }
   }
 
   return (
@@ -71,7 +114,15 @@ export default async function AdminLoginPage({
             <div className="mb-5 rounded-lg bg-red-50 border border-red-100 p-3 text-sm text-red-700">
               {error === "AccessDenied"
                 ? "That email is not authorized for admin access."
-                : "Sign-in failed. Please try again."}
+                : error === "Configuration" || error === "MissingSecret"
+                  ? "Admin sign-in is not configured on this deployment. Set AUTH_SECRET, ADMIN_EMAILS, and AUTH_URL (https://www.gigmote.com) in Vercel, then redeploy."
+                  : error === "EmailSignin"
+                    ? "Could not send the sign-in email. Check SMTP settings on the server."
+                    : error === "CredentialsSignin"
+                      ? "Trusted-device sign-in failed. Use the email link instead."
+                    : error === "MissingCSRF"
+                      ? "Session expired. Refresh the page and try again."
+                      : `Sign-in failed (${error}). Please try again.`}
             </div>
           )}
 

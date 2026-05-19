@@ -15,6 +15,8 @@ export const isAdminEmail = (email?: string | null) =>
  * Prisma adapter + Nodemailer email provider (Node runtime only).
  */
 export const authConfig = {
+  secret: process.env.AUTH_SECRET,
+  trustHost: true,
   pages: {
     signIn: "/admin/login",
     verifyRequest: "/admin/login/check-email",

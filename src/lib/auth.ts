@@ -12,20 +12,24 @@ import {
 
 export { isAdminEmail } from "./auth.config";
 
+const smtpPort = Number(process.env.SMTP_PORT ?? 587);
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
+  trustHost: true,
   adapter: PrismaAdapter(prisma),
   providers: [
     Nodemailer({
       server: {
         host: process.env.SMTP_HOST,
-        port: Number(process.env.SMTP_PORT ?? 587),
+        port: smtpPort,
+        secure: smtpPort === 465,
         auth: {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
         },
       },
-      from: process.env.SMTP_FROM_EMAIL,
+      from: process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER,
     }),
     Credentials({
       id: "trusted-device",
