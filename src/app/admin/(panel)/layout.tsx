@@ -38,6 +38,12 @@ export default async function PanelLayout({
                 Applications
               </Link>
               <Link
+                href="/admin/courses"
+                className="text-hugo-black/70 hover:text-hugo-black"
+              >
+                Courses
+              </Link>
+              <Link
                 href="/jobs"
                 target="_blank"
                 className="text-hugo-black/70 hover:text-hugo-black"

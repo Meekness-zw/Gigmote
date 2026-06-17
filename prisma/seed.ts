@@ -2,6 +2,67 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+const courses = [
+  {
+    slug: "ai-at-work",
+    title: "AI at Work",
+    tagline:
+      "Get hands-on, job-ready training to leverage AI tools for automating workflows, analysing data, and creating polished content — boosting productivity with secure, ethical best practices.",
+    description:
+      "AI at Work transforms how organisations integrate artificial intelligence by moving beyond isolated task automation toward strategic enterprise transformation. You'll explore machine learning fundamentals and generative architectures through labs covering prompt engineering, workflow automation, data synthesis, and copilot orchestration.\n\nThe programme emphasises enterprise-grade tools integrated with existing business intelligence systems while rigorously evaluating outputs for accuracy, bias, and governance compliance. The curriculum is organised into tactical sprints with analytical milestones, comprehensive assessments, and turn-key templates designed for rapid, measurable results.",
+    price: "$10",
+    outcomes: [
+      "Accelerating research velocity and executive drafting",
+      "Conducting data-driven analysis with structural efficiency",
+      "Architecting automation frameworks across business units including customer operations, marketing, sales, human capital, and finance",
+      "Building scalable prompt assets and modular automation recipes",
+      "Creating risk-managed implementation roadmaps with clear ROI metrics",
+    ].join("\n"),
+    curriculum: [
+      "## Module 1: Introduction to AI at Work",
+      "- Understanding AI and its impact on the modern workplace",
+      "- AI's transformative role across industries",
+      "- Performance enhancement through AI adoption",
+      "",
+      "## Module 2: Essential AI Tools and Technologies",
+      "- Overview of professional AI tools",
+      "- Productivity automation techniques",
+      "- Data analysis and decision-making applications",
+      "",
+      "## Module 3: Practical AI Skills for the Modern Workforce",
+      "- AI-powered communication enhancement",
+      "- Project management and collaboration tools",
+      "- Personalised workflow assistants",
+      "",
+      "## Module 4: Developing an AI-Driven Mindset",
+      "- Continuous learning and adaptation strategies",
+      "- Ethical AI deployment considerations",
+      "- Career future-proofing approaches",
+      "",
+      "## Module 5: Real-World Work Scenarios",
+      "- Successful AI integration case studies",
+      "- Hands-on implementation project",
+      "- Performance measurement and improvement",
+      "",
+      "## Module 6: Conclusion and Next Steps",
+      "- Key takeaway recap",
+      "- Continued learning resources",
+      "- Personalised action planning",
+    ].join("\n"),
+    instructor: "Dakarai Mshoperi",
+    instructorBio:
+      "AI-first software engineer and educator with a decade of experience leading data-informed projects and piloting automation for global enterprises. Dakarai led AI-powered solutions at Tese.io, winning the G20 TechSprint and LIFT Data Challenge (Central Bank of Brazil), and developed AI marketing and operational tools at Swiffy Payments — contributing to the 'Best Payments Service Provider – Africa' award at the 2023 UF Awards MEA.\n\nHis teaching philosophy focuses on practical, jargon-light, results-oriented instruction that enables immediate workplace application.",
+    features: [
+      "Strategic: Aligns AI initiatives with core business goals",
+      "Hands-on: Build, test, and deploy practical automations",
+      "Ethical: Responsible, transparent, and fair AI practices",
+    ].join("\n"),
+    enrollUrl: "https://gigmote.teachable.com/p/ai-at-work",
+    status: "published",
+    featured: true,
+  },
+];
+
 const jobs = [
   {
     slug: "senior-frontend-engineer",
@@ -154,6 +215,15 @@ async function main() {
       create: job,
     });
     console.log(`✓ ${job.title}`);
+  }
+
+  for (const course of courses) {
+    await prisma.course.upsert({
+      where: { slug: course.slug },
+      update: course,
+      create: course,
+    });
+    console.log(`✓ ${course.title}`);
   }
 }
 
