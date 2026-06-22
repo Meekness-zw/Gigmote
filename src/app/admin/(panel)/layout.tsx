@@ -37,12 +37,12 @@ export default async function PanelLayout({
               >
                 Applications
               </Link>
-              <Link
+              {/* <Link
                 href="/admin/courses"
                 className="text-hugo-black/70 hover:text-hugo-black"
               >
                 Courses
-              </Link>
+              </Link> */}
               <Link
                 href="/jobs"
                 target="_blank"

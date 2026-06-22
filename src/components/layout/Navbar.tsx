@@ -54,7 +54,7 @@ export const Navbar = () => {
                         <NavDropdown label="Services" items={servicesItems} matchPaths={["/services", "/hire-a-dev", "/industries"]} />
                         <NavLink href="/case-studies">Case Studies</NavLink>
                         <NavLink href="/jobs">Jobs</NavLink>
-                        <NavLink href="/training">Training</NavLink>
+                        {/* <NavLink href="/training">Training</NavLink> */}
                         <NavLink href="/pricing">Pricing</NavLink>
                     </div>
 
