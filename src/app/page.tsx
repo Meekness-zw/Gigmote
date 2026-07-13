@@ -1,7 +1,7 @@
 "use client";
 
 import { Navbar } from "@/components/layout/Navbar";
-import { Hero } from "@/components/sections/Hero";
+import { VideoHero } from "@/components/sections/VideoHero";
 import { ContactForm } from "@/components/ui/ContactForm";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/Button";
@@ -34,12 +34,12 @@ export default function Home() {
       <BackgroundMotion variant="light" />
       <Navbar />
 
-      <Hero variant="home" />
+      <VideoHero />
 
       {/* What we do  two capabilities, one integrated model */}
       <section className="py-20 md:py-28 bg-hugo-cream border-t border-hugo-black/5">
         <div className="container mx-auto px-6 max-w-6xl">
-          <FadeInOnScroll className="max-w-3xl mb-12 md:mb-16">
+          <FadeInOnScroll className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
             <span className="inline-block text-xs font-semibold uppercase tracking-widest text-hugo-gold mb-4">
               What we do
             </span>
@@ -47,10 +47,9 @@ export default function Home() {
               Two capabilities. One integrated model.
             </h2>
             <p className="text-base md:text-lg text-hugo-black/70 leading-relaxed">
-              Gigmote operates at the intersection of technical talent and intelligent
-              infrastructure sourcing the engineers, AML / KYC compliance ops, and data
-              scientists who define competitive advantage, then deploying the automation
-              systems that make them operate at full leverage.
+              Gigmote helps businesses grow revenue by connecting them with skilled
+              technical professionals and implementing intelligent automation that enables
+              teams to move faster, scale efficiently, and deliver greater business impact.
             </p>
           </FadeInOnScroll>
 
