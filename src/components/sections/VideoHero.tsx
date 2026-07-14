@@ -97,15 +97,6 @@ export function VideoHero() {
         style={{ y: contentY, opacity: contentOpacity }}
         className="relative z-10 mx-auto flex max-w-7xl flex-col items-center px-6 pt-40 text-center md:pt-48"
       >
-        <motion.span
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          className="mb-7 inline-block rounded-full border border-hugo-black/15 bg-white/60 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-hugo-black/70 backdrop-blur-md"
-        >
-          Global talent · Intelligent systems
-        </motion.span>
-
         <h1 className="font-serif text-[2.5rem] font-normal leading-[1.02] tracking-tight text-hugo-black sm:text-5xl md:text-6xl lg:text-7xl">
           <AnimatedText
             text="Source the minds building the future."
@@ -130,11 +121,6 @@ export function VideoHero() {
           transition={{ duration: 0.7, delay: 0.65, ease: eases.smoothStrong }}
           className="mt-9 flex flex-col gap-4 sm:flex-row"
         >
-          <Link href="/contact">
-            <Button size="lg" variant="primary">
-              Book a Strategy Call
-            </Button>
-          </Link>
           <Link href="/services">
             <Button size="lg" variant="outline">
               Explore Services
