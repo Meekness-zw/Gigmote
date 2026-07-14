@@ -290,6 +290,20 @@ export const siteContent = {
                 "60% faster administrative turnaround times",
                 "Property portfolio growth from 75 to 110 properties in 18 months without increasing U.S.-based headcount"
             ]
+        },
+        {
+            id: "scaling-clinical-operations-global-cro",
+            industry: "Global Clinical Research Organization",
+            title: "Scaling Clinical Operations for a Global Clinical Research Organization",
+            challenge:
+                "During a period of increased clinical research activity, a global clinical research organization required additional operational capacity to support its pharmacovigilance and clinical operations teams. The client needed qualified professionals who could quickly integrate into regulated workflows while maintaining strict quality and compliance standards.",
+            solution:
+                "Gigmote deployed a team of 10 Operations Specialists to support the client's clinical operations function. Working within established SOPs, our specialists assisted with the review, validation, quality control, and processing of clinical safety information, supported regulatory reporting workflows, and collaborated with cross-functional project teams to resolve workflow issues while maintaining compliance.",
+            results: [
+                "Onboarded and deployed 10 Operations Specialists within project timelines",
+                "Expanded operational capacity during a high-demand period while maintaining full compliance with client SOPs, industry regulations, and quality standards",
+                "Delivered a scalable workforce that integrated seamlessly with internal teams, supporting timely completion of critical clinical operations activities"
+            ]
         }
     ]
 };
