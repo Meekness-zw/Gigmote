@@ -108,9 +108,9 @@ export function VideoHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5, ease: eases.smooth }}
-          className="mt-6 max-w-2xl text-base leading-relaxed text-hugo-black/65 md:text-lg"
+          className="mt-6 max-w-2xl text-base leading-relaxed text-hugo-black/65 md:text-lg text-balance"
         >
-          Gigmote places elite AI and technical talent — then deploys the
+          Gigmote places elite AI and technical talent then deploys the
           automation systems that compound their impact. Precision, trust, and
           operational excellence, on a global scale.
         </motion.p>

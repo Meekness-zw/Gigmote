@@ -39,14 +39,14 @@ export default function Home() {
       {/* What we do  two capabilities, one integrated model */}
       <section className="py-20 md:py-28 bg-hugo-cream border-t border-hugo-black/5">
         <div className="container mx-auto px-6 max-w-6xl">
-          <FadeInOnScroll className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
+          <FadeInOnScroll className="max-w-4xl mx-auto text-center mb-12 md:mb-16">
             <span className="inline-block text-xs font-semibold uppercase tracking-widest text-hugo-gold mb-4">
               What we do
             </span>
-            <h2 className="text-3xl md:text-5xl font-semibold text-hugo-black tracking-tight mb-5 leading-[1.1]">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-hugo-black tracking-tight mb-5 leading-[1.1] text-balance lg:whitespace-nowrap">
               Two capabilities. One integrated model.
             </h2>
-            <p className="text-base md:text-lg text-hugo-black/70 leading-relaxed">
+            <p className="max-w-2xl mx-auto text-base md:text-lg text-hugo-black/70 leading-relaxed text-balance">
               Gigmote helps businesses grow revenue by connecting them with skilled
               technical professionals and implementing intelligent automation that enables
               teams to move faster, scale efficiently, and deliver greater business impact.
