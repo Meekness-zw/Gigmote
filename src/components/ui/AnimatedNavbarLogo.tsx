@@ -12,7 +12,7 @@ export function AnimatedNavbarLogo() {
       {/* Spiral icon  draws in on mount */}
       <motion.svg
         viewBox="0 0 32 32"
-        className="w-8 h-8 text-hugo-gold"
+        className="w-[42px] h-[42px] text-hugo-gold"
         initial="hidden"
         animate="visible"
         variants={{
@@ -72,7 +72,7 @@ export function AnimatedNavbarLogo() {
       </motion.svg>
       {/* Text */}
       <motion.span
-        className="text-xl font-bold tracking-tight group-hover:text-hugo-gold transition-colors duration-300"
+        className="text-[1.65rem] font-bold tracking-tight group-hover:text-hugo-gold transition-colors duration-300"
         initial={{ opacity: 0, x: -4 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.4, delay: 0.2, ease: [0.19, 1, 0.22, 1] }}
